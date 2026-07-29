@@ -1,0 +1,34 @@
+{
+  "app": {
+    "title": "Digital learning platform",
+    "courseName": "HIV and Gender",
+    "language": "Language"
+  },
+  "nav": {
+    "courses": "Online courses",
+    "myLearning": "My learning",
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "register": "Register"
+  },
+  "common": {
+    "continue": "Continue",
+    "back": "Back",
+    "loading": "Loading…"
+  },
+  "module": {
+    "label": "Module {number}",
+    "ofTotal": "Module {current} of {total}"
+  },
+  "progress": {
+    "saved": "Progress saved",
+    "saving": "Saving…",
+    "completed": "Completed",
+    "inProgress": "In progress",
+    "notStarted": "Not started"
+  },
+  "a11y": {
+    "skipToContent": "Skip to main content",
+    "languageSwitcher": "Choose interface language"
+  }
+}

@@ -1,0 +1,98 @@
+/*
+ * Design tokens — UNAIDS "HIV and Gender" learning platform.
+ *
+ * Module palette per Texnik topshiriq §8.1. These HEX values are contractual:
+ * they must not change without written client approval (§32). Mirrored in
+ * backend/src/Lms.Domain/Design/ModulePalette.cs — keep both in sync.
+ *
+ * The *-accessible variants are darkened derivations for text-on-light-bg use,
+ * pre-validated against WCAG 2.2 AA (>= 4.5:1 on white and on the module light
+ * background). Module identity is never conveyed by color alone (§8.3):
+ * components must pair color with module number, title or icon.
+ */
+:root {
+  /* Module 0 — warm grey: orientation / instructions */
+  --module-0: #7a756b;
+  --module-0-bg: #e4e2dd;
+  --module-0-accessible: #5c5850;
+
+  /* Module 1 — teal: health, trust, evidence */
+  --module-1: #5f8a93;
+  --module-1-bg: #dce7e9;
+  --module-1-accessible: #43626a;
+
+  /* Module 2 — deep slate: law, rights, formality */
+  --module-2: #4f6488;
+  --module-2-bg: #dbdfe7;
+  --module-2-accessible: #45587a;
+
+  /* Module 3 — lavender: gender equality and sensitivity */
+  --module-3: #8b7ba8;
+  --module-3-bg: #e7e3ee;
+  --module-3-accessible: #64547f;
+
+  /* Module 4 — sage: care, calm, humanity */
+  --module-4: #6e9c82;
+  --module-4-bg: #e0eae3;
+  --module-4-accessible: #48685c;
+
+  /* Module 5 — terracotta: action, practice, implementation */
+  --module-5: #c08160;
+  --module-5-bg: #f1e2d8;
+  --module-5-accessible: #8f5232;
+
+  /* Neutral / semantic tokens */
+  --color-text: #26241f;
+  --color-text-muted: #5c5850;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f6f5f3;
+  --color-border: #d9d6d0;
+  --color-focus: #1d4ed8;
+  --color-error: #b3261e;
+  --color-success: #1e6f42;
+
+  /* Typography — body text never below 16px (§11) */
+  --font-family-base: "Noto Sans", "Segoe UI", system-ui, sans-serif;
+  --font-size-base: 1rem;
+  --line-height-base: 1.6;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+
+  /* Touch targets stay comfortable on mobile (§12) */
+  --min-touch-target: 44px;
+}
+
+/*
+ * Module theming scope: set data-module="0".."5" on a container and use the
+ * generic tokens below inside components.
+ */
+[data-module="0"] { --module-primary: var(--module-0); --module-bg: var(--module-0-bg); --module-text: var(--module-0-accessible); }
+[data-module="1"] { --module-primary: var(--module-1); --module-bg: var(--module-1-bg); --module-text: var(--module-1-accessible); }
+[data-module="2"] { --module-primary: var(--module-2); --module-bg: var(--module-2-bg); --module-text: var(--module-2-accessible); }
+[data-module="3"] { --module-primary: var(--module-3); --module-bg: var(--module-3-bg); --module-text: var(--module-3-accessible); }
+[data-module="4"] { --module-primary: var(--module-4); --module-bg: var(--module-4-bg); --module-text: var(--module-4-accessible); }
+[data-module="5"] { --module-primary: var(--module-5); --module-bg: var(--module-5-bg); --module-text: var(--module-5-accessible); }
+
+/* Visible focus for keyboard users — WCAG 2.2 AA (§8.3, §21) */
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

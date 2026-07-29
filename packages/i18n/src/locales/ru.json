@@ -1,0 +1,34 @@
+{
+  "app": {
+    "title": "Цифровая учебная платформа",
+    "courseName": "ВИЧ и гендер",
+    "language": "Язык"
+  },
+  "nav": {
+    "courses": "Онлайн-курсы",
+    "myLearning": "Моё обучение",
+    "signIn": "Войти",
+    "signOut": "Выйти",
+    "register": "Регистрация"
+  },
+  "common": {
+    "continue": "Продолжить",
+    "back": "Назад",
+    "loading": "Загрузка…"
+  },
+  "module": {
+    "label": "Модуль {number}",
+    "ofTotal": "Модуль {current} из {total}"
+  },
+  "progress": {
+    "saved": "Прогресс сохранён",
+    "saving": "Сохранение…",
+    "completed": "Завершено",
+    "inProgress": "В процессе",
+    "notStarted": "Не начато"
+  },
+  "a11y": {
+    "skipToContent": "Перейти к основному содержимому",
+    "languageSwitcher": "Выбор языка интерфейса"
+  }
+}

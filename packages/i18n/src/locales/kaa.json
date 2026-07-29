@@ -1,0 +1,34 @@
+{
+  "app": {
+    "title": "Sanlı oqıw platforması",
+    "courseName": "AIV ha'm gender",
+    "language": "Til"
+  },
+  "nav": {
+    "courses": "Onlayn kurslar",
+    "myLearning": "Mening oqıwım",
+    "signIn": "Kiriw",
+    "signOut": "Shıǵıw",
+    "register": "Dizimnen o'tiw"
+  },
+  "common": {
+    "continue": "Dawam etiw",
+    "back": "Artqa",
+    "loading": "Ju'klenbekte…"
+  },
+  "module": {
+    "label": "{number}-modul",
+    "ofTotal": "{current} / {total} modul"
+  },
+  "progress": {
+    "saved": "Progress saqlandı",
+    "saving": "Saqlanbaqta…",
+    "completed": "Juwmaqlanǵan",
+    "inProgress": "Processte",
+    "notStarted": "Baslanbaǵan"
+  },
+  "a11y": {
+    "skipToContent": "Tiykarǵı kontentke o'tiw",
+    "languageSwitcher": "Interfeys tilin tan'law"
+  }
+}

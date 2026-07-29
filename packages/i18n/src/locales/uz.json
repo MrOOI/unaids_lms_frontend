@@ -1,0 +1,34 @@
+{
+  "app": {
+    "title": "Raqamli o'quv platformasi",
+    "courseName": "OIV va gender",
+    "language": "Til"
+  },
+  "nav": {
+    "courses": "Onlayn kurslar",
+    "myLearning": "Mening o'qishim",
+    "signIn": "Kirish",
+    "signOut": "Chiqish",
+    "register": "Ro'yxatdan o'tish"
+  },
+  "common": {
+    "continue": "Davom etish",
+    "back": "Orqaga",
+    "loading": "Yuklanmoqda…"
+  },
+  "module": {
+    "label": "{number}-modul",
+    "ofTotal": "{current} / {total} modul"
+  },
+  "progress": {
+    "saved": "Progress saqlandi",
+    "saving": "Saqlanmoqda…",
+    "completed": "Yakunlangan",
+    "inProgress": "Jarayonda",
+    "notStarted": "Boshlanmagan"
+  },
+  "a11y": {
+    "skipToContent": "Asosiy kontentga o'tish",
+    "languageSwitcher": "Interfeys tilini tanlash"
+  }
+}

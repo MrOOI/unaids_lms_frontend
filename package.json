@@ -1,0 +1,17 @@
+{
+  "name": "lms-frontend",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace apps/learner",
+    "build": "npm run build --workspace apps/learner",
+    "typecheck": "npm run typecheck --workspace apps/learner"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

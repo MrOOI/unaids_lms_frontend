@@ -2,8 +2,10 @@
 
 Vue 3 + TypeScript npm workspace for the "OIV va gender" learning platform.
 
-Project-wide architecture, tech-stack and plan documents live in the main
-project repository (`docs/`). Backend lives in its own repository (`lms-backend`).
+Project-wide architecture, tech-stack and plan documents live in the backend
+repository (`docs/`), which is the main repo and also carries the deployment
+stack (`deploy/docker-compose.yml` — it expects this repo checked out as a
+sibling folder of the backend repo).
 
 ## Layout
 

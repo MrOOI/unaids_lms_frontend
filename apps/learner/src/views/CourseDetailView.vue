@@ -14,6 +14,7 @@ import Alert from '../components/ui/Alert.vue'
 import Button from '../components/ui/Button.vue'
 import Badge from '../components/ui/Badge.vue'
 import Spinner from '../components/ui/Spinner.vue'
+import { ChevronDownIcon } from '../icons'
 
 const route = useRoute()
 const router = useRouter()
@@ -83,99 +84,118 @@ async function handleEnroll(): Promise<void> {
 </script>
 
 <template>
-  <div class="course-detail">
-    <div class="course-detail-header">
-      <button type="button" class="back-button" @click="router.push({ name: 'home' })">
-        ← {{ t('common.back') }}
+  <div class="min-h-full">
+    <div class="border-b border-gray-200 bg-white px-4 py-6 sm:px-8">
+      <button
+        type="button"
+        class="mb-4 inline-block rounded-lg px-2 py-1 text-sm font-semibold text-brand-600 hover:text-brand-700"
+        @click="router.push({ name: 'home' })"
+      >
+        &larr; {{ t('common.back') }}
       </button>
-      <h1>{{ currentCourse?.title ?? '' }}</h1>
-      <p v-if="currentCourse?.description" class="course-description">{{ currentCourse.description }}</p>
+      <h1 class="mb-2 text-xl font-bold text-gray-800 sm:text-2xl">{{ currentCourse?.title ?? '' }}</h1>
+      <p v-if="currentCourse?.description" class="max-w-[60ch] text-sm text-gray-500">{{ currentCourse.description }}</p>
     </div>
 
-    <Alert v-if="error" type="error" class="detail-alert" dismissible @dismiss="clearError">
+    <Alert v-if="error" type="error" class="mx-4 mt-6 sm:mx-8" dismissible @dismiss="clearError">
       {{ error }}
     </Alert>
 
-    <div v-if="isLoading && !currentCourse" class="detail-loading">
+    <div v-if="isLoading && !currentCourse" class="flex min-h-[400px] items-center justify-center">
       <Spinner :label="t('common.loading')" />
     </div>
 
-    <div v-else-if="currentCourse" class="course-content">
-      <div v-if="!isEnrolled" class="enroll-banner">
-        <p>{{ t('courseDetail.enrollPrompt') }}</p>
+    <div v-else-if="currentCourse" class="mx-auto max-w-[900px] p-4 sm:p-8">
+      <div
+        v-if="!isEnrolled"
+        class="mb-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-gray-200 bg-white p-4 shadow-theme-xs sm:p-6"
+      >
+        <p class="m-0 font-semibold text-gray-800">{{ t('courseDetail.enrollPrompt') }}</p>
         <Button variant="primary" size="sm" :loading="isEnrolling" @click="handleEnroll">
           {{ t('dashboard.enroll') }}
         </Button>
       </div>
-      <div v-else class="progress-banner">
-        <div class="progress-bar">
-          <div class="progress-bar__fill" :style="{ width: `${progress?.percentComplete ?? 0}%` }" />
+      <div v-else class="mb-6 flex flex-col gap-2 rounded-2xl border border-gray-200 bg-white p-4 shadow-theme-xs sm:p-6">
+        <div class="h-2 w-full overflow-hidden rounded-full bg-gray-100">
+          <div
+            class="h-full rounded-full bg-brand-500 transition-[width] duration-300"
+            :style="{ width: `${progress?.percentComplete ?? 0}%` }"
+          />
         </div>
-        <p>{{ t('dashboard.progress', { percent: progress?.percentComplete ?? 0 }) }}</p>
+        <p class="text-xs font-semibold text-gray-500">{{ t('dashboard.progress', { percent: progress?.percentComplete ?? 0 }) }}</p>
       </div>
 
-      <nav class="modules-nav">
-        <h2>{{ t('dashboard.courseMaterials') }}</h2>
+      <nav>
+        <h2 class="mb-4 text-lg font-bold text-gray-800">{{ t('dashboard.courseMaterials') }}</h2>
 
-        <div class="modules-list">
+        <div class="flex flex-col gap-3">
           <div
             v-for="module in currentCourse.modules"
             :key="module.id"
-            class="module-item"
+            class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-theme-xs"
             :data-module="module.themeNumber"
           >
             <button
               type="button"
-              class="module-header"
+              class="flex w-full items-center gap-3 border-t-4 px-4 py-4 text-left hover:bg-gray-50 sm:px-6"
+              :style="{ borderTopColor: 'var(--module-primary)' }"
               :aria-expanded="expandedModules.has(module.id)"
               @click="toggleModule(module.id)"
             >
-              <span class="module-badge">{{ t('module.label', { number: module.number }) }}</span>
-              <span class="module-title">{{ module.title }}</span>
               <span
-                class="module-chevron"
-                :class="{ 'module-chevron--open': expandedModules.has(module.id) }"
-                aria-hidden="true"
+                class="hidden min-w-[90px] text-xs font-bold uppercase tracking-wide sm:inline"
+                :style="{ color: 'var(--module-text)' }"
               >
-                ▼
+                {{ t('module.label', { number: module.number }) }}
               </span>
+              <span class="flex-1 font-semibold text-gray-800">{{ module.title }}</span>
+              <ChevronDownIcon
+                class="size-5 flex-shrink-0 text-gray-400 transition-transform duration-200"
+                :class="{ 'rotate-180': expandedModules.has(module.id) }"
+              />
             </button>
 
-            <div v-if="expandedModules.has(module.id)" class="module-panel">
-              <p v-if="module.summary" class="module-summary">{{ module.summary }}</p>
+            <div
+              v-if="expandedModules.has(module.id)"
+              class="flex flex-col gap-4 border-t border-gray-100 p-4"
+              :style="{ background: 'var(--module-bg)' }"
+            >
+              <p v-if="module.summary" class="m-0 text-sm" :style="{ color: 'var(--module-text)' }">{{ module.summary }}</p>
 
-              <div class="lessons-list">
+              <div class="flex flex-col gap-1">
                 <button
                   v-for="lesson in module.lessons"
                   :key="lesson.id"
                   type="button"
-                  class="lesson-item"
+                  class="flex items-center gap-3 rounded-lg px-4 py-3 text-left text-gray-800 hover:bg-black/5"
                   @click="handleLessonClick(lesson.id)"
                 >
                   <span
-                    class="lesson-check"
-                    :class="{ 'lesson-check--done': lessonStatus(lesson.id) === 'Completed' }"
-                    aria-hidden="true"
+                    class="flex size-7 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
+                    :class="lessonStatus(lesson.id) === 'Completed' ? 'bg-success-500' : ''"
+                    :style="lessonStatus(lesson.id) === 'Completed' ? undefined : { background: 'var(--module-primary)' }"
                   >
                     {{ lessonStatus(lesson.id) === 'Completed' ? '✓' : lesson.sortOrder }}
                   </span>
-                  <span class="lesson-text">
+                  <span class="flex flex-1 flex-col gap-0.5 text-sm">
                     {{ lesson.title }}
-                    <span class="lesson-duration">{{ t('lesson.estimatedTime', { minutes: lesson.estimatedMinutes }) }}</span>
+                    <span class="text-xs font-normal text-gray-500">{{ t('lesson.estimatedTime', { minutes: lesson.estimatedMinutes }) }}</span>
                   </span>
                 </button>
               </div>
 
-              <div v-if="quizzesFor(module.id).length > 0" class="quizzes-list">
-                <h3>{{ t('courseDetail.quizzes') }}</h3>
+              <div v-if="quizzesFor(module.id).length > 0" class="flex flex-col gap-1">
+                <h3 class="mb-1 mt-1 text-xs font-bold uppercase tracking-wide" :style="{ color: 'var(--module-text)' }">
+                  {{ t('courseDetail.quizzes') }}
+                </h3>
                 <button
                   v-for="quiz in quizzesFor(module.id)"
                   :key="quiz.id"
                   type="button"
-                  class="quiz-item"
+                  class="flex items-center gap-3 rounded-lg px-4 py-3 text-left hover:bg-black/5"
                   @click="handleQuizClick(quiz)"
                 >
-                  <span class="quiz-item__title">{{ quiz.title }}</span>
+                  <span class="flex-1 text-sm font-semibold text-gray-800">{{ quiz.title }}</span>
                   <Badge v-if="quiz.hasPassed" tone="success">{{ t('quiz.passed') }}</Badge>
                   <Badge v-else-if="quiz.kind === 'Final'" tone="info">{{ t('quiz.final') }}</Badge>
                   <Badge v-else tone="neutral">{{ t('quiz.formative') }}</Badge>
@@ -188,279 +208,3 @@ async function handleEnroll(): Promise<void> {
     </div>
   </div>
 </template>
-
-<style scoped>
-.course-detail {
-  min-height: 100%;
-}
-
-.course-detail-header {
-  padding: var(--space-6) var(--space-8);
-  background: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.back-button {
-  display: inline-block;
-  margin-bottom: var(--space-4);
-  padding: var(--space-2) var(--space-4);
-  border: none;
-  background: transparent;
-  color: var(--module-1);
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.back-button:hover {
-  color: var(--module-1-accessible);
-}
-
-.course-detail-header h1 {
-  margin: 0 0 var(--space-2) 0;
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-.course-description {
-  margin: 0;
-  color: var(--color-text-muted);
-  max-width: 60ch;
-}
-
-.detail-alert {
-  margin: var(--space-6) var(--space-8) 0;
-}
-
-.detail-loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 400px;
-}
-
-.course-content {
-  padding: var(--space-8);
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.enroll-banner,
-.progress-banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-4);
-  padding: var(--space-4) var(--space-6);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  margin-bottom: var(--space-6);
-  flex-wrap: wrap;
-}
-
-.enroll-banner p {
-  margin: 0;
-  color: var(--color-text);
-  font-weight: 600;
-}
-
-.progress-banner {
-  flex-direction: column;
-  align-items: stretch;
-}
-
-.progress-banner p {
-  margin: 0;
-  font-size: 0.8125rem;
-  color: var(--color-text-muted);
-  font-weight: 600;
-}
-
-.progress-bar {
-  width: 100%;
-  height: 8px;
-  background: var(--color-surface-alt);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.progress-bar__fill {
-  height: 100%;
-  background: var(--module-1);
-  border-radius: 4px;
-  transition: width 0.3s ease;
-}
-
-.modules-nav h2 {
-  margin: 0 0 var(--space-4) 0;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-.modules-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-
-.module-item {
-  border-radius: var(--radius-lg);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  overflow: hidden;
-}
-
-.module-header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  gap: var(--space-3);
-  padding: var(--space-4) var(--space-6);
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  text-align: left;
-  border-top: 4px solid var(--module-primary);
-}
-
-.module-header:hover {
-  background: var(--color-surface-alt);
-}
-
-.module-badge {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--module-text);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  min-width: 90px;
-}
-
-.module-title {
-  flex: 1;
-  font-weight: 600;
-  color: var(--color-text);
-}
-
-.module-chevron {
-  font-size: 0.75rem;
-  color: var(--color-text-muted);
-  transition: transform 0.2s;
-}
-
-.module-chevron--open {
-  transform: rotate(180deg);
-}
-
-.module-panel {
-  border-top: 1px solid var(--color-border);
-  background: var(--module-bg);
-  padding: var(--space-4);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.module-summary {
-  margin: 0;
-  font-size: 0.875rem;
-  color: var(--module-text);
-}
-
-.lessons-list,
-.quizzes-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-
-.quizzes-list h3 {
-  margin: var(--space-2) 0 0 0;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--module-text);
-}
-
-.lesson-item,
-.quiz-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-3) var(--space-4);
-  border: none;
-  border-radius: var(--radius-md);
-  background: transparent;
-  cursor: pointer;
-  text-align: left;
-  color: var(--color-text);
-}
-
-.lesson-item:hover,
-.quiz-item:hover {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-.lesson-check {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--module-primary);
-  color: #fff;
-  font-size: 0.75rem;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-
-.lesson-check--done {
-  background: var(--color-success);
-}
-
-.lesson-text {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  font-size: 0.875rem;
-}
-
-.lesson-duration {
-  font-size: 0.75rem;
-  color: var(--color-text-muted);
-  font-weight: normal;
-}
-
-.quiz-item__title {
-  flex: 1;
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-
-@media (max-width: 640px) {
-  .course-detail-header {
-    padding: var(--space-4);
-  }
-
-  .course-detail-header h1 {
-    font-size: 1.25rem;
-  }
-
-  .course-content {
-    padding: var(--space-4);
-  }
-
-  .module-header {
-    padding: var(--space-3) var(--space-4);
-  }
-
-  .module-badge {
-    display: none;
-  }
-}
-</style>

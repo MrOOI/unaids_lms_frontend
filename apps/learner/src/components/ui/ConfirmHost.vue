@@ -8,7 +8,7 @@ const { state, respond } = useConfirm()
 
 <template>
   <Modal :model-value="state.isOpen" :title="state.title" size="sm" @update:model-value="respond(false)">
-    <p v-if="state.message" class="confirm-message">{{ state.message }}</p>
+    <p v-if="state.message" class="text-sm leading-relaxed text-gray-600">{{ state.message }}</p>
     <template #footer>
       <Button variant="secondary" @click="respond(false)">{{ state.cancelLabel }}</Button>
       <Button :variant="state.danger ? 'danger' : 'primary'" @click="respond(true)">
@@ -17,11 +17,3 @@ const { state, respond } = useConfirm()
     </template>
   </Modal>
 </template>
-
-<style scoped>
-.confirm-message {
-  margin: 0;
-  color: var(--color-text-muted);
-  line-height: 1.6;
-}
-</style>

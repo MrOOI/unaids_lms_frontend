@@ -3,8 +3,8 @@
  * Alert component — displays messages with semantic types.
  * Supports error, success, warning, and info types with proper ARIA roles.
  */
-
-import { ref, computed } from 'vue'
+import { computed, ref } from 'vue'
+import { SuccessIcon, ErrorIcon, WarningIcon, InfoCircleIcon } from '../../icons'
 
 type AlertType = 'error' | 'success' | 'warning' | 'info'
 
@@ -24,10 +24,19 @@ const emit = defineEmits<{
 
 const isVisible = ref(true)
 
-const alertClass = computed(() => ({
-  'alert': true,
-  [`alert--${props.type}`]: true,
-}))
+const variants: Record<AlertType, { container: string; icon: string }> = {
+  success: { container: 'border-success-500 bg-success-50', icon: 'text-success-500' },
+  error: { container: 'border-error-500 bg-error-50', icon: 'text-error-500' },
+  warning: { container: 'border-warning-500 bg-warning-50', icon: 'text-warning-500' },
+  info: { container: 'border-blue-light-500 bg-blue-light-50', icon: 'text-blue-light-500' },
+}
+
+const icons: Record<AlertType, object> = {
+  success: SuccessIcon,
+  error: ErrorIcon,
+  warning: WarningIcon,
+  info: InfoCircleIcon,
+}
 
 const alertRole = computed(() => {
   switch (props.type) {
@@ -48,101 +57,32 @@ function handleDismiss(): void {
 </script>
 
 <template>
-  <div v-if="isVisible" :class="alertClass" :role="alertRole" :aria-live="props.type === 'error' ? 'assertive' : 'polite'">
-    <div class="alert__content">
-      <div v-if="title" class="alert__title">{{ title }}</div>
-      <div class="alert__message">
+  <div
+    v-if="isVisible"
+    class="flex items-start gap-3 rounded-xl border p-4"
+    :class="variants[type].container"
+    :role="alertRole"
+    :aria-live="props.type === 'error' ? 'assertive' : 'polite'"
+  >
+    <div class="-mt-0.5 flex-shrink-0" :class="variants[type].icon">
+      <component :is="icons[type]" class="size-5" />
+    </div>
+
+    <div class="flex-1">
+      <p v-if="title" class="mb-1 text-sm font-semibold text-gray-800">{{ title }}</p>
+      <div class="text-sm text-gray-600">
         <slot />
       </div>
     </div>
+
     <button
       v-if="dismissible"
       type="button"
-      class="alert__close"
+      class="-m-1 flex-shrink-0 rounded-md p-1 text-gray-400 hover:bg-black/5 hover:text-gray-600"
       :aria-label="`Dismiss ${props.type} message`"
       @click="handleDismiss"
     >
-      <span aria-hidden="true">×</span>
+      <span aria-hidden="true" class="block text-lg leading-none">&times;</span>
     </button>
   </div>
 </template>
-
-<style scoped>
-.alert {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-4);
-  padding: var(--space-4) var(--space-6);
-  border-radius: var(--radius-md);
-  border-left: 4px solid;
-}
-
-.alert__content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-
-.alert__title {
-  font-weight: 600;
-  font-size: 0.875rem;
-}
-
-.alert__message {
-  font-size: 0.875rem;
-  line-height: 1.5;
-}
-
-.alert__close {
-  flex-shrink: 0;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  border: none;
-  background: transparent;
-  color: inherit;
-  font-size: 1.5rem;
-  line-height: 1;
-  cursor: pointer;
-  transition: opacity 0.2s;
-  border-radius: var(--radius-md);
-}
-
-.alert__close:hover {
-  opacity: 0.7;
-}
-
-.alert__close:focus-visible {
-  outline: 2px solid var(--color-focus);
-  outline-offset: -2px;
-}
-
-/* Error state */
-.alert--error {
-  background: #fce8e6;
-  border-color: var(--color-error);
-  color: #8b1f16;
-}
-
-/* Success state */
-.alert--success {
-  background: #e6f4ea;
-  border-color: var(--color-success);
-  color: #0d652d;
-}
-
-/* Warning state */
-.alert--warning {
-  background: #fef7e0;
-  border-color: #f9ab00;
-  color: #7f6000;
-}
-
-/* Info state */
-.alert--info {
-  background: #e8f0fe;
-  border-color: var(--color-focus);
-  color: #1d4ed8;
-}
-</style>

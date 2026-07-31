@@ -9,72 +9,21 @@ withDefaults(defineProps<Props>(), { padded: true })
 </script>
 
 <template>
-  <section class="ui-card" :class="{ 'ui-card--flush': !padded }">
-    <header v-if="title || $slots.actions" class="ui-card__header">
-      <div v-if="title" class="ui-card__heading">
-        <h3 class="ui-card__title">{{ title }}</h3>
-        <p v-if="subtitle" class="ui-card__subtitle">{{ subtitle }}</p>
+  <section class="rounded-2xl border border-gray-200 bg-white shadow-theme-xs">
+    <header v-if="title || $slots.actions" class="flex items-start justify-between gap-4 border-b border-gray-100 px-6 py-5">
+      <div v-if="title">
+        <h3 class="text-base font-semibold text-gray-800">{{ title }}</h3>
+        <p v-if="subtitle" class="mt-1 text-sm text-gray-500">{{ subtitle }}</p>
       </div>
-      <div v-if="$slots.actions" class="ui-card__actions">
+      <div v-if="$slots.actions" class="flex flex-shrink-0 gap-2">
         <slot name="actions" />
       </div>
     </header>
-    <div class="ui-card__body">
+    <div :class="padded ? 'p-6' : ''">
       <slot />
     </div>
-    <footer v-if="$slots.footer" class="ui-card__footer">
+    <footer v-if="$slots.footer" class="rounded-b-2xl border-t border-gray-100 bg-gray-50 px-6 py-4">
       <slot name="footer" />
     </footer>
   </section>
 </template>
-
-<style scoped>
-.ui-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-}
-
-.ui-card__header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--space-4);
-  padding: var(--space-5) var(--space-6);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.ui-card__title {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-.ui-card__subtitle {
-  margin: var(--space-1) 0 0 0;
-  font-size: 0.8125rem;
-  color: var(--color-text-muted);
-}
-
-.ui-card__actions {
-  display: flex;
-  gap: var(--space-2);
-  flex-shrink: 0;
-}
-
-.ui-card__body {
-  padding: var(--space-6);
-}
-
-.ui-card--flush .ui-card__body {
-  padding: 0;
-}
-
-.ui-card__footer {
-  padding: var(--space-4) var(--space-6);
-  border-top: 1px solid var(--color-border);
-  background: var(--color-surface-alt);
-  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-}
-</style>

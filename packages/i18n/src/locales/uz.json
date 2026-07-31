@@ -37,7 +37,8 @@
   },
   "a11y": {
     "skipToContent": "Asosiy kontentga o'tish",
-    "languageSwitcher": "Interfeys tilini tanlash"
+    "languageSwitcher": "Interfeys tilini tanlash",
+    "toggleNavigation": "Navigatsiyani almashtirish"
   },
   "auth": {
     "register": {

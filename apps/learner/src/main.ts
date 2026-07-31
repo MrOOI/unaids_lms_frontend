@@ -11,6 +11,7 @@ import App from './App.vue'
 import { router } from './router'
 import { installSessionGuard } from './lib/sessionGuard'
 import '@lms/ui/tokens.css'
+import './styles/tailwind.css'
 import './styles/base.css'
 
 const storedLocale = localStorage.getItem('lms-locale')

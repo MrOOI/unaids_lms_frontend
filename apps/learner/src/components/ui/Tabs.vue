@@ -16,60 +16,23 @@ const emit = defineEmits<{ 'update:modelValue': [string] }>()
 </script>
 
 <template>
-  <div class="ui-tabs" role="tablist">
+  <div class="flex flex-wrap gap-1 border-b border-gray-200" role="tablist">
     <button
       v-for="item in items"
       :key="item.value"
       type="button"
       role="tab"
-      class="ui-tabs__tab"
-      :class="{ 'ui-tabs__tab--active': modelValue === item.value }"
+      class="relative -mb-px inline-flex items-center gap-2 border-b-2 px-4 py-3 text-sm font-medium"
+      :class="
+        modelValue === item.value
+          ? 'border-brand-500 text-brand-600'
+          : 'border-transparent text-gray-500 hover:text-gray-700'
+      "
       :aria-selected="modelValue === item.value"
       @click="emit('update:modelValue', item.value)"
     >
       {{ item.label }}
-      <span v-if="item.flagged" class="ui-tabs__flag" aria-hidden="true" />
+      <span v-if="item.flagged" class="size-1.5 rounded-full bg-warning-500" aria-hidden="true" />
     </button>
   </div>
 </template>
-
-<style scoped>
-.ui-tabs {
-  display: flex;
-  gap: var(--space-1);
-  border-bottom: 1px solid var(--color-border);
-  flex-wrap: wrap;
-}
-
-.ui-tabs__tab {
-  position: relative;
-  padding: var(--space-3) var(--space-4);
-  border: none;
-  background: transparent;
-  color: var(--color-text-muted);
-  font-weight: 600;
-  font-size: 0.875rem;
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-}
-
-.ui-tabs__tab:hover {
-  color: var(--color-text);
-}
-
-.ui-tabs__tab--active {
-  color: var(--module-primary, var(--color-focus));
-  border-bottom-color: var(--module-primary, var(--color-focus));
-}
-
-.ui-tabs__flag {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #f9ab00;
-}
-</style>

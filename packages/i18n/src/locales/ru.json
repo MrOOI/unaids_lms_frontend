@@ -37,7 +37,8 @@
   },
   "a11y": {
     "skipToContent": "Перейти к основному содержимому",
-    "languageSwitcher": "Выбор языка интерфейса"
+    "languageSwitcher": "Выбор языка интерфейса",
+    "toggleNavigation": "Переключить навигацию"
   },
   "auth": {
     "register": {

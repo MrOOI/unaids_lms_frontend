@@ -64,20 +64,21 @@ async function handleExport(): Promise<void> {
 </script>
 
 <template>
-  <div class="admin-reporting">
-    <div class="admin-page-header">
-      <h1>{{ t('admin.reporting.title') }}</h1>
+  <div>
+    <div class="mb-6">
+      <h1 class="text-2xl font-bold text-gray-800">{{ t('admin.reporting.title') }}</h1>
     </div>
 
-    <div v-if="isFetching" class="admin-loading"><Spinner :label="t('common.loading')" /></div>
+    <div v-if="isFetching" class="flex justify-center py-8"><Spinner :label="t('common.loading')" /></div>
 
     <EmptyState v-else-if="courses.length === 0" icon="📊" :title="t('admin.reporting.noCourses')" />
 
     <template v-else>
       <Card>
-        <div class="reporting-controls">
+        <div class="flex flex-wrap items-center gap-4">
           <Select
             v-model="selectedCourseId"
+            wrapper-class="max-w-xs"
             :options="courses.map((c) => ({ value: c.id, label: c.translations[locale]?.title ?? c.slug }))"
             @update:model-value="loadMetrics"
           />
@@ -87,24 +88,24 @@ async function handleExport(): Promise<void> {
         </div>
       </Card>
 
-      <div v-if="metrics.length > 0" class="metrics-grid">
+      <div v-if="metrics.length > 0" class="mt-6">
         <Card v-for="m in metrics" :key="m.courseId" :title="selectedCourseName">
-          <div class="metrics-tiles">
-            <div class="metric-tile">
-              <span class="metric-tile__value">{{ m.totalEnrolled }}</span>
-              <span class="metric-tile__label">{{ t('admin.reporting.totalEnrolled') }}</span>
+          <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
+            <div class="flex flex-col items-center gap-1 rounded-2xl border border-gray-100 bg-gray-50 p-5 text-center">
+              <span class="text-title-sm font-extrabold text-brand-600">{{ m.totalEnrolled }}</span>
+              <span class="text-xs font-medium uppercase tracking-wide text-gray-500">{{ t('admin.reporting.totalEnrolled') }}</span>
             </div>
-            <div class="metric-tile">
-              <span class="metric-tile__value">{{ m.completed }}</span>
-              <span class="metric-tile__label">{{ t('admin.reporting.completed') }}</span>
+            <div class="flex flex-col items-center gap-1 rounded-2xl border border-gray-100 bg-gray-50 p-5 text-center">
+              <span class="text-title-sm font-extrabold text-brand-600">{{ m.completed }}</span>
+              <span class="text-xs font-medium uppercase tracking-wide text-gray-500">{{ t('admin.reporting.completed') }}</span>
             </div>
-            <div class="metric-tile">
-              <span class="metric-tile__value">{{ m.completionPercent }}%</span>
-              <span class="metric-tile__label">{{ t('admin.reporting.completionRate') }}</span>
+            <div class="flex flex-col items-center gap-1 rounded-2xl border border-gray-100 bg-gray-50 p-5 text-center">
+              <span class="text-title-sm font-extrabold text-brand-600">{{ m.completionPercent }}%</span>
+              <span class="text-xs font-medium uppercase tracking-wide text-gray-500">{{ t('admin.reporting.completionRate') }}</span>
             </div>
-            <div class="metric-tile">
-              <span class="metric-tile__value">{{ m.passedFinalQuiz }}</span>
-              <span class="metric-tile__label">{{ t('admin.reporting.passedFinal') }}</span>
+            <div class="flex flex-col items-center gap-1 rounded-2xl border border-gray-100 bg-gray-50 p-5 text-center">
+              <span class="text-title-sm font-extrabold text-brand-600">{{ m.passedFinalQuiz }}</span>
+              <span class="text-xs font-medium uppercase tracking-wide text-gray-500">{{ t('admin.reporting.passedFinal') }}</span>
             </div>
           </div>
         </Card>
@@ -113,71 +114,3 @@ async function handleExport(): Promise<void> {
     </template>
   </div>
 </template>
-
-<style scoped>
-.admin-page-header {
-  margin-bottom: var(--space-6);
-}
-
-.admin-page-header h1 {
-  margin: 0;
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
-.admin-loading {
-  display: flex;
-  justify-content: center;
-  padding: var(--space-8);
-}
-
-.reporting-controls {
-  display: flex;
-  gap: var(--space-4);
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.reporting-controls :deep(.ui-select) {
-  max-width: 320px;
-}
-
-.metrics-grid {
-  margin-top: var(--space-6);
-}
-
-.metrics-tiles {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-4);
-}
-
-.metric-tile {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  padding: var(--space-5);
-  background: var(--color-surface-alt);
-  border-radius: var(--radius-lg);
-  text-align: center;
-}
-
-.metric-tile__value {
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: var(--module-2);
-}
-
-.metric-tile__label {
-  font-size: 0.75rem;
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-}
-
-@media (max-width: 700px) {
-  .metrics-tiles {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-</style>

@@ -9,49 +9,20 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), { tone: 'neutral' })
 
-const cls = computed(() => `ui-badge ui-badge--${props.tone}`)
+const toneClasses: Record<BadgeTone, string> = {
+  neutral: 'bg-gray-100 text-gray-700',
+  success: 'bg-success-50 text-success-700',
+  warning: 'bg-warning-50 text-warning-700',
+  error: 'bg-error-50 text-error-700',
+  info: 'bg-blue-light-50 text-blue-light-700',
+}
+
+const cls = computed(() => [
+  'inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-0.5 text-xs font-medium',
+  toneClasses[props.tone],
+])
 </script>
 
 <template>
   <span :class="cls"><slot /></span>
 </template>
-
-<style scoped>
-.ui-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
-  padding: 0.1875rem var(--space-3);
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  line-height: 1.4;
-  white-space: nowrap;
-}
-
-.ui-badge--neutral {
-  background: var(--color-surface-alt);
-  color: var(--color-text-muted);
-  border: 1px solid var(--color-border);
-}
-
-.ui-badge--success {
-  background: #e6f4ea;
-  color: #0d652d;
-}
-
-.ui-badge--warning {
-  background: #fef7e0;
-  color: #7f6000;
-}
-
-.ui-badge--error {
-  background: #fce8e6;
-  color: #8b1f16;
-}
-
-.ui-badge--info {
-  background: #e8f0fe;
-  color: #1d4ed8;
-}
-</style>

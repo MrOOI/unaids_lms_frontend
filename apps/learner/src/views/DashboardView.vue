@@ -50,67 +50,73 @@ function goToCourse(slug: string): void {
 </script>
 
 <template>
-  <div class="dashboard">
-    <div class="dashboard-header">
-      <div class="dashboard-welcome">
-        <h1>{{ t('dashboard.welcome', { name: user?.fullName || '' }) }}</h1>
-        <p>{{ t('dashboard.subtitle') }}</p>
-      </div>
+  <div class="min-h-full">
+    <div class="border-b border-gray-200 bg-white px-4 py-8 sm:px-8">
+      <h1 class="mb-2 text-2xl font-bold text-gray-800 sm:text-3xl">
+        {{ t('dashboard.welcome', { name: user?.fullName || '' }) }}
+      </h1>
+      <p class="text-sm text-gray-500">{{ t('dashboard.subtitle') }}</p>
     </div>
 
-    <div class="dashboard-body">
-      <Alert v-if="error" type="error" class="dashboard-alert" dismissible @dismiss="clearError">
+    <div class="mx-auto max-w-(--breakpoint-2xl)">
+      <Alert v-if="error" type="error" class="mx-4 mt-6 sm:mx-8" dismissible @dismiss="clearError">
         {{ error }}
       </Alert>
 
-      <div v-if="isLoading && courses.length === 0" class="dashboard-loading">
+      <div v-if="isLoading && courses.length === 0" class="flex min-h-[400px] items-center justify-center">
         <Spinner :label="t('common.loading')" />
       </div>
 
-      <EmptyState v-else-if="courses.length === 0" :title="t('dashboard.noCourses')" icon="📚" />
+      <EmptyState v-else-if="courses.length === 0" class="m-4 sm:m-8" :title="t('dashboard.noCourses')" icon="📚" />
 
-      <div v-else class="courses-container">
-        <div class="courses-header">
-          <h2>{{ t('dashboard.availableCourses') }}</h2>
-          <p class="courses-count">{{ t('dashboard.courseCount', { count: courses.length }) }}</p>
+      <div v-else class="p-4 sm:p-8">
+        <div class="mb-8">
+          <h2 class="mb-2 text-xl font-bold text-gray-800">{{ t('dashboard.availableCourses') }}</h2>
+          <p class="text-sm text-gray-500">{{ t('dashboard.courseCount', { count: courses.length }) }}</p>
         </div>
 
-        <div class="courses-grid">
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-[repeat(auto-fill,minmax(320px,1fr))]">
           <article
             v-for="(course, index) in courses"
             :key="course.id"
             :data-module="index % 6"
-            class="course-card"
+            class="flex flex-col gap-4 rounded-2xl border border-t-4 border-gray-200 bg-white p-6 shadow-theme-xs transition hover:-translate-y-0.5 hover:shadow-theme-md"
+            :style="{ borderTopColor: 'var(--module-primary, var(--module-1))' }"
           >
-            <div class="course-card__header">
-              <span class="course-card__meta">
-                {{ t('dashboard.modules', { count: course.moduleCount }) }}
-              </span>
+            <span
+              class="text-xs font-semibold uppercase tracking-wide"
+              :style="{ color: 'var(--module-text, var(--module-1-accessible))' }"
+            >
+              {{ t('dashboard.modules', { count: course.moduleCount }) }}
+            </span>
+
+            <div class="flex-1">
+              <h3 class="mb-2 text-lg font-bold leading-snug text-gray-800">{{ course.title }}</h3>
+              <p class="text-sm leading-relaxed text-gray-500">{{ course.description }}</p>
             </div>
 
-            <div class="course-card__body">
-              <h3 class="course-card__title">{{ course.title }}</h3>
-              <p class="course-card__description">{{ course.description }}</p>
-            </div>
-
-            <div v-if="progressFor(course.id)" class="course-card__progress">
-              <div class="progress-bar">
+            <div v-if="progressFor(course.id)" class="flex flex-col gap-2">
+              <div class="h-2 w-full overflow-hidden rounded-full bg-gray-100">
                 <div
-                  class="progress-bar__fill"
-                  :style="{ width: `${progressFor(course.id)?.percentComplete ?? 0}%` }"
+                  class="h-full rounded-full transition-[width] duration-300"
+                  :style="{
+                    width: `${progressFor(course.id)?.percentComplete ?? 0}%`,
+                    background: 'var(--module-primary, var(--module-1))',
+                  }"
                 />
               </div>
-              <p class="progress-text">
+              <p class="text-xs font-semibold text-gray-500">
                 {{ t('dashboard.progress', { percent: progressFor(course.id)?.percentComplete ?? 0 }) }}
               </p>
             </div>
 
-            <div class="course-card__actions">
+            <div class="mt-auto flex gap-3">
               <Button
                 v-if="progressFor(course.id)"
                 type="button"
                 variant="primary"
                 size="sm"
+                class="flex-1"
                 @click="goToCourse(course.slug)"
               >
                 {{ t('dashboard.continue') }}
@@ -121,6 +127,7 @@ function goToCourse(slug: string): void {
                 type="button"
                 variant="secondary"
                 size="sm"
+                class="flex-1"
                 :loading="enrollingCourses.has(course.id)"
                 @click="handleEnroll(course.id)"
               >
@@ -133,176 +140,3 @@ function goToCourse(slug: string): void {
     </div>
   </div>
 </template>
-
-<style scoped>
-.dashboard {
-  min-height: 100%;
-}
-
-.dashboard-header {
-  padding: var(--space-8);
-  background: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.dashboard-welcome h1 {
-  margin: 0 0 var(--space-2) 0;
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-.dashboard-welcome p {
-  margin: 0;
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-}
-
-.dashboard-body {
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.dashboard-alert {
-  margin: var(--space-6) var(--space-8) 0;
-}
-
-.dashboard-loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 400px;
-}
-
-.courses-container {
-  padding: var(--space-8);
-}
-
-.courses-header {
-  margin-bottom: var(--space-8);
-}
-
-.courses-header h2 {
-  margin: 0 0 var(--space-2) 0;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-.courses-count {
-  margin: 0;
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-}
-
-.courses-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: var(--space-6);
-}
-
-.course-card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  padding: var(--space-6);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-top: 4px solid var(--module-primary, var(--module-1));
-  border-radius: var(--radius-lg);
-  transition: all 0.2s ease;
-}
-
-.course-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
-}
-
-.course-card__meta {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--module-text, var(--module-1-accessible));
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.course-card__body {
-  flex: 1;
-}
-
-.course-card__title {
-  margin: 0 0 var(--space-2) 0;
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: var(--color-text);
-  line-height: 1.4;
-}
-
-.course-card__description {
-  margin: 0;
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-  line-height: 1.5;
-}
-
-.course-card__progress {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.progress-bar {
-  width: 100%;
-  height: 8px;
-  background: var(--color-surface-alt);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.progress-bar__fill {
-  height: 100%;
-  background: var(--module-primary, var(--module-1));
-  border-radius: 4px;
-  transition: width 0.3s ease;
-}
-
-.progress-text {
-  margin: 0;
-  font-size: 0.75rem;
-  color: var(--color-text-muted);
-  font-weight: 600;
-}
-
-.course-card__actions {
-  display: flex;
-  gap: var(--space-3);
-  margin-top: auto;
-}
-
-.course-card__actions :deep(button) {
-  flex: 1;
-  min-width: 100px;
-}
-
-@media (max-width: 640px) {
-  .dashboard-header {
-    padding: var(--space-4);
-  }
-
-  .dashboard-welcome h1 {
-    font-size: 1.5rem;
-  }
-
-  .courses-container {
-    padding: var(--space-4);
-  }
-
-  .courses-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .course-card {
-    padding: var(--space-4);
-  }
-}
-</style>

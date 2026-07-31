@@ -10,6 +10,7 @@ import { useI18n } from 'vue-i18n'
 import { useAuth } from '../../composables/useAuth'
 import { isAdminRole } from '../../lib/api-types'
 import FormField from '../../components/form/FormField.vue'
+import Input from '../../components/ui/Input.vue'
 import Button from '../../components/ui/Button.vue'
 import Alert from '../../components/ui/Alert.vue'
 
@@ -86,35 +87,34 @@ async function handleSubmit(): Promise<void> {
 </script>
 
 <template>
-  <div class="login-container">
-    <div class="login-card">
-      <div class="login-header">
-        <h1>{{ t('auth.login.title') }}</h1>
-        <p>{{ t('auth.login.subtitle') }}</p>
+  <div class="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-8">
+    <div class="w-full max-w-[450px] rounded-2xl border border-gray-200 bg-white p-6 shadow-theme-lg sm:p-8">
+      <div class="mb-8 text-center">
+        <h1 class="mb-2 text-2xl font-bold text-gray-800">{{ t('auth.login.title') }}</h1>
+        <p class="text-sm text-gray-500">{{ t('auth.login.subtitle') }}</p>
       </div>
 
-      <Alert v-if="sessionExpired && !error" type="info" class="login-alert">
+      <Alert v-if="sessionExpired && !error" type="info" class="mb-6">
         {{ t('auth.login.sessionExpired') }}
       </Alert>
 
-      <Alert v-if="error" type="error" class="login-alert" dismissible @dismiss="clearError">
+      <Alert v-if="error" type="error" class="mb-6" dismissible @dismiss="clearError">
         {{ error === 'invalid_credentials' ? t('auth.login.invalidCredentials') : error }}
       </Alert>
 
-      <form @submit.prevent="handleSubmit" class="login-form">
+      <form class="mb-6 flex flex-col gap-6" @submit.prevent="handleSubmit">
         <FormField
           :label="t('auth.form.email')"
           :error="touched.email ? errors.email : ''"
           required
         >
-          <input
+          <Input
             v-model="form.email"
             type="email"
             :placeholder="t('auth.form.emailPlaceholder')"
-            :aria-invalid="!!errors.email"
-            @blur="handleFieldBlur('email')"
-            class="form-input"
+            :error="!!errors.email"
             autocomplete="email"
+            @blur="handleFieldBlur('email')"
           />
         </FormField>
 
@@ -123,171 +123,33 @@ async function handleSubmit(): Promise<void> {
           :error="touched.password ? errors.password : ''"
           required
         >
-          <input
+          <Input
             v-model="form.password"
             type="password"
             :placeholder="t('auth.form.passwordPlaceholder')"
-            :aria-invalid="!!errors.password"
-            @blur="handleFieldBlur('password')"
-            class="form-input"
+            :error="!!errors.password"
             autocomplete="current-password"
+            @blur="handleFieldBlur('password')"
           />
         </FormField>
 
-        <div class="login-options">
-          <label class="remember-me">
-            <input v-model="form.rememberMe" type="checkbox" class="remember-checkbox" />
+        <div class="flex items-center justify-between gap-4">
+          <label class="flex cursor-pointer items-center gap-2 text-sm text-gray-700">
+            <input v-model="form.rememberMe" type="checkbox" class="size-5 cursor-pointer accent-brand-500" />
             <span>{{ t('auth.login.rememberMe') }}</span>
           </label>
           <!-- TODO: Add forgot password flow when implemented -->
         </div>
 
-        <Button
-          type="submit"
-          :loading="isLoading"
-          class="login-submit"
-        >
+        <Button type="submit" :loading="isLoading" class="mt-2 w-full">
           {{ t('auth.login.submit') }}
         </Button>
       </form>
 
-      <p class="login-footer">
+      <p class="text-center text-sm text-gray-500">
         {{ t('auth.login.noAccount') }}
-        <RouterLink to="/auth/register">{{ t('auth.register.linkText') }}</RouterLink>
+        <RouterLink to="/auth/register" class="font-semibold text-brand-600 hover:underline">{{ t('auth.register.linkText') }}</RouterLink>
       </p>
     </div>
   </div>
 </template>
-
-<style scoped>
-.login-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: var(--space-4);
-  background: var(--color-surface-alt);
-}
-
-.login-card {
-  width: 100%;
-  max-width: 450px;
-  padding: var(--space-8);
-  background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.login-header {
-  margin-bottom: var(--space-8);
-  text-align: center;
-}
-
-.login-header h1 {
-  margin: 0 0 var(--space-2) 0;
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-.login-header p {
-  margin: 0;
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-}
-
-.login-alert {
-  margin-bottom: var(--space-6);
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
-  margin-bottom: var(--space-6);
-}
-
-.form-input {
-  width: 100%;
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  font-family: inherit;
-  font-size: inherit;
-  color: var(--color-text);
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.form-input:focus {
-  outline: none;
-  border-color: var(--color-focus);
-  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
-}
-
-.form-input:invalid {
-  border-color: var(--color-error);
-}
-
-.login-options {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-4);
-}
-
-.remember-me {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  cursor: pointer;
-  font-size: 0.875rem;
-  color: var(--color-text);
-}
-
-.remember-checkbox {
-  flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  accent-color: var(--module-1);
-}
-
-.login-submit {
-  margin-top: var(--space-2);
-}
-
-.login-footer {
-  text-align: center;
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-  margin: 0;
-}
-
-.login-footer a {
-  color: var(--module-1);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.2s;
-}
-
-.login-footer a:hover {
-  color: var(--module-1-accessible);
-  text-decoration: underline;
-}
-
-@media (max-width: 640px) {
-  .login-container {
-    min-height: auto;
-    padding: var(--space-4) 0;
-  }
-
-  .login-card {
-    margin: var(--space-4);
-    padding: var(--space-6);
-  }
-
-  .login-header h1 {
-    font-size: 1.5rem;
-  }
-}
-</style>

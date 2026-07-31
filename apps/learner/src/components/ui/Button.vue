@@ -1,9 +1,7 @@
 <script setup lang="ts">
 /**
  * Button component — accessible button with loading and variant support.
- * Follows UNAIDS design system with module colors.
  */
-
 import { computed } from 'vue'
 
 type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'success'
@@ -24,13 +22,25 @@ const props = withDefaults(defineProps<Props>(), {
   type: 'button',
 })
 
-const buttonClass = computed(() => ({
-  'btn': true,
-  [`btn--${props.variant}`]: true,
-  [`btn--${props.size}`]: true,
-  'btn--loading': props.loading,
-  'btn--disabled': props.disabled,
-}))
+const sizeClasses: Record<ButtonSize, string> = {
+  sm: 'px-3.5 py-2 text-theme-xs',
+  md: 'px-4 py-2.5 text-sm',
+  lg: 'px-6 py-3 text-sm',
+}
+
+const variantClasses: Record<ButtonVariant, string> = {
+  primary: 'bg-brand-500 text-white shadow-theme-xs hover:bg-brand-600 disabled:bg-brand-300',
+  secondary: 'bg-white text-gray-700 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 disabled:text-gray-300',
+  danger: 'bg-error-500 text-white shadow-theme-xs hover:bg-error-600 disabled:bg-error-300',
+  success: 'bg-success-500 text-white shadow-theme-xs hover:bg-success-600 disabled:bg-success-300',
+}
+
+const buttonClass = computed(() => [
+  'inline-flex min-h-11 items-center justify-center gap-2 rounded-lg font-medium transition',
+  sizeClasses[props.size],
+  variantClasses[props.variant],
+  props.loading || props.disabled ? 'cursor-not-allowed opacity-70' : '',
+])
 </script>
 
 <template>
@@ -41,146 +51,11 @@ const buttonClass = computed(() => ({
     :aria-label="ariaLabel || undefined"
     :aria-busy="props.loading"
   >
-    <span class="btn__content">
-      <span v-if="loading" class="btn__spinner" aria-hidden="true" />
-      <slot />
-    </span>
+    <span
+      v-if="loading"
+      class="size-4 flex-shrink-0 animate-spin rounded-full border-2 border-current border-t-transparent"
+      aria-hidden="true"
+    />
+    <slot />
   </button>
 </template>
-
-<style scoped>
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  padding: var(--space-3) var(--space-6);
-  border: none;
-  border-radius: var(--radius-md);
-  font-weight: 600;
-  font-size: 0.875rem;
-  font-family: inherit;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-  min-height: var(--min-touch-target);
-  user-select: none;
-}
-
-/* Primary variant (default) */
-.btn--primary {
-  background: var(--module-1);
-  color: #fff;
-}
-
-.btn--primary:hover:not(:disabled) {
-  background: var(--module-1-accessible);
-}
-
-.btn--primary:active:not(:disabled) {
-  transform: scale(0.98);
-}
-
-/* Secondary variant */
-.btn--secondary {
-  background: var(--color-surface-alt);
-  color: var(--color-text);
-  border: 1px solid var(--color-border);
-}
-
-.btn--secondary:hover:not(:disabled) {
-  background: var(--color-border);
-}
-
-.btn--secondary:active:not(:disabled) {
-  transform: scale(0.98);
-}
-
-/* Danger variant */
-.btn--danger {
-  background: var(--color-error);
-  color: #fff;
-}
-
-.btn--danger:hover:not(:disabled) {
-  background: #8b1f16;
-}
-
-.btn--danger:active:not(:disabled) {
-  transform: scale(0.98);
-}
-
-/* Success variant */
-.btn--success {
-  background: var(--color-success);
-  color: #fff;
-}
-
-.btn--success:hover:not(:disabled) {
-  background: #155d3b;
-}
-
-.btn--success:active:not(:disabled) {
-  transform: scale(0.98);
-}
-
-/* Size variants */
-.btn--sm {
-  padding: var(--space-2) var(--space-4);
-  font-size: 0.75rem;
-}
-
-.btn--lg {
-  padding: var(--space-4) var(--space-8);
-  font-size: 1rem;
-}
-
-/* Loading state */
-.btn--loading {
-  position: relative;
-  color: transparent;
-}
-
-.btn__content {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-}
-
-.btn__spinner {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  border: 2px solid currentColor;
-  border-top-color: transparent;
-  border-radius: 50%;
-  animation: spin 0.6s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Disabled state */
-.btn:disabled,
-.btn--disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* Focus visible for keyboard navigation */
-.btn:focus-visible {
-  outline: 3px solid var(--color-focus);
-  outline-offset: 2px;
-}
-
-/* Responsive */
-@media (max-width: 640px) {
-  .btn {
-    padding: var(--space-2) var(--space-4);
-    font-size: 0.875rem;
-  }
-}
-</style>

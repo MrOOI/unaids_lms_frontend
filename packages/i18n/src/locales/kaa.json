@@ -37,7 +37,8 @@
   },
   "a11y": {
     "skipToContent": "Tiykarǵı kontentke o'tiw",
-    "languageSwitcher": "Interfeys tilin tan'law"
+    "languageSwitcher": "Interfeys tilin tan'law",
+    "toggleNavigation": "Navigatsiyanı almastırıw"
   },
   "auth": {
     "register": {

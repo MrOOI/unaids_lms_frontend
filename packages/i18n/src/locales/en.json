@@ -37,7 +37,8 @@
   },
   "a11y": {
     "skipToContent": "Skip to main content",
-    "languageSwitcher": "Choose interface language"
+    "languageSwitcher": "Choose interface language",
+    "toggleNavigation": "Toggle navigation"
   },
   "auth": {
     "register": {

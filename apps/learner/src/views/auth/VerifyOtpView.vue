@@ -93,6 +93,7 @@ function handleOtpInput(event: Event): void {
   if (input.value.length > 6) {
     input.value = input.value.slice(0, 6)
   }
+  otpCode.value = input.value
 }
 
 // Cleanup timer on unmount
@@ -104,199 +105,64 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="verify-otp-container">
-    <div class="verify-otp-card">
-      <div class="verify-otp-header">
-        <h1>{{ t('auth.otp.title') }}</h1>
-        <p>{{ t('auth.otp.subtitle', { email }) }}</p>
+  <div class="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-8">
+    <div class="w-full max-w-[450px] rounded-2xl border border-gray-200 bg-white p-6 shadow-theme-lg sm:p-8">
+      <div class="mb-8 text-center">
+        <h1 class="mb-2 text-2xl font-bold text-gray-800">{{ t('auth.otp.title') }}</h1>
+        <p class="break-all text-sm text-gray-500">{{ t('auth.otp.subtitle', { email }) }}</p>
       </div>
 
-      <Alert v-if="error" type="error" class="verify-otp-alert">
+      <Alert v-if="error" type="error" class="mb-6">
         {{ error }}
       </Alert>
 
-      <Alert v-if="resendMessage" type="success" class="verify-otp-alert">
+      <Alert v-if="resendMessage" type="success" class="mb-6">
         {{ resendMessage }}
       </Alert>
 
-      <form @submit.prevent="handleSubmit" class="verify-otp-form">
+      <form class="mb-6 flex flex-col gap-6" @submit.prevent="handleSubmit">
         <FormField
           :label="t('auth.otp.code')"
           :error="otpError"
+          :help-text="t('auth.otp.hint')"
           required
         >
           <input
-            v-model="otpCode"
+            :value="otpCode"
             type="text"
             inputmode="numeric"
             maxlength="6"
             :placeholder="t('auth.otp.codePlaceholder')"
             :aria-invalid="!!otpError"
-            @input="handleOtpInput"
-            class="otp-input"
             autocomplete="one-time-code"
+            class="w-full rounded-lg border-2 px-6 py-4 text-center font-mono text-3xl font-bold tracking-[0.5rem] text-gray-800 shadow-theme-xs focus:outline-hidden focus:ring-3"
+            :class="otpError ? 'border-error-300 focus:border-error-300 focus:ring-error-500/10' : 'border-gray-300 focus:border-brand-300 focus:ring-brand-500/10'"
+            @input="handleOtpInput"
           />
-          <p class="otp-hint">{{ t('auth.otp.hint') }}</p>
         </FormField>
 
-        <Button
-          type="submit"
-          :loading="isLoading"
-          class="verify-otp-submit"
-        >
+        <Button type="submit" :loading="isLoading" class="mt-2 w-full">
           {{ t('auth.otp.submit') }}
         </Button>
       </form>
 
-      <div class="resend-section">
-        <p class="resend-text">{{ t('auth.otp.noCode') }}</p>
+      <div class="flex flex-col items-center gap-3 border-t border-gray-100 pt-6">
+        <p class="text-sm text-gray-500">{{ t('auth.otp.noCode') }}</p>
         <Button
           type="button"
           variant="secondary"
           :loading="resendLoading"
           :disabled="!canResend || resendLoading || isLoading"
+          class="min-w-[150px]"
           @click="handleResend"
-          class="resend-button"
         >
           {{ resendButtonText }}
         </Button>
       </div>
 
-      <p class="verify-otp-footer">
+      <p class="mt-4 text-center text-xs text-gray-500">
         {{ t('auth.otp.expiration') }}
       </p>
     </div>
   </div>
 </template>
-
-<style scoped>
-.verify-otp-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: var(--space-4);
-  background: var(--color-surface-alt);
-}
-
-.verify-otp-card {
-  width: 100%;
-  max-width: 450px;
-  padding: var(--space-8);
-  background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.verify-otp-header {
-  margin-bottom: var(--space-8);
-  text-align: center;
-}
-
-.verify-otp-header h1 {
-  margin: 0 0 var(--space-2) 0;
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-.verify-otp-header p {
-  margin: 0;
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-  word-break: break-all;
-}
-
-.verify-otp-alert {
-  margin-bottom: var(--space-6);
-}
-
-.verify-otp-form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
-  margin-bottom: var(--space-6);
-}
-
-.otp-input {
-  width: 100%;
-  padding: var(--space-4) var(--space-6);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
-  font-family: 'Courier New', monospace;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 0.5rem;
-  text-align: center;
-  color: var(--color-text);
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.otp-input:focus {
-  outline: none;
-  border-color: var(--color-focus);
-  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
-}
-
-.otp-input:invalid {
-  border-color: var(--color-error);
-}
-
-.otp-hint {
-  margin: var(--space-2) 0 0 0;
-  font-size: 0.75rem;
-  color: var(--color-text-muted);
-  text-align: center;
-}
-
-.verify-otp-submit {
-  margin-top: var(--space-4);
-}
-
-.resend-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-3);
-  padding-top: var(--space-6);
-  border-top: 1px solid var(--color-border);
-}
-
-.resend-text {
-  margin: 0;
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-}
-
-.resend-button {
-  min-width: 150px;
-}
-
-.verify-otp-footer {
-  text-align: center;
-  font-size: 0.75rem;
-  color: var(--color-text-muted);
-  margin: var(--space-4) 0 0 0;
-}
-
-@media (max-width: 640px) {
-  .verify-otp-container {
-    min-height: auto;
-    padding: var(--space-4) 0;
-  }
-
-  .verify-otp-card {
-    margin: var(--space-4);
-    padding: var(--space-6);
-  }
-
-  .verify-otp-header h1 {
-    font-size: 1.5rem;
-  }
-
-  .otp-input {
-    font-size: 1.75rem;
-    letter-spacing: 0.25rem;
-  }
-}
-</style>

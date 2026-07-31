@@ -9,6 +9,7 @@ import {
 } from '@lms/i18n'
 import App from './App.vue'
 import { router } from './router'
+import { installSessionGuard } from './lib/sessionGuard'
 import '@lms/ui/tokens.css'
 import './styles/base.css'
 
@@ -23,5 +24,7 @@ export const i18n = createI18n({
 })
 
 document.documentElement.lang = initialLocale
+
+installSessionGuard(router)
 
 createApp(App).use(createPinia()).use(router).use(i18n).mount('#app')

@@ -7,14 +7,22 @@
   "nav": {
     "courses": "Online courses",
     "myLearning": "My learning",
+    "certificates": "Certificates",
     "signIn": "Sign in",
     "signOut": "Sign out",
-    "register": "Register"
+    "register": "Register",
+    "admin": "Admin"
   },
   "common": {
     "continue": "Continue",
     "back": "Back",
-    "loading": "Loading…"
+    "loading": "Loading…",
+    "save": "Save",
+    "cancel": "Cancel",
+    "create": "Create",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Are you sure?"
   },
   "module": {
     "label": "Module {number}",
@@ -30,5 +38,323 @@
   "a11y": {
     "skipToContent": "Skip to main content",
     "languageSwitcher": "Choose interface language"
+  },
+  "auth": {
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Join our learning platform",
+      "submit": "Register",
+      "haveAccount": "Already have an account?",
+      "linkText": "Sign in"
+    },
+    "login": {
+      "title": "Sign In",
+      "subtitle": "Welcome back to your learning platform",
+      "submit": "Sign in",
+      "linkText": "Create account",
+      "forgotPassword": "Forgot password?",
+      "rememberMe": "Remember me",
+      "noAccount": "Don't have an account?",
+      "lockedMessage": "For security reasons, your account is locked for 15 minutes",
+      "invalidCredentials": "Incorrect email or password",
+      "sessionExpired": "Your session has expired. Please sign in again."
+    },
+    "otp": {
+      "title": "Verify Email",
+      "subtitle": "Enter the verification code we sent to {email}",
+      "code": "Verification Code",
+      "codePlaceholder": "000000",
+      "submit": "Verify",
+      "noCode": "Didn't receive the code?",
+      "resend": "Resend Code",
+      "resendCountdown": "Resend in {seconds} seconds",
+      "hint": "We sent a 6-digit code to your email",
+      "expiration": "The code expires in 10 minutes"
+    },
+    "form": {
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "First and Last Name",
+      "email": "Email Address",
+      "emailPlaceholder": "your@email.com",
+      "password": "Password",
+      "passwordPlaceholder": "Minimum 10 characters",
+      "passwordHint": "Password must include uppercase letter, number, and special character",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordPlaceholder": "Re-enter your password",
+      "language": "Preferred Language",
+      "consent": "I agree to the Privacy Policy and Terms of Service",
+      "region": "Region/City",
+      "district": "District/Town",
+      "organization": "Organization",
+      "profession": "Profession"
+    }
+  },
+  "validation": {
+    "required": "This field is required",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Please enter a valid email address",
+    "passwordRequired": "Password is required",
+    "passwordMinLength": "Password must be at least {min} characters",
+    "passwordUppercase": "Password must contain an uppercase letter",
+    "passwordNumber": "Password must contain a number",
+    "passwordSpecial": "Password must contain a special character (!@#$%^&*)",
+    "confirmPasswordRequired": "Please confirm your password",
+    "passwordMismatch": "Passwords do not match",
+    "fullNameRequired": "Full name is required",
+    "fullNameMinLength": "Name must be at least {min} characters",
+    "otpRequired": "Verification code is required",
+    "otpFormat": "Code must be 6 digits"
+  },
+  "dashboard": {
+    "welcome": "Welcome, {name}!",
+    "subtitle": "Start your learning journey",
+    "availableCourses": "Available Courses",
+    "courseCount": "{count} courses",
+    "modules": "{count} modules",
+    "noCourses": "No courses available yet",
+    "continue": "Continue",
+    "enroll": "Enroll Now",
+    "progress": "{percent}% complete",
+    "courseMaterials": "Course Materials",
+    "module": "Module {number}"
+  },
+  "courseDetail": {
+    "enrollPrompt": "Enroll in this course to track your progress and take quizzes.",
+    "quizzes": "Quizzes"
+  },
+  "lesson": {
+    "estimatedTime": "⏱ {minutes} minutes",
+    "markComplete": "Mark as Complete",
+    "completed": "Lesson completed successfully!",
+    "notEnrolled": "Enroll in this course to save your progress.",
+    "keyMessage": "Key message",
+    "videoNotSupported": "Video support coming soon",
+    "quizEmbedded": "Quiz will be available here soon",
+    "mediaNotSupported": "Media format not supported",
+    "startQuiz": "Start Quiz"
+  },
+  "quiz": {
+    "true": "True",
+    "false": "False",
+    "final": "Final",
+    "formative": "Practice",
+    "passed": "Passed",
+    "notPassed": "Not passed",
+    "resultTitle": "Your result",
+    "scoreLine": "{score} / {max} points ({percent}%)",
+    "tryAgain": "Try again",
+    "questionOf": "Question {current} of {total}",
+    "answeredCount": "{answered}/{total} answered",
+    "goToQuestion": "Go to question {number}",
+    "previous": "Previous",
+    "next": "Next",
+    "submit": "Submit",
+    "showHistory": "Show attempt history",
+    "hideHistory": "Hide attempt history",
+    "historyTitle": "Attempt history",
+    "noHistory": "No attempts yet",
+    "inProgress": "In progress",
+    "selectMatch": "Select a match…",
+    "selectZone": "Select a zone…",
+    "matchWith": "Match for {item}",
+    "placeInZone": "Zone for {item}",
+    "moveUp": "Move up",
+    "moveDown": "Move down",
+    "reflectionPlaceholder": "Write your reflection…",
+    "reflectionHint": "This question is for reflection and is not graded."
+  },
+  "certificates": {
+    "title": "Certificates",
+    "subtitle": "Certificates you've earned by completing courses",
+    "verifyLink": "Verify a certificate",
+    "empty": {
+      "title": "No certificates yet",
+      "message": "Complete a course and pass its final quiz to earn a certificate."
+    },
+    "verify": {
+      "title": "Verify a Certificate",
+      "subtitle": "Enter the verification code printed on the certificate",
+      "codeLabel": "Verification code",
+      "submit": "Verify",
+      "validTitle": "Certificate verified",
+      "invalid": "No valid certificate found for this code.",
+      "learner": "Learner",
+      "course": "Course",
+      "issuedOn": "Issued on"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "subtitle": "Manage your account settings",
+    "photoSection": "Profile Photo",
+    "infoSection": "Personal Information",
+    "securitySection": "Security",
+    "roles": "Roles",
+    "selectPhoto": "Select Photo",
+    "uploadPhoto": "Upload",
+    "photoHint": "JPG, PNG, or GIF format, up to 100MB",
+    "photoPreview": "Profile photo preview",
+    "noPhotoSelected": "No photo selected",
+    "invalidFileType": "Please select an image file",
+    "fileTooLarge": "File is too large (maximum 100MB)",
+    "emailNotEditable": "Email cannot be changed",
+    "contactSupport": "Contact support to make changes",
+    "editNote": "To change your name, region, organization or profession, contact your administrator.",
+    "confirmLogout": "Sign out?",
+    "logoutHint": "Use your email and password to sign back in"
+  },
+  "errors": {
+    "backHome": "Back to home",
+    "notFound": {
+      "title": "Page not found",
+      "message": "The page you're looking for doesn't exist or has moved."
+    },
+    "forbidden": {
+      "title": "Access denied",
+      "message": "You don't have permission to view this page."
+    }
+  },
+  "admin": {
+    "brand": "UNAIDS LMS Admin",
+    "backToSite": "Back to site",
+    "published": "Published",
+    "draft": "Draft",
+    "saved": "Saved",
+    "deleted": "Deleted",
+    "saveTranslation": "Save translation",
+    "translations": "Translations",
+    "nav": {
+      "courses": "Courses",
+      "reporting": "Reporting",
+      "certificates": "Certificates",
+      "quizzes": "Quizzes"
+    },
+    "errors": {
+      "loadFailed": "Failed to load",
+      "saveFailed": "Failed to save"
+    },
+    "fields": {
+      "title": "Title",
+      "description": "Description",
+      "summary": "Summary",
+      "intro": "Introduction"
+    },
+    "courses": {
+      "title": "Courses",
+      "subtitle": "Manage the course catalog",
+      "create": "New course",
+      "created": "Course created",
+      "empty": "No courses yet — create the first one.",
+      "moduleCount": "{count} modules",
+      "settings": "Settings",
+      "translations": "Translations",
+      "slug": "Slug",
+      "sortOrder": "Sort order"
+    },
+    "modules": {
+      "title": "Modules",
+      "add": "Add module",
+      "edit": "Edit module",
+      "empty": "No modules yet.",
+      "number": "Module number",
+      "theme": "Color theme",
+      "sortOrder": "Sort order",
+      "translations": "Module translations"
+    },
+    "lessons": {
+      "add": "Add lesson",
+      "settings": "Settings",
+      "translations": "Translations",
+      "sortOrder": "Sort order",
+      "estimatedMinutes": "Estimated minutes"
+    },
+    "blocks": {
+      "title": "Content blocks",
+      "add": "Add block",
+      "empty": "No content blocks yet.",
+      "type": "Block type",
+      "sortOrder": "Sort order",
+      "html": "Content",
+      "image": "Image",
+      "altText": "Alt text",
+      "caption": "Caption",
+      "uploadFile": "Upload file",
+      "orExternalUrl": "Or external URL",
+      "url": "URL",
+      "label": "Label",
+      "description": "Description",
+      "deleteConfirmTitle": "Delete this block?",
+      "deleteConfirmMessage": "This cannot be undone."
+    },
+    "quizzes": {
+      "title": "Quizzes",
+      "add": "Add quiz",
+      "empty": "No quizzes yet.",
+      "settings": "Settings",
+      "translations": "Translations",
+      "untitled": "Untitled quiz",
+      "kind": "Kind",
+      "passScore": "Pass score {percent}%",
+      "maxAttempts": "Max attempts",
+      "questionCount": "{count} questions",
+      "questionCountLabel": "Questions to draw",
+      "allQuestions": "All active questions",
+      "sortOrder": "Sort order",
+      "shuffleQuestions": "Shuffle question order",
+      "shuffleAnswers": "Shuffle answer order"
+    },
+    "questions": {
+      "title": "Question bank",
+      "add": "Add question",
+      "empty": "No questions yet.",
+      "type": "Question type",
+      "points": "Points",
+      "pointsShort": "{points} pts",
+      "sortOrder": "Sort order",
+      "active": "Active",
+      "inactive": "Inactive",
+      "prompt": "Prompt",
+      "scenario": "Scenario text",
+      "options": "Answer options",
+      "addOption": "Add option",
+      "untitledOption": "(untitled)",
+      "correctAnswer": "Correct answer",
+      "leftColumn": "Left column",
+      "rightColumn": "Right column",
+      "addItem": "Add item",
+      "addZone": "Add zone",
+      "items": "Items",
+      "zones": "Zones",
+      "correctPairs": "Correct pairs",
+      "correctPlacements": "Correct placements",
+      "itemsInCorrectOrder": "Items, in the correct order",
+      "placeholder": "Placeholder text",
+      "feedbackCorrect": "Feedback — correct answer",
+      "feedbackIncorrect": "Feedback — incorrect answer",
+      "saveSolution": "Save question",
+      "deleteConfirmTitle": "Delete this question?",
+      "deleteConfirmMessage": "If it has recorded answers it will be deactivated instead of deleted."
+    },
+    "reporting": {
+      "title": "Reporting",
+      "noCourses": "No courses to report on yet.",
+      "noMetrics": "No metrics for this course yet.",
+      "totalEnrolled": "Enrolled",
+      "completed": "Completed",
+      "completionRate": "Completion rate",
+      "passedFinal": "Passed final quiz",
+      "exportLearners": "Export learners (Excel)"
+    },
+    "certificates": {
+      "title": "Certificates",
+      "revokeTitle": "Revoke a certificate",
+      "certificateId": "Certificate ID",
+      "reason": "Reason",
+      "revoke": "Revoke",
+      "revoked": "Certificate revoked",
+      "revokeConfirmTitle": "Revoke this certificate?",
+      "revokeConfirmMessage": "The certificate will no longer verify as valid.",
+      "lookupTitle": "Look up by verification code"
+    }
   }
 }

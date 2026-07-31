@@ -7,14 +7,22 @@
   "nav": {
     "courses": "Onlayn kurslar",
     "myLearning": "Mening o'qishim",
+    "certificates": "Sertifikatlar",
     "signIn": "Kirish",
     "signOut": "Chiqish",
-    "register": "Ro'yxatdan o'tish"
+    "register": "Ro'yxatdan o'tish",
+    "admin": "Boshqaruv"
   },
   "common": {
     "continue": "Davom etish",
     "back": "Orqaga",
-    "loading": "Yuklanmoqda…"
+    "loading": "Yuklanmoqda…",
+    "save": "Saqlash",
+    "cancel": "Bekor qilish",
+    "create": "Yaratish",
+    "edit": "Tahrirlash",
+    "delete": "O'chirish",
+    "confirm": "Ishonchingiz komilmi?"
   },
   "module": {
     "label": "{number}-modul",
@@ -30,5 +38,323 @@
   "a11y": {
     "skipToContent": "Asosiy kontentga o'tish",
     "languageSwitcher": "Interfeys tilini tanlash"
+  },
+  "auth": {
+    "register": {
+      "title": "Ro'yxatdan o'tish",
+      "subtitle": "Oʻquv platformasiga qoʻshilish",
+      "submit": "Ro'yxatdan o'tish",
+      "haveAccount": "Allaqachon hisobi bor?",
+      "linkText": "Kirish"
+    },
+    "login": {
+      "title": "Kirish",
+      "subtitle": "Oʻz hisobingizga kirish",
+      "submit": "Kirish",
+      "linkText": "Ro'yxatdan o'tish",
+      "forgotPassword": "Parolni unutdingiz?",
+      "rememberMe": "Meni eslab qol",
+      "noAccount": "Hisobi yo'q?",
+      "lockedMessage": "Xavfsizlik sabablari uchun hisobingiz 15 daqiqaga qulflanadi",
+      "invalidCredentials": "Email yoki parol noto'g'ri",
+      "sessionExpired": "Sessiya muddati tugadi. Iltimos, qayta kiring."
+    },
+    "otp": {
+      "title": "Email tasdiqlash",
+      "subtitle": "Emailingizga yuborilgan kod {email} ni kiriting",
+      "code": "Tasdiqlov kodi",
+      "codePlaceholder": "000000",
+      "submit": "Tasdiqlash",
+      "noCode": "Kod olmadingizmi?",
+      "resend": "Qayta jo'natish",
+      "resendCountdown": "{seconds} soniyadan keyin qayta jo'natish mumkin",
+      "hint": "6 raqamli kod emailingizga yuborildi",
+      "expiration": "Kod 10 daqiqada tugaydi"
+    },
+    "form": {
+      "fullName": "To'liq ism",
+      "fullNamePlaceholder": "Ism va familiya",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "password": "Parol",
+      "passwordPlaceholder": "Minimal 10 ta belgi",
+      "passwordHint": "Parol: bosh harf, raqam va maxsus belgi o'z ichiga olishi kerak",
+      "confirmPassword": "Parolni tasdiqlash",
+      "confirmPasswordPlaceholder": "Parolni yana kiriting",
+      "language": "Til",
+      "consent": "Men maxfiylik siyosati va foydalanish shartlariga roziman",
+      "region": "Viloyat/Shahar",
+      "district": "Tuman/Rayon",
+      "organization": "Tashkilot",
+      "profession": "Mutaxassislik"
+    }
+  },
+  "validation": {
+    "required": "Bu maydon to'ldirilishi kerak",
+    "emailRequired": "Email manzili kerak",
+    "emailInvalid": "Email manzili noto'g'ri",
+    "passwordRequired": "Parol kerak",
+    "passwordMinLength": "Parol kamida {min} ta belgidan iborat bo'lishi kerak",
+    "passwordUppercase": "Parolda bosh harf bo'lishi kerak",
+    "passwordNumber": "Parolda raqam bo'lishi kerak",
+    "passwordSpecial": "Parolda maxsus belgi bo'lishi kerak (!@#$%^&*)",
+    "confirmPasswordRequired": "Parol tasdiqini kiriting",
+    "passwordMismatch": "Parollar mos kelmadi",
+    "fullNameRequired": "To'liq ismni kiriting",
+    "fullNameMinLength": "Ism kamida {min} ta belgidan iborat bo'lishi kerak",
+    "otpRequired": "Tasdiqlov kodini kiriting",
+    "otpFormat": "Kod 6 ta raqamdan iborat bo'lishi kerak"
+  },
+  "dashboard": {
+    "welcome": "Xush kelibsiz, {name}!",
+    "subtitle": "O'z o'quv sayohatingizni boshlang",
+    "availableCourses": "Mavjud kurslar",
+    "courseCount": "{count} ta kurs",
+    "modules": "{count} ta modul",
+    "noCourses": "Hozircha kurs mavjud emas",
+    "continue": "Davom etish",
+    "enroll": "Ro'yxatdan o'tish",
+    "progress": "{percent}% bajarildi",
+    "courseMaterials": "Kurs materiallari",
+    "module": "Modul {number}"
+  },
+  "courseDetail": {
+    "enrollPrompt": "Progressni saqlash va viktorinalarda qatnashish uchun kursga yoziling.",
+    "quizzes": "Viktorinalar"
+  },
+  "lesson": {
+    "estimatedTime": "⏱ {minutes} daqiqa",
+    "markComplete": "Darsni yakunlangan deb belgilash",
+    "completed": "Dars muvaffaqiyatli yakunlandi!",
+    "notEnrolled": "Progressni saqlash uchun avval kursga yoziling.",
+    "keyMessage": "Asosiy xabar",
+    "videoNotSupported": "Video ko'rinishi hali tayyorlanmoqda",
+    "quizEmbedded": "Viktorina tez orada shu yerda chiqadi",
+    "mediaNotSupported": "Media formati qo'llab-quvvatlanmaydi",
+    "startQuiz": "Viktorinani boshlash"
+  },
+  "quiz": {
+    "true": "To'g'ri",
+    "false": "Noto'g'ri",
+    "final": "Yakuniy",
+    "formative": "Mashq",
+    "passed": "O'tildi",
+    "notPassed": "O'tilmadi",
+    "resultTitle": "Sizning natijangiz",
+    "scoreLine": "{score} / {max} ball ({percent}%)",
+    "tryAgain": "Qayta urinish",
+    "questionOf": "{total} tadan {current}-savol",
+    "answeredCount": "{answered}/{total} javob berildi",
+    "goToQuestion": "{number}-savolga o'tish",
+    "previous": "Oldingi",
+    "next": "Keyingi",
+    "submit": "Yuborish",
+    "showHistory": "Urinishlar tarixini ko'rsatish",
+    "hideHistory": "Urinishlar tarixini yashirish",
+    "historyTitle": "Urinishlar tarixi",
+    "noHistory": "Hali urinishlar yo'q",
+    "inProgress": "Jarayonda",
+    "selectMatch": "Juftini tanlang…",
+    "selectZone": "Hududni tanlang…",
+    "matchWith": "{item} uchun juft",
+    "placeInZone": "{item} uchun hudud",
+    "moveUp": "Yuqoriga siljitish",
+    "moveDown": "Pastga siljitish",
+    "reflectionPlaceholder": "Fikringizni yozing…",
+    "reflectionHint": "Bu savol mulohaza uchun bo'lib, baholanmaydi."
+  },
+  "certificates": {
+    "title": "Sertifikatlar",
+    "subtitle": "Kurslarni yakunlash orqali qo'lga kiritgan sertifikatlaringiz",
+    "verifyLink": "Sertifikatni tekshirish",
+    "empty": {
+      "title": "Hozircha sertifikat yo'q",
+      "message": "Sertifikat olish uchun kursni yakunlang va yakuniy viktorinadan o'ting."
+    },
+    "verify": {
+      "title": "Sertifikatni tekshirish",
+      "subtitle": "Sertifikatda ko'rsatilgan tasdiqlash kodini kiriting",
+      "codeLabel": "Tasdiqlash kodi",
+      "submit": "Tekshirish",
+      "validTitle": "Sertifikat tasdiqlandi",
+      "invalid": "Bu kod uchun haqiqiy sertifikat topilmadi.",
+      "learner": "O'quvchi",
+      "course": "Kurs",
+      "issuedOn": "Berilgan sana"
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "subtitle": "Hisob sozlamalarini boshqarish",
+    "photoSection": "Profil rasmi",
+    "infoSection": "Shaxsiy ma'lumotlar",
+    "securitySection": "Xavfsizlik",
+    "roles": "Rollar",
+    "selectPhoto": "Rasmni tanlash",
+    "uploadPhoto": "Yuklash",
+    "photoHint": "JPG, PNG yoki GIF formatida, maksimal 100MB",
+    "photoPreview": "Profil rasmi ko'rinishi",
+    "noPhotoSelected": "Rasm tanlanmagan",
+    "invalidFileType": "Iltimos, rasm faylini tanlang",
+    "fileTooLarge": "Fayl juda katta (maksimal 100MB)",
+    "emailNotEditable": "Email manzilini o'zgartirib bo'lmaydi",
+    "contactSupport": "O'zgartirishlar uchun qo'llab-quvvatlash bilan bog'laning",
+    "editNote": "Ismingiz, viloyatingiz, tashkilotingiz yoki mutaxassisligingizni o'zgartirish uchun administratorga murojaat qiling.",
+    "confirmLogout": "Chiqishni tasdiqlaysizmi?",
+    "logoutHint": "Qayta kirish uchun emailingiz va parolingizdan foydalaning"
+  },
+  "errors": {
+    "backHome": "Bosh sahifaga qaytish",
+    "notFound": {
+      "title": "Sahifa topilmadi",
+      "message": "Siz izlayotgan sahifa mavjud emas yoki ko'chirilgan."
+    },
+    "forbidden": {
+      "title": "Kirish rad etildi",
+      "message": "Sizda bu sahifani ko'rish uchun ruxsat yo'q."
+    }
+  },
+  "admin": {
+    "brand": "UNAIDS LMS Boshqaruv",
+    "backToSite": "Saytga qaytish",
+    "published": "Chop etilgan",
+    "draft": "Qoralama",
+    "saved": "Saqlandi",
+    "deleted": "O'chirildi",
+    "saveTranslation": "Tarjimani saqlash",
+    "translations": "Tarjimalar",
+    "nav": {
+      "courses": "Kurslar",
+      "reporting": "Hisobotlar",
+      "certificates": "Sertifikatlar",
+      "quizzes": "Viktorinalar"
+    },
+    "errors": {
+      "loadFailed": "Yuklab bo'lmadi",
+      "saveFailed": "Saqlab bo'lmadi"
+    },
+    "fields": {
+      "title": "Sarlavha",
+      "description": "Tavsif",
+      "summary": "Qisqacha mazmun",
+      "intro": "Kirish qismi"
+    },
+    "courses": {
+      "title": "Kurslar",
+      "subtitle": "Kurslar katalogini boshqarish",
+      "create": "Yangi kurs",
+      "created": "Kurs yaratildi",
+      "empty": "Hozircha kurs yo'q — birinchisini yarating.",
+      "moduleCount": "{count} ta modul",
+      "settings": "Sozlamalar",
+      "translations": "Tarjimalar",
+      "slug": "Slug",
+      "sortOrder": "Tartib raqami"
+    },
+    "modules": {
+      "title": "Modullar",
+      "add": "Modul qo'shish",
+      "edit": "Modulni tahrirlash",
+      "empty": "Hozircha modul yo'q.",
+      "number": "Modul raqami",
+      "theme": "Rang mavzusi",
+      "sortOrder": "Tartib raqami",
+      "translations": "Modul tarjimalari"
+    },
+    "lessons": {
+      "add": "Dars qo'shish",
+      "settings": "Sozlamalar",
+      "translations": "Tarjimalar",
+      "sortOrder": "Tartib raqami",
+      "estimatedMinutes": "Taxminiy daqiqalar"
+    },
+    "blocks": {
+      "title": "Kontent bloklari",
+      "add": "Blok qo'shish",
+      "empty": "Hozircha kontent bloklari yo'q.",
+      "type": "Blok turi",
+      "sortOrder": "Tartib raqami",
+      "html": "Kontent",
+      "image": "Rasm",
+      "altText": "Muqobil matn",
+      "caption": "Izoh",
+      "uploadFile": "Fayl yuklash",
+      "orExternalUrl": "Yoki tashqi URL",
+      "url": "URL",
+      "label": "Nom",
+      "description": "Tavsif",
+      "deleteConfirmTitle": "Bu blok o'chirilsinmi?",
+      "deleteConfirmMessage": "Bu amalni bekor qilib bo'lmaydi."
+    },
+    "quizzes": {
+      "title": "Viktorinalar",
+      "add": "Viktorina qo'shish",
+      "empty": "Hozircha viktorina yo'q.",
+      "settings": "Sozlamalar",
+      "translations": "Tarjimalar",
+      "untitled": "Nomsiz viktorina",
+      "kind": "Turi",
+      "passScore": "O'tish balli {percent}%",
+      "maxAttempts": "Maksimal urinishlar",
+      "questionCount": "{count} ta savol",
+      "questionCountLabel": "Tanlanadigan savollar soni",
+      "allQuestions": "Barcha faol savollar",
+      "sortOrder": "Tartib raqami",
+      "shuffleQuestions": "Savollar tartibini aralashtirish",
+      "shuffleAnswers": "Javoblar tartibini aralashtirish"
+    },
+    "questions": {
+      "title": "Savollar banki",
+      "add": "Savol qo'shish",
+      "empty": "Hozircha savol yo'q.",
+      "type": "Savol turi",
+      "points": "Ball",
+      "pointsShort": "{points} ball",
+      "sortOrder": "Tartib raqami",
+      "active": "Faol",
+      "inactive": "Faol emas",
+      "prompt": "Savol matni",
+      "scenario": "Vaziyat matni",
+      "options": "Javob variantlari",
+      "addOption": "Variant qo'shish",
+      "untitledOption": "(nomsiz)",
+      "correctAnswer": "To'g'ri javob",
+      "leftColumn": "Chap ustun",
+      "rightColumn": "O'ng ustun",
+      "addItem": "Element qo'shish",
+      "addZone": "Hudud qo'shish",
+      "items": "Elementlar",
+      "zones": "Hududlar",
+      "correctPairs": "To'g'ri juftliklar",
+      "correctPlacements": "To'g'ri joylashuv",
+      "itemsInCorrectOrder": "Elementlar, to'g'ri tartibda",
+      "placeholder": "Placeholder matni",
+      "feedbackCorrect": "Fikr-mulohaza — to'g'ri javob",
+      "feedbackIncorrect": "Fikr-mulohaza — noto'g'ri javob",
+      "saveSolution": "Savolni saqlash",
+      "deleteConfirmTitle": "Bu savol o'chirilsinmi?",
+      "deleteConfirmMessage": "Agar unga javoblar yozilgan bo'lsa, o'chirish o'rniga faolsizlantiriladi."
+    },
+    "reporting": {
+      "title": "Hisobotlar",
+      "noCourses": "Hozircha hisobot uchun kurs yo'q.",
+      "noMetrics": "Bu kurs uchun hali ko'rsatkichlar yo'q.",
+      "totalEnrolled": "Ro'yxatdan o'tganlar",
+      "completed": "Yakunlaganlar",
+      "completionRate": "Yakunlash darajasi",
+      "passedFinal": "Yakuniy viktorinadan o'tganlar",
+      "exportLearners": "O'quvchilarni eksport qilish (Excel)"
+    },
+    "certificates": {
+      "title": "Sertifikatlar",
+      "revokeTitle": "Sertifikatni bekor qilish",
+      "certificateId": "Sertifikat ID",
+      "reason": "Sabab",
+      "revoke": "Bekor qilish",
+      "revoked": "Sertifikat bekor qilindi",
+      "revokeConfirmTitle": "Bu sertifikat bekor qilinsinmi?",
+      "revokeConfirmMessage": "Sertifikat endi haqiqiy sifatida tasdiqlanmaydi.",
+      "lookupTitle": "Tasdiqlash kodi bo'yicha qidirish"
+    }
   }
 }

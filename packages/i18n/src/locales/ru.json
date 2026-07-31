@@ -7,14 +7,22 @@
   "nav": {
     "courses": "Онлайн-курсы",
     "myLearning": "Моё обучение",
+    "certificates": "Сертификаты",
     "signIn": "Войти",
     "signOut": "Выйти",
-    "register": "Регистрация"
+    "register": "Регистрация",
+    "admin": "Администрирование"
   },
   "common": {
     "continue": "Продолжить",
     "back": "Назад",
-    "loading": "Загрузка…"
+    "loading": "Загрузка…",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "create": "Создать",
+    "edit": "Изменить",
+    "delete": "Удалить",
+    "confirm": "Вы уверены?"
   },
   "module": {
     "label": "Модуль {number}",
@@ -30,5 +38,323 @@
   "a11y": {
     "skipToContent": "Перейти к основному содержимому",
     "languageSwitcher": "Выбор языка интерфейса"
+  },
+  "auth": {
+    "register": {
+      "title": "Регистрация",
+      "subtitle": "Присоединяйтесь к учебной платформе",
+      "submit": "Зарегистрироваться",
+      "haveAccount": "Уже есть аккаунт?",
+      "linkText": "Войти"
+    },
+    "login": {
+      "title": "Вход",
+      "subtitle": "С возвращением на учебную платформу",
+      "submit": "Войти",
+      "linkText": "Создать аккаунт",
+      "forgotPassword": "Забыли пароль?",
+      "rememberMe": "Запомнить меня",
+      "noAccount": "Нет аккаунта?",
+      "lockedMessage": "В целях безопасности ваш аккаунт заблокирован на 15 минут",
+      "invalidCredentials": "Неверный email или пароль",
+      "sessionExpired": "Срок сессии истёк. Пожалуйста, войдите снова."
+    },
+    "otp": {
+      "title": "Подтверждение почты",
+      "subtitle": "Введите код, отправленный на {email}",
+      "code": "Код подтверждения",
+      "codePlaceholder": "000000",
+      "submit": "Подтвердить",
+      "noCode": "Не получили код?",
+      "resend": "Отправить снова",
+      "resendCountdown": "Повторная отправка через {seconds} сек.",
+      "hint": "6-значный код отправлен на вашу почту",
+      "expiration": "Код действителен 10 минут"
+    },
+    "form": {
+      "fullName": "Полное имя",
+      "fullNamePlaceholder": "Имя и фамилия",
+      "email": "Электронная почта",
+      "emailPlaceholder": "your@email.com",
+      "password": "Пароль",
+      "passwordPlaceholder": "Минимум 10 символов",
+      "passwordHint": "Пароль должен содержать заглавную букву, цифру и специальный символ",
+      "confirmPassword": "Подтвердите пароль",
+      "confirmPasswordPlaceholder": "Введите пароль ещё раз",
+      "language": "Предпочитаемый язык",
+      "consent": "Я согласен с политикой конфиденциальности и условиями использования",
+      "region": "Область/Город",
+      "district": "Район",
+      "organization": "Организация",
+      "profession": "Профессия"
+    }
+  },
+  "validation": {
+    "required": "Это поле обязательно",
+    "emailRequired": "Требуется email",
+    "emailInvalid": "Введите корректный email",
+    "passwordRequired": "Требуется пароль",
+    "passwordMinLength": "Пароль должен содержать не менее {min} символов",
+    "passwordUppercase": "Пароль должен содержать заглавную букву",
+    "passwordNumber": "Пароль должен содержать цифру",
+    "passwordSpecial": "Пароль должен содержать специальный символ (!@#$%^&*)",
+    "confirmPasswordRequired": "Подтвердите пароль",
+    "passwordMismatch": "Пароли не совпадают",
+    "fullNameRequired": "Введите полное имя",
+    "fullNameMinLength": "Имя должно содержать не менее {min} символов",
+    "otpRequired": "Введите код подтверждения",
+    "otpFormat": "Код должен состоять из 6 цифр"
+  },
+  "dashboard": {
+    "welcome": "Добро пожаловать, {name}!",
+    "subtitle": "Начните своё обучение",
+    "availableCourses": "Доступные курсы",
+    "courseCount": "{count} курсов",
+    "modules": "{count} модулей",
+    "noCourses": "Курсов пока нет",
+    "continue": "Продолжить",
+    "enroll": "Записаться",
+    "progress": "Выполнено {percent}%",
+    "courseMaterials": "Материалы курса",
+    "module": "Модуль {number}"
+  },
+  "courseDetail": {
+    "enrollPrompt": "Запишитесь на курс, чтобы отслеживать прогресс и проходить тесты.",
+    "quizzes": "Тесты"
+  },
+  "lesson": {
+    "estimatedTime": "⏱ {minutes} мин.",
+    "markComplete": "Отметить как пройденное",
+    "completed": "Урок успешно завершён!",
+    "notEnrolled": "Запишитесь на курс, чтобы сохранять прогресс.",
+    "keyMessage": "Ключевое сообщение",
+    "videoNotSupported": "Поддержка видео скоро появится",
+    "quizEmbedded": "Тест появится здесь в ближайшее время",
+    "mediaNotSupported": "Формат медиа не поддерживается",
+    "startQuiz": "Начать тест"
+  },
+  "quiz": {
+    "true": "Верно",
+    "false": "Неверно",
+    "final": "Итоговый",
+    "formative": "Тренировочный",
+    "passed": "Пройден",
+    "notPassed": "Не пройден",
+    "resultTitle": "Ваш результат",
+    "scoreLine": "{score} / {max} баллов ({percent}%)",
+    "tryAgain": "Попробовать снова",
+    "questionOf": "Вопрос {current} из {total}",
+    "answeredCount": "Отвечено {answered}/{total}",
+    "goToQuestion": "Перейти к вопросу {number}",
+    "previous": "Назад",
+    "next": "Далее",
+    "submit": "Отправить",
+    "showHistory": "Показать историю попыток",
+    "hideHistory": "Скрыть историю попыток",
+    "historyTitle": "История попыток",
+    "noHistory": "Попыток пока нет",
+    "inProgress": "В процессе",
+    "selectMatch": "Выберите соответствие…",
+    "selectZone": "Выберите зону…",
+    "matchWith": "Соответствие для «{item}»",
+    "placeInZone": "Зона для «{item}»",
+    "moveUp": "Переместить вверх",
+    "moveDown": "Переместить вниз",
+    "reflectionPlaceholder": "Напишите свои размышления…",
+    "reflectionHint": "Этот вопрос предназначен для размышления и не оценивается."
+  },
+  "certificates": {
+    "title": "Сертификаты",
+    "subtitle": "Сертификаты, полученные за прохождение курсов",
+    "verifyLink": "Проверить сертификат",
+    "empty": {
+      "title": "Сертификатов пока нет",
+      "message": "Завершите курс и сдайте итоговый тест, чтобы получить сертификат."
+    },
+    "verify": {
+      "title": "Проверка сертификата",
+      "subtitle": "Введите код проверки, указанный на сертификате",
+      "codeLabel": "Код проверки",
+      "submit": "Проверить",
+      "validTitle": "Сертификат подтверждён",
+      "invalid": "Действительный сертификат с таким кодом не найден.",
+      "learner": "Учащийся",
+      "course": "Курс",
+      "issuedOn": "Дата выдачи"
+    }
+  },
+  "profile": {
+    "title": "Профиль",
+    "subtitle": "Управление настройками аккаунта",
+    "photoSection": "Фото профиля",
+    "infoSection": "Личная информация",
+    "securitySection": "Безопасность",
+    "roles": "Роли",
+    "selectPhoto": "Выбрать фото",
+    "uploadPhoto": "Загрузить",
+    "photoHint": "Формат JPG, PNG или GIF, до 100 МБ",
+    "photoPreview": "Предпросмотр фото профиля",
+    "noPhotoSelected": "Фото не выбрано",
+    "invalidFileType": "Пожалуйста, выберите файл изображения",
+    "fileTooLarge": "Файл слишком большой (максимум 100 МБ)",
+    "emailNotEditable": "Email нельзя изменить",
+    "contactSupport": "Для изменения обратитесь в поддержку",
+    "editNote": "Чтобы изменить имя, регион, организацию или профессию, обратитесь к администратору.",
+    "confirmLogout": "Выйти из аккаунта?",
+    "logoutHint": "Используйте email и пароль для повторного входа"
+  },
+  "errors": {
+    "backHome": "На главную",
+    "notFound": {
+      "title": "Страница не найдена",
+      "message": "Страница, которую вы ищете, не существует или была перемещена."
+    },
+    "forbidden": {
+      "title": "Доступ запрещён",
+      "message": "У вас нет прав для просмотра этой страницы."
+    }
+  },
+  "admin": {
+    "brand": "Администрирование UNAIDS LMS",
+    "backToSite": "Вернуться на сайт",
+    "published": "Опубликовано",
+    "draft": "Черновик",
+    "saved": "Сохранено",
+    "deleted": "Удалено",
+    "saveTranslation": "Сохранить перевод",
+    "translations": "Переводы",
+    "nav": {
+      "courses": "Курсы",
+      "reporting": "Отчётность",
+      "certificates": "Сертификаты",
+      "quizzes": "Тесты"
+    },
+    "errors": {
+      "loadFailed": "Не удалось загрузить",
+      "saveFailed": "Не удалось сохранить"
+    },
+    "fields": {
+      "title": "Заголовок",
+      "description": "Описание",
+      "summary": "Краткое содержание",
+      "intro": "Введение"
+    },
+    "courses": {
+      "title": "Курсы",
+      "subtitle": "Управление каталогом курсов",
+      "create": "Новый курс",
+      "created": "Курс создан",
+      "empty": "Курсов пока нет — создайте первый.",
+      "moduleCount": "{count} модулей",
+      "settings": "Настройки",
+      "translations": "Переводы",
+      "slug": "Slug",
+      "sortOrder": "Порядок сортировки"
+    },
+    "modules": {
+      "title": "Модули",
+      "add": "Добавить модуль",
+      "edit": "Изменить модуль",
+      "empty": "Модулей пока нет.",
+      "number": "Номер модуля",
+      "theme": "Цветовая тема",
+      "sortOrder": "Порядок сортировки",
+      "translations": "Переводы модуля"
+    },
+    "lessons": {
+      "add": "Добавить урок",
+      "settings": "Настройки",
+      "translations": "Переводы",
+      "sortOrder": "Порядок сортировки",
+      "estimatedMinutes": "Примерная длительность (мин.)"
+    },
+    "blocks": {
+      "title": "Блоки контента",
+      "add": "Добавить блок",
+      "empty": "Блоков контента пока нет.",
+      "type": "Тип блока",
+      "sortOrder": "Порядок сортировки",
+      "html": "Содержимое",
+      "image": "Изображение",
+      "altText": "Альтернативный текст",
+      "caption": "Подпись",
+      "uploadFile": "Загрузить файл",
+      "orExternalUrl": "Или внешний URL",
+      "url": "URL",
+      "label": "Название",
+      "description": "Описание",
+      "deleteConfirmTitle": "Удалить этот блок?",
+      "deleteConfirmMessage": "Это действие нельзя отменить."
+    },
+    "quizzes": {
+      "title": "Тесты",
+      "add": "Добавить тест",
+      "empty": "Тестов пока нет.",
+      "settings": "Настройки",
+      "translations": "Переводы",
+      "untitled": "Тест без названия",
+      "kind": "Тип",
+      "passScore": "Проходной балл {percent}%",
+      "maxAttempts": "Макс. попыток",
+      "questionCount": "{count} вопросов",
+      "questionCountLabel": "Количество вопросов для выборки",
+      "allQuestions": "Все активные вопросы",
+      "sortOrder": "Порядок сортировки",
+      "shuffleQuestions": "Перемешивать порядок вопросов",
+      "shuffleAnswers": "Перемешивать порядок ответов"
+    },
+    "questions": {
+      "title": "Банк вопросов",
+      "add": "Добавить вопрос",
+      "empty": "Вопросов пока нет.",
+      "type": "Тип вопроса",
+      "points": "Баллы",
+      "pointsShort": "{points} балл.",
+      "sortOrder": "Порядок сортировки",
+      "active": "Активен",
+      "inactive": "Неактивен",
+      "prompt": "Текст вопроса",
+      "scenario": "Текст сценария",
+      "options": "Варианты ответа",
+      "addOption": "Добавить вариант",
+      "untitledOption": "(без названия)",
+      "correctAnswer": "Правильный ответ",
+      "leftColumn": "Левый столбец",
+      "rightColumn": "Правый столбец",
+      "addItem": "Добавить элемент",
+      "addZone": "Добавить зону",
+      "items": "Элементы",
+      "zones": "Зоны",
+      "correctPairs": "Правильные пары",
+      "correctPlacements": "Правильное размещение",
+      "itemsInCorrectOrder": "Элементы в правильном порядке",
+      "placeholder": "Текст подсказки",
+      "feedbackCorrect": "Отзыв — правильный ответ",
+      "feedbackIncorrect": "Отзыв — неправильный ответ",
+      "saveSolution": "Сохранить вопрос",
+      "deleteConfirmTitle": "Удалить этот вопрос?",
+      "deleteConfirmMessage": "Если на него уже есть ответы, он будет деактивирован, а не удалён."
+    },
+    "reporting": {
+      "title": "Отчётность",
+      "noCourses": "Пока нет курсов для отчёта.",
+      "noMetrics": "По этому курсу пока нет данных.",
+      "totalEnrolled": "Записано",
+      "completed": "Завершили",
+      "completionRate": "Процент завершения",
+      "passedFinal": "Сдали итоговый тест",
+      "exportLearners": "Экспорт учащихся (Excel)"
+    },
+    "certificates": {
+      "title": "Сертификаты",
+      "revokeTitle": "Отозвать сертификат",
+      "certificateId": "ID сертификата",
+      "reason": "Причина",
+      "revoke": "Отозвать",
+      "revoked": "Сертификат отозван",
+      "revokeConfirmTitle": "Отозвать этот сертификат?",
+      "revokeConfirmMessage": "Сертификат больше не будет подтверждаться как действительный.",
+      "lookupTitle": "Поиск по коду проверки"
+    }
   }
 }

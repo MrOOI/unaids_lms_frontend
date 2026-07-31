@@ -18,3 +18,10 @@ logs/
 .idea/
 Thumbs.db
 .DS_Store
+
+# Local-only: reference material and tooling, not part of this project
+/.tailadmin-reference/
+/src/
+/public/
+.claude/
+.vscode/

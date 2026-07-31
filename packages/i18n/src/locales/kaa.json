@@ -7,14 +7,22 @@
   "nav": {
     "courses": "Onlayn kurslar",
     "myLearning": "Mening oqıwım",
+    "certificates": "Sertifikatlar",
     "signIn": "Kiriw",
     "signOut": "Shıǵıw",
-    "register": "Dizimnen o'tiw"
+    "register": "Dizimnen o'tiw",
+    "admin": "Basqarıw"
   },
   "common": {
     "continue": "Dawam etiw",
     "back": "Artqa",
-    "loading": "Ju'klenbekte…"
+    "loading": "Ju'klenbekte…",
+    "save": "Saqlaw",
+    "cancel": "Biykar etiw",
+    "create": "Jaratıw",
+    "edit": "Ta'rtipke keltiriw",
+    "delete": "O'shiriw",
+    "confirm": "Ko'z-qarasıńız ta'sıyqlanadı ma?"
   },
   "module": {
     "label": "{number}-modul",
@@ -30,5 +38,323 @@
   "a11y": {
     "skipToContent": "Tiykarǵı kontentke o'tiw",
     "languageSwitcher": "Interfeys tilin tan'law"
+  },
+  "auth": {
+    "register": {
+      "title": "Dizimnen o'tiw",
+      "subtitle": "Oqıw platformasına qosılıw",
+      "submit": "Dizimnen o'tiw",
+      "haveAccount": "Esabıńız bar ma?",
+      "linkText": "Kiriw"
+    },
+    "login": {
+      "title": "Kiriw",
+      "subtitle": "Esabıńızǵa qaytadan kiriw",
+      "submit": "Kiriw",
+      "linkText": "Dizimnen o'tiw",
+      "forgotPassword": "Parolıńızdı umıttıńız ba?",
+      "rememberMe": "Meni este saqla",
+      "noAccount": "Esabıńız joq pa?",
+      "lockedMessage": "Qa'wipsizlik sebepli esabıńız 15 minutqa qulıplandı",
+      "invalidCredentials": "Email yamasa parol qa'te",
+      "sessionExpired": "Sessiya waqtı tamamlandı. Iltimas, qayta kiriń."
+    },
+    "otp": {
+      "title": "Emaildi ta'sıyqlaw",
+      "subtitle": "{email} adresine jiberilgen kodtı kiritiń",
+      "code": "Ta'sıyqlaw kodı",
+      "codePlaceholder": "000000",
+      "submit": "Ta'sıyqlaw",
+      "noCode": "Kodtı almadıńız ba?",
+      "resend": "Qayta jiberiw",
+      "resendCountdown": "{seconds} sekundtan keyin qayta jiberiw múmkin",
+      "hint": "6 sanlı kod emailińizge jiberildi",
+      "expiration": "Kod 10 minuttan keyin tamamlanadı"
+    },
+    "form": {
+      "fullName": "Tolıq atı-jo'ni",
+      "fullNamePlaceholder": "Atı ha'm familiyası",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "password": "Parol",
+      "passwordPlaceholder": "Eń kem 10 belgi",
+      "passwordHint": "Parolda bas ha'ripler, san ha'm arnawlı belgi bolıwı kerek",
+      "confirmPassword": "Parolds ta'sıyqlaw",
+      "confirmPasswordPlaceholder": "Parolıńızdı qayta kiritiń",
+      "language": "Til",
+      "consent": "Men qupıyalıq siyasatı ha'm paydalanıw shártlerine razılasaman",
+      "region": "Wálayat/Qala",
+      "district": "Rayon",
+      "organization": "Mekeme",
+      "profession": "Ka'sip"
+    }
+  },
+  "validation": {
+    "required": "Bul maydan toltırılıwı kerek",
+    "emailRequired": "Email adresi kerek",
+    "emailInvalid": "Email adresi qa'te",
+    "passwordRequired": "Parol kerek",
+    "passwordMinLength": "Parol eń kem {min} belgiden ibarat bolıwı kerek",
+    "passwordUppercase": "Parolda bas ha'rip bolıwı kerek",
+    "passwordNumber": "Parolda san bolıwı kerek",
+    "passwordSpecial": "Parolda arnawlı belgi bolıwı kerek (!@#$%^&*)",
+    "confirmPasswordRequired": "Parol ta'sıyqlawın kiritiń",
+    "passwordMismatch": "Parollar sa'ykes kelmedi",
+    "fullNameRequired": "Tolıq atı-jo'nińizdi kiritiń",
+    "fullNameMinLength": "Atı-jo'ni eń kem {min} belgiden ibarat bolıwı kerek",
+    "otpRequired": "Ta'sıyqlaw kodın kiritiń",
+    "otpFormat": "Kod 6 sannan ibarat bolıwı kerek"
+  },
+  "dashboard": {
+    "welcome": "Qosh keldińiz, {name}!",
+    "subtitle": "Oqıw saparıńızdı baslań",
+    "availableCourses": "Bar kurslar",
+    "courseCount": "{count} kurs",
+    "modules": "{count} modul",
+    "noCourses": "Ha'zirshe kurs joq",
+    "continue": "Dawam etiw",
+    "enroll": "Dizimnen o'tiw",
+    "progress": "{percent}% orınlandı",
+    "courseMaterials": "Kurs materialları",
+    "module": "Modul {number}"
+  },
+  "courseDetail": {
+    "enrollPrompt": "Progresińizdi saqlaw ha'm testlerden o'tiw ushın kursqa dizimnen o'tiń.",
+    "quizzes": "Testler"
+  },
+  "lesson": {
+    "estimatedTime": "⏱ {minutes} minut",
+    "markComplete": "Sabaqtı juwmaqlanǵan dep belgilew",
+    "completed": "Sabaq sátli juwmaqlandı!",
+    "notEnrolled": "Progresińizdi saqlaw ushın aldın kursqa dizimnen o'tiń.",
+    "keyMessage": "Tiykarǵı xabar",
+    "videoNotSupported": "Video ko'rinisi ta'yarlanbaqta",
+    "quizEmbedded": "Test tez arada usı jerde payda boladı",
+    "mediaNotSupported": "Media formatı qollap-quwatlanbaydı",
+    "startQuiz": "Testti baslaw"
+  },
+  "quiz": {
+    "true": "Durıs",
+    "false": "Durıs emes",
+    "final": "Juwmaqlawshı",
+    "formative": "Mashq",
+    "passed": "O'tildi",
+    "notPassed": "O'tilmedi",
+    "resultTitle": "Sizin' na'tiyjeńiz",
+    "scoreLine": "{score} / {max} ball ({percent}%)",
+    "tryAgain": "Qayta urınıw",
+    "questionOf": "{total} sorawdan {current}-sorawı",
+    "answeredCount": "{answered}/{total} juwap berildi",
+    "goToQuestion": "{number}-sorawǵa o'tiw",
+    "previous": "Aldınǵı",
+    "next": "Keyingi",
+    "submit": "Jiberiw",
+    "showHistory": "Urınıwlar tariyxın ko'rsetiw",
+    "hideHistory": "Urınıwlar tariyxın jasırıw",
+    "historyTitle": "Urınıwlar tariyxı",
+    "noHistory": "Ha'zirshe urınıw joq",
+    "inProgress": "Processte",
+    "selectMatch": "Sa'ykesligin tańlań…",
+    "selectZone": "Aymaqtı tańlań…",
+    "matchWith": "{item} ushın sa'ykeslik",
+    "placeInZone": "{item} ushın aymaq",
+    "moveUp": "Joqarıǵa jılıstırıw",
+    "moveDown": "To'menge jılıstırıw",
+    "reflectionPlaceholder": "Oyıńızdı jazıń…",
+    "reflectionHint": "Bul soraw pikirlew ushın bolıp, bahalanbaydı."
+  },
+  "certificates": {
+    "title": "Sertifikatlar",
+    "subtitle": "Kurslardı juwmaqlaw arqalı alǵan sertifikatlarıńız",
+    "verifyLink": "Sertifikattı tekseriw",
+    "empty": {
+      "title": "Ha'zirshe sertifikat joq",
+      "message": "Sertifikat alıw ushın kurstı juwmaqlań ha'm juwmaqlawshı testten o'tiń."
+    },
+    "verify": {
+      "title": "Sertifikattı tekseriw",
+      "subtitle": "Sertifikatta ko'rsetilgen ta'sıyqlaw kodın kiritiń",
+      "codeLabel": "Ta'sıyqlaw kodı",
+      "submit": "Tekseriw",
+      "validTitle": "Sertifikat ta'sıyqlandı",
+      "invalid": "Bul kod ushın haqıyqıy sertifikat tabılmadı.",
+      "learner": "Oqıwshı",
+      "course": "Kurs",
+      "issuedOn": "Berilgen sa'ne"
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "subtitle": "Esap sazlamaların basqarıw",
+    "photoSection": "Profil súwreti",
+    "infoSection": "Jeke ma'liwmatlar",
+    "securitySection": "Qa'wipsizlik",
+    "roles": "Roller",
+    "selectPhoto": "Súwretti tańlaw",
+    "uploadPhoto": "Júklew",
+    "photoHint": "JPG, PNG yamasa GIF formatında, maksimum 100MB",
+    "photoPreview": "Profil súwretin ko'riw",
+    "noPhotoSelected": "Súwret tańlanbaǵan",
+    "invalidFileType": "Iltimas, súwret faylın tańlań",
+    "fileTooLarge": "Fayl tım úlken (maksimum 100MB)",
+    "emailNotEditable": "Email adresin o'zgertip bolmaydı",
+    "contactSupport": "O'zgerisler ushın qollap-quwatlaw xızmetine xabarlasıń",
+    "editNote": "Atıńızdı, wálayatıńızdı, mekemeńizdi yamasa ka'sibińizdi o'zgertiw ushın administratorǵa xabarlasıń.",
+    "confirmLogout": "Shıǵıwdı ta'sıyqlaysız ba?",
+    "logoutHint": "Qayta kiriw ushın email ha'm parolıńızdan paydalanıń"
+  },
+  "errors": {
+    "backHome": "Bas sahifaǵa qaytıw",
+    "notFound": {
+      "title": "Sahifa tabılmadı",
+      "message": "Siz izlep atırǵan sahifa joq yamasa ko'shirilgen."
+    },
+    "forbidden": {
+      "title": "Kiriw bekitilgen",
+      "message": "Sizde bul sahifanı ko'riw ushın ruxsat joq."
+    }
+  },
+  "admin": {
+    "brand": "UNAIDS LMS Basqarıw",
+    "backToSite": "Saytqa qaytıw",
+    "published": "Jarıyalanǵan",
+    "draft": "Qaralama",
+    "saved": "Saqlandı",
+    "deleted": "O'shirildi",
+    "saveTranslation": "Awdarmanı saqlaw",
+    "translations": "Awdarmalar",
+    "nav": {
+      "courses": "Kurslar",
+      "reporting": "Esabatlar",
+      "certificates": "Sertifikatlar",
+      "quizzes": "Testler"
+    },
+    "errors": {
+      "loadFailed": "Júklep bolmadı",
+      "saveFailed": "Saqlap bolmadı"
+    },
+    "fields": {
+      "title": "Ataması",
+      "description": "Sıpatlaması",
+      "summary": "Qısqasha mazmunı",
+      "intro": "Kirisiw bo'limi"
+    },
+    "courses": {
+      "title": "Kurslar",
+      "subtitle": "Kurslar katalogın basqarıw",
+      "create": "Jańa kurs",
+      "created": "Kurs jaratıldı",
+      "empty": "Ha'zirshe kurs joq — birinshisin jaratıń.",
+      "moduleCount": "{count} modul",
+      "settings": "Sazlamalar",
+      "translations": "Awdarmalar",
+      "slug": "Slug",
+      "sortOrder": "Ta'rtip nomeri"
+    },
+    "modules": {
+      "title": "Modullar",
+      "add": "Modul qosıw",
+      "edit": "Modul ta'rtipke keltiriw",
+      "empty": "Ha'zirshe modul joq.",
+      "number": "Modul nomeri",
+      "theme": "Reń temasi",
+      "sortOrder": "Ta'rtip nomeri",
+      "translations": "Modul awdarmaları"
+    },
+    "lessons": {
+      "add": "Sabaq qosıw",
+      "settings": "Sazlamalar",
+      "translations": "Awdarmalar",
+      "sortOrder": "Ta'rtip nomeri",
+      "estimatedMinutes": "Shama menen minutlar"
+    },
+    "blocks": {
+      "title": "Kontent blokları",
+      "add": "Blok qosıw",
+      "empty": "Ha'zirshe kontent blokı joq.",
+      "type": "Blok túri",
+      "sortOrder": "Ta'rtip nomeri",
+      "html": "Kontent",
+      "image": "Súwret",
+      "altText": "Alternativ tekst",
+      "caption": "Túsindirme",
+      "uploadFile": "Fayl júklew",
+      "orExternalUrl": "Yamasa sırtqı URL",
+      "url": "URL",
+      "label": "Atı",
+      "description": "Sıpatlaması",
+      "deleteConfirmTitle": "Bul blok o'shirilsin be?",
+      "deleteConfirmMessage": "Bul a'meldi biykar etip bolmaydı."
+    },
+    "quizzes": {
+      "title": "Testler",
+      "add": "Test qosıw",
+      "empty": "Ha'zirshe test joq.",
+      "settings": "Sazlamalar",
+      "translations": "Awdarmalar",
+      "untitled": "Atı joq test",
+      "kind": "Túri",
+      "passScore": "O'tiw ballı {percent}%",
+      "maxAttempts": "Maksimum urınıwlar",
+      "questionCount": "{count} soraw",
+      "questionCountLabel": "Tańlanatuǵın sorawlar sanı",
+      "allQuestions": "Barlıq belsendi sorawlar",
+      "sortOrder": "Ta'rtip nomeri",
+      "shuffleQuestions": "Sorawlar ta'rtibin aralastırıw",
+      "shuffleAnswers": "Juwaplar ta'rtibin aralastırıw"
+    },
+    "questions": {
+      "title": "Sorawlar bankı",
+      "add": "Soraw qosıw",
+      "empty": "Ha'zirshe soraw joq.",
+      "type": "Soraw túri",
+      "points": "Ballar",
+      "pointsShort": "{points} ball",
+      "sortOrder": "Ta'rtip nomeri",
+      "active": "Belsendi",
+      "inactive": "Belsendi emes",
+      "prompt": "Soraw teksti",
+      "scenario": "Jaǵday teksti",
+      "options": "Juwap variantları",
+      "addOption": "Variant qosıw",
+      "untitledOption": "(atı joq)",
+      "correctAnswer": "Durıs juwap",
+      "leftColumn": "Shep baǵana",
+      "rightColumn": "Oń baǵana",
+      "addItem": "Element qosıw",
+      "addZone": "Aymaq qosıw",
+      "items": "Elementler",
+      "zones": "Aymaqlar",
+      "correctPairs": "Durıs juplar",
+      "correctPlacements": "Durıs orınlastırıw",
+      "itemsInCorrectOrder": "Elementler, durıs ta'rtipte",
+      "placeholder": "Kórsetpe teksti",
+      "feedbackCorrect": "Pikir — durıs juwap",
+      "feedbackIncorrect": "Pikir — durıs emes juwap",
+      "saveSolution": "Sorawdı saqlaw",
+      "deleteConfirmTitle": "Bul soraw o'shirilsin be?",
+      "deleteConfirmMessage": "Eger oǵan juwaplar jazılǵan bolsa, o'shiriwdiń ornına belsendi emes qılınadı."
+    },
+    "reporting": {
+      "title": "Esabatlar",
+      "noCourses": "Ha'zirshe esabat ushın kurs joq.",
+      "noMetrics": "Bul kurs ushın ha'zirshe ko'rsetkishler joq.",
+      "totalEnrolled": "Dizimnen o'tkenler",
+      "completed": "Juwmaqlaǵanlar",
+      "completionRate": "Juwmaqlaw da'rejesi",
+      "passedFinal": "Juwmaqlawshı testten o'tkenler",
+      "exportLearners": "Oqıwshılardı eksport etiw (Excel)"
+    },
+    "certificates": {
+      "title": "Sertifikatlar",
+      "revokeTitle": "Sertifikattı biykar etiw",
+      "certificateId": "Sertifikat ID",
+      "reason": "Sebebi",
+      "revoke": "Biykar etiw",
+      "revoked": "Sertifikat biykar etildi",
+      "revokeConfirmTitle": "Bul sertifikat biykar etilsin be?",
+      "revokeConfirmMessage": "Sertifikat endi haqıyqıy sıpatında ta'sıyqlanbaydı.",
+      "lookupTitle": "Ta'sıyqlaw kodı boyınsha izlew"
+    }
   }
 }

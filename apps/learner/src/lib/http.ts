@@ -13,6 +13,15 @@
 const API_BASE_URL = import.meta.env.VITE_API_URL || '/api'
 
 /**
+ * Backend requires this on every cookie-authenticated state-changing request
+ * (see the CSRF-mitigation middleware in Program.cs) — a plain cross-site
+ * form can't attach a custom header, and a cross-origin fetch trying to
+ * would fail preflight since the API has no permissive CORS policy for
+ * unapproved origins. Harmless to send on GET too, so it's applied globally.
+ */
+const CSRF_HEADER = { 'X-Requested-With': 'XMLHttpRequest' } as const
+
+/**
  * Fired when an authenticated call comes back 401 while the app still thinks
  * it has a session (e.g. the cookie expired mid-use). `/auth/*` calls never
  * fire this — `/auth/login` legitimately 401s on bad credentials, and
@@ -91,8 +100,8 @@ export async function apiFetch<T>(path: string, options: RequestOptions = {}): P
     ...rest,
     credentials: 'include',
     headers: raw
-      ? headers
-      : { 'Content-Type': 'application/json', ...(headers as Record<string, string> | undefined) },
+      ? { ...CSRF_HEADER, ...headers }
+      : { 'Content-Type': 'application/json', ...CSRF_HEADER, ...(headers as Record<string, string> | undefined) },
   }
 
   if (body !== undefined) {
@@ -126,8 +135,10 @@ export async function apiFetchBlob(path: string, options: RequestOptions = {}): 
   const init: RequestInit = { ...rest, credentials: 'include' }
   if (body !== undefined) {
     init.method ??= 'POST'
-    init.headers = { 'Content-Type': 'application/json' }
+    init.headers = { 'Content-Type': 'application/json', ...CSRF_HEADER }
     init.body = JSON.stringify(body)
+  } else {
+    init.headers = { ...CSRF_HEADER }
   }
   const response = await fetch(buildUrl(path, query), init)
   if (!response.ok) {

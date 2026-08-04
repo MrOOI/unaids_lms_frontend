@@ -60,6 +60,22 @@
       "invalidCredentials": "Email yamasa parol qa'te",
       "sessionExpired": "Sessiya waqtı tamamlandı. Iltimas, qayta kiriń."
     },
+    "forgotPassword": {
+      "title": "Paroldi qalpina keltiriw",
+      "subtitle": "Emailińizdi kiritiń, biz qalpina keltiriw siltemesin jiberemiz",
+      "submit": "Siltemeni jiberiw",
+      "backToLogin": "Kiriwge qaytıw",
+      "successMessage": "Eger bunday email penen esap bar bolsa, paroldi qalpina keltiriw siltemesi jiberildi.",
+      "genericError": "Qátelik júz berdi. Iltimas, qayta urınıp kóriń."
+    },
+    "resetPassword": {
+      "title": "Jańa parol tańlań",
+      "subtitle": "{email} ushın jańa parol kiritiń",
+      "submit": "Paroldi qalpina keltiriw",
+      "successMessage": "Parolıńız qalpına keltirildi. Jańa parolıńız benen kiriń.",
+      "invalidLink": "Bul qalpina keltiriw siltemesi jaramsız yamasa waqtı tamamlangan.",
+      "requestNewLink": "Jańa silteme sorash"
+    },
     "otp": {
       "title": "Emaildi ta'sıyqlaw",
       "subtitle": "{email} adresine jiberilgen kodtı kiritiń",

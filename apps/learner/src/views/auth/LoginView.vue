@@ -138,7 +138,9 @@ async function handleSubmit(): Promise<void> {
             <input v-model="form.rememberMe" type="checkbox" class="size-5 cursor-pointer accent-brand-500" />
             <span>{{ t('auth.login.rememberMe') }}</span>
           </label>
-          <!-- TODO: Add forgot password flow when implemented -->
+          <RouterLink to="/auth/forgot-password" class="text-sm font-semibold text-brand-600 hover:underline">
+            {{ t('auth.login.forgotPassword') }}
+          </RouterLink>
         </div>
 
         <Button type="submit" :loading="isLoading" class="mt-2 w-full">

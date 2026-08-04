@@ -60,6 +60,22 @@
       "invalidCredentials": "Incorrect email or password",
       "sessionExpired": "Your session has expired. Please sign in again."
     },
+    "forgotPassword": {
+      "title": "Reset your password",
+      "subtitle": "Enter your email and we'll send you a reset link",
+      "submit": "Send reset link",
+      "backToLogin": "Back to sign in",
+      "successMessage": "If an account exists for that email, a password reset link has been sent.",
+      "genericError": "Something went wrong. Please try again."
+    },
+    "resetPassword": {
+      "title": "Choose a new password",
+      "subtitle": "Enter a new password for {email}",
+      "submit": "Reset password",
+      "successMessage": "Your password has been reset. Sign in with your new password.",
+      "invalidLink": "This reset link is invalid or has expired.",
+      "requestNewLink": "Request a new link"
+    },
     "otp": {
       "title": "Verify Email",
       "subtitle": "Enter the verification code we sent to {email}",

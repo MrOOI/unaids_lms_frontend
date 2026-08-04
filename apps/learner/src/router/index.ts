@@ -6,6 +6,8 @@ import { isAdminRole, isSysAdminRole, canViewReporting } from '../lib/api-types'
 const RegisterView = () => import('../views/auth/RegisterView.vue')
 const LoginView = () => import('../views/auth/LoginView.vue')
 const VerifyOtpView = () => import('../views/auth/VerifyOtpView.vue')
+const ForgotPasswordView = () => import('../views/auth/ForgotPasswordView.vue')
+const ResetPasswordView = () => import('../views/auth/ResetPasswordView.vue')
 
 // Learner views (app layout)
 const DashboardView = () => import('../views/DashboardView.vue')
@@ -58,6 +60,18 @@ export const routes: RouteRecordRaw[] = [
     component: VerifyOtpView,
     meta: { title: 'Verify Email', requiresAuth: false, layout: 'bare' },
     props: true,
+  },
+  {
+    path: '/auth/forgot-password',
+    name: 'forgot-password',
+    component: ForgotPasswordView,
+    meta: { title: 'Reset Password', requiresAuth: false, layout: 'bare' },
+  },
+  {
+    path: '/auth/reset-password',
+    name: 'reset-password',
+    component: ResetPasswordView,
+    meta: { title: 'Reset Password', requiresAuth: false, layout: 'bare' },
   },
 
   // ============== PUBLIC ==============

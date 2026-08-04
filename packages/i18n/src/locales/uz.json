@@ -60,6 +60,22 @@
       "invalidCredentials": "Email yoki parol noto'g'ri",
       "sessionExpired": "Sessiya muddati tugadi. Iltimos, qayta kiring."
     },
+    "forgotPassword": {
+      "title": "Parolni tiklash",
+      "subtitle": "Emailingizni kiriting, biz tiklash havolasini yuboramiz",
+      "submit": "Tiklash havolasini yuborish",
+      "backToLogin": "Kirishga qaytish",
+      "successMessage": "Agar bunday email bilan hisob mavjud bo'lsa, parolni tiklash havolasi yuborildi.",
+      "genericError": "Xatolik yuz berdi. Iltimos, qayta urinib ko'ring."
+    },
+    "resetPassword": {
+      "title": "Yangi parol tanlang",
+      "subtitle": "{email} uchun yangi parol kiriting",
+      "submit": "Parolni tiklash",
+      "successMessage": "Parolingiz tiklandi. Yangi parolingiz bilan kiring.",
+      "invalidLink": "Ushbu tiklash havolasi yaroqsiz yoki muddati tugagan.",
+      "requestNewLink": "Yangi havola so'rash"
+    },
     "otp": {
       "title": "Email tasdiqlash",
       "subtitle": "Emailingizga yuborilgan kod {email} ni kiriting",

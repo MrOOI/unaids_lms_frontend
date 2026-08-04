@@ -107,6 +107,35 @@ export function useAuth() {
     }
   }
 
+  async function forgotPassword(email: string): Promise<{ message: string }> {
+    state.isLoading = true
+    state.error = null
+    try {
+      return await apiFetch('/auth/forgot-password', { method: 'POST', body: { email } })
+    } catch (err) {
+      state.error = err instanceof ApiError ? err.message : 'Failed to request reset link'
+      throw err
+    } finally {
+      state.isLoading = false
+    }
+  }
+
+  async function resetPassword(email: string, token: string, newPassword: string): Promise<{ message: string }> {
+    state.isLoading = true
+    state.error = null
+    try {
+      return await apiFetch('/auth/reset-password', {
+        method: 'POST',
+        body: { email, token, newPassword },
+      })
+    } catch (err) {
+      state.error = err instanceof ApiError ? err.message : 'Failed to reset password'
+      throw err
+    } finally {
+      state.isLoading = false
+    }
+  }
+
   /**
    * Resolves the current session; never throws. Used by the router guard.
    * Concurrent calls (e.g. two navigations racing before the first resolves)
@@ -193,6 +222,8 @@ export function useAuth() {
     verifyOtp,
     resendOtp,
     login,
+    forgotPassword,
+    resetPassword,
     fetchMe,
     logout,
     clearSession,

@@ -150,7 +150,11 @@
     "videoNotSupported": "Поддержка видео скоро появится",
     "quizEmbedded": "Тест появится здесь в ближайшее время",
     "mediaNotSupported": "Формат медиа не поддерживается",
-    "startQuiz": "Начать тест"
+    "startQuiz": "Начать тест",
+    "videoQuality": "Качество",
+    "videoQualityAuto": "Авто",
+    "showTranscript": "Показать текст",
+    "hideTranscript": "Скрыть текст"
   },
   "quiz": {
     "true": "Верно",

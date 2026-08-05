@@ -150,7 +150,11 @@
     "videoNotSupported": "Video support coming soon",
     "quizEmbedded": "Quiz will be available here soon",
     "mediaNotSupported": "Media format not supported",
-    "startQuiz": "Start Quiz"
+    "startQuiz": "Start Quiz",
+    "videoQuality": "Quality",
+    "videoQualityAuto": "Auto",
+    "showTranscript": "Show transcript",
+    "hideTranscript": "Hide transcript"
   },
   "quiz": {
     "true": "True",

@@ -155,6 +155,15 @@ export function mediaUrl(assetId: string): string {
   return buildUrl(`/media/${assetId}`)
 }
 
+export function mediaPosterUrl(assetId: string): string {
+  return buildUrl(`/media/${assetId}/poster`)
+}
+
+/** Master HLS playlist URL for a video asset whose transcode has finished. */
+export function mediaHlsUrl(assetId: string): string {
+  return buildUrl(`/media/${assetId}/hls/master.m3u8`)
+}
+
 export function triggerBlobDownload(blob: Blob, fileName: string): void {
   const url = URL.createObjectURL(blob)
   const link = document.createElement('a')

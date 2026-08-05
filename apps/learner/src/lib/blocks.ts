@@ -25,6 +25,15 @@ export interface VideoPayload {
   assetId?: string
   url?: string
   caption?: string
+  /**
+   * WebVTT subtitle asset for THIS locale's video (§13/§14). Content blocks
+   * are already stored per-locale (ContentBlockTranslation), so each
+   * locale's own payload carries its own subtitle track rather than a map
+   * of every locale's tracks.
+   */
+  subtitleAssetId?: string
+  /** Plain-text transcript, in this payload's own locale. */
+  transcript?: string
 }
 
 export interface AudioPayload {

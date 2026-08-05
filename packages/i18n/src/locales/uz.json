@@ -150,7 +150,11 @@
     "videoNotSupported": "Video ko'rinishi hali tayyorlanmoqda",
     "quizEmbedded": "Viktorina tez orada shu yerda chiqadi",
     "mediaNotSupported": "Media formati qo'llab-quvvatlanmaydi",
-    "startQuiz": "Viktorinani boshlash"
+    "startQuiz": "Viktorinani boshlash",
+    "videoQuality": "Sifat",
+    "videoQualityAuto": "Avtomatik",
+    "showTranscript": "Matnini ko'rsatish",
+    "hideTranscript": "Matnini yashirish"
   },
   "quiz": {
     "true": "To'g'ri",

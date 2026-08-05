@@ -150,7 +150,11 @@
     "videoNotSupported": "Video ko'rinisi ta'yarlanbaqta",
     "quizEmbedded": "Test tez arada usı jerde payda boladı",
     "mediaNotSupported": "Media formatı qollap-quwatlanbaydı",
-    "startQuiz": "Testti baslaw"
+    "startQuiz": "Testti baslaw",
+    "videoQuality": "Sapa",
+    "videoQualityAuto": "Avtomatik",
+    "showTranscript": "Tekstin körsetiw",
+    "hideTranscript": "Tekstin jasırıw"
   },
   "quiz": {
     "true": "Durıs",

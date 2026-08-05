@@ -94,6 +94,13 @@ export interface CourseDetailDto {
   modules: ModuleSummaryDto[]
 }
 
+/** GET /api/media/{id}/status — video transcode progress (§13/§14). */
+export interface MediaStatusResponse {
+  videoStatus: 'Processing' | 'Ready' | 'Failed' | null
+  durationSeconds: number | null
+  hasPoster: boolean
+}
+
 export type ContentBlockType =
   | 'RichText'
   | 'Image'

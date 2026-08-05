@@ -286,7 +286,20 @@
       "courses": "Курсы",
       "reporting": "Отчётность",
       "certificates": "Сертификаты",
-      "quizzes": "Тесты"
+      "quizzes": "Тесты",
+      "auditLog": "Журнал действий"
+    },
+    "auditLog": {
+      "title": "Журнал действий",
+      "actionPlaceholder": "Фильтр по действию (например, course.create)",
+      "empty": "Записи не найдены",
+      "columns": {
+        "when": "Время",
+        "actor": "Кто",
+        "action": "Действие",
+        "entity": "Объект"
+      },
+      "pageOf": "Страница {page} из {totalPages}"
     },
     "errors": {
       "loadFailed": "Не удалось загрузить",

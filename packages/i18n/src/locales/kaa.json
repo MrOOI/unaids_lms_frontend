@@ -286,7 +286,20 @@
       "courses": "Kurslar",
       "reporting": "Esabatlar",
       "certificates": "Sertifikatlar",
-      "quizzes": "Testler"
+      "quizzes": "Testler",
+      "auditLog": "Ámeller jurnalı"
+    },
+    "auditLog": {
+      "title": "Ámeller jurnalı",
+      "actionPlaceholder": "Ámel boyınsha filtrlew (mısalı, course.create)",
+      "empty": "Sáykes jazba tabılmadı",
+      "columns": {
+        "when": "Waqtı",
+        "actor": "Kim",
+        "action": "Ámel",
+        "entity": "Obyekt"
+      },
+      "pageOf": "{totalPages} den {page}-bet"
     },
     "errors": {
       "loadFailed": "Júklep bolmadı",

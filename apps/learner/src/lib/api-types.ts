@@ -521,6 +521,25 @@ export interface FeedbackSummaryDto {
   additionalComments: string[]
 }
 
+// ---------- Audit log ----------
+
+export interface AuditLogEntryDto {
+  id: string
+  actorName: string
+  action: string
+  entityType: string
+  entityId: string
+  detailsJson: string
+  createdAt: string
+}
+
+export interface AuditLogPageDto {
+  entries: AuditLogEntryDto[]
+  totalCount: number
+  page: number
+  pageSize: number
+}
+
 // ---------- Roles ----------
 
 export const ROLE_LEARNER = 'Learner'

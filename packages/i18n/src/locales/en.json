@@ -286,7 +286,20 @@
       "courses": "Courses",
       "reporting": "Reporting",
       "certificates": "Certificates",
-      "quizzes": "Quizzes"
+      "quizzes": "Quizzes",
+      "auditLog": "Audit log"
+    },
+    "auditLog": {
+      "title": "Audit log",
+      "actionPlaceholder": "Filter by action (e.g. course.create)",
+      "empty": "No matching audit log entries",
+      "columns": {
+        "when": "When",
+        "actor": "Actor",
+        "action": "Action",
+        "entity": "Entity"
+      },
+      "pageOf": "Page {page} of {totalPages}"
     },
     "errors": {
       "loadFailed": "Failed to load",

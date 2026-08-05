@@ -286,7 +286,20 @@
       "courses": "Kurslar",
       "reporting": "Hisobotlar",
       "certificates": "Sertifikatlar",
-      "quizzes": "Viktorinalar"
+      "quizzes": "Viktorinalar",
+      "auditLog": "Amallar jurnali"
+    },
+    "auditLog": {
+      "title": "Amallar jurnali",
+      "actionPlaceholder": "Amal bo'yicha filtrlash (masalan, course.create)",
+      "empty": "Mos yozuvlar topilmadi",
+      "columns": {
+        "when": "Vaqti",
+        "actor": "Kim",
+        "action": "Amal",
+        "entity": "Obyekt"
+      },
+      "pageOf": "{totalPages} dan {page}-sahifa"
     },
     "errors": {
       "loadFailed": "Yuklab bo'lmadi",

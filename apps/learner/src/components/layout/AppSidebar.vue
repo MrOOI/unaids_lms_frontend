@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useAuth } from '../../composables/useAuth'
 import { useSidebar } from '../../composables/useSidebar'
-import { GridIcon, PieChartIcon, DocsIcon, InfoCircleIcon } from '../../icons'
+import { GridIcon, PieChartIcon, DocsIcon, InfoCircleIcon, UserCircleIcon } from '../../icons'
 
 const route = useRoute()
 const { t } = useI18n()
@@ -36,6 +36,14 @@ const navItems = computed(() => [
     routeName: 'admin-certificates',
     to: { name: 'admin-certificates' },
     matches: ['admin-certificates'],
+    visible: isSysAdmin.value,
+  },
+  {
+    icon: UserCircleIcon,
+    label: t('admin.nav.users'),
+    routeName: 'admin-users',
+    to: { name: 'admin-users' },
+    matches: ['admin-users'],
     visible: isSysAdmin.value,
   },
   {

@@ -540,6 +540,27 @@ export interface AuditLogPageDto {
   pageSize: number
 }
 
+// ---------- Admin: users ----------
+
+export interface AdminUserListItemDto {
+  id: string
+  email: string
+  fullName: string
+  roles: string[]
+  region: string | null
+  organization: string | null
+  profession: string | null
+  registeredAt: string
+  isLocked: boolean
+}
+
+export interface AdminUserPageDto {
+  users: AdminUserListItemDto[]
+  totalCount: number
+  page: number
+  pageSize: number
+}
+
 // ---------- Roles ----------
 
 export const ROLE_LEARNER = 'Learner'

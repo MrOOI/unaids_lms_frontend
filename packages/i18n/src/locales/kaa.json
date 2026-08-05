@@ -287,7 +287,27 @@
       "reporting": "Esabatlar",
       "certificates": "Sertifikatlar",
       "quizzes": "Testler",
+      "users": "Paydalanıwshılar",
       "auditLog": "Ámeller jurnalı"
+    },
+    "users": {
+      "title": "Paydalanıwshılar",
+      "searchPlaceholder": "Atı yamasa email boyınsha izlew",
+      "empty": "Sáykes paydalanıwshı tabılmadı",
+      "columns": {
+        "user": "Paydalanıwshı",
+        "roles": "Rolleri",
+        "registered": "Dizimnen ótken",
+        "status": "Halı",
+        "actions": "Ámeller"
+      },
+      "locked": "Biykar etilgen",
+      "active": "Belsendi",
+      "deactivate": "Biykar etiw",
+      "reactivate": "Qayta belsendlendiriw",
+      "deactivateConfirmTitle": "Bul esap biykar etilsin be?",
+      "deactivateConfirmMessage": "Paydalanıwshı qayta belsendlendirilgenshe tizimge kire almaydı.",
+      "cannotModifySelf": "Óz esabıńızdı biykar ete almaysız"
     },
     "auditLog": {
       "title": "Ámeller jurnalı",

@@ -287,7 +287,27 @@
       "reporting": "Hisobotlar",
       "certificates": "Sertifikatlar",
       "quizzes": "Viktorinalar",
+      "users": "Foydalanuvchilar",
       "auditLog": "Amallar jurnali"
+    },
+    "users": {
+      "title": "Foydalanuvchilar",
+      "searchPlaceholder": "Ism yoki email bo'yicha qidirish",
+      "empty": "Mos foydalanuvchilar topilmadi",
+      "columns": {
+        "user": "Foydalanuvchi",
+        "roles": "Rollari",
+        "registered": "Ro'yxatdan o'tgan",
+        "status": "Holati",
+        "actions": "Amallar"
+      },
+      "locked": "Faolsizlantirilgan",
+      "active": "Faol",
+      "deactivate": "Faolsizlantirish",
+      "reactivate": "Qayta faollashtirish",
+      "deactivateConfirmTitle": "Bu hisob faolsizlantirilsinmi?",
+      "deactivateConfirmMessage": "Foydalanuvchi qayta faollashtirilmaguncha tizimga kira olmaydi.",
+      "cannotModifySelf": "O'z hisobingizni faolsizlantira olmaysiz"
     },
     "auditLog": {
       "title": "Amallar jurnali",

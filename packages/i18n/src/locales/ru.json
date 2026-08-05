@@ -287,7 +287,27 @@
       "reporting": "Отчётность",
       "certificates": "Сертификаты",
       "quizzes": "Тесты",
+      "users": "Пользователи",
       "auditLog": "Журнал действий"
+    },
+    "users": {
+      "title": "Пользователи",
+      "searchPlaceholder": "Поиск по имени или email",
+      "empty": "Пользователи не найдены",
+      "columns": {
+        "user": "Пользователь",
+        "roles": "Роли",
+        "registered": "Зарегистрирован",
+        "status": "Статус",
+        "actions": "Действия"
+      },
+      "locked": "Деактивирован",
+      "active": "Активен",
+      "deactivate": "Деактивировать",
+      "reactivate": "Активировать снова",
+      "deactivateConfirmTitle": "Деактивировать этот аккаунт?",
+      "deactivateConfirmMessage": "Пользователь не сможет войти в систему до повторной активации.",
+      "cannotModifySelf": "Вы не можете деактивировать свой собственный аккаунт"
     },
     "auditLog": {
       "title": "Журнал действий",

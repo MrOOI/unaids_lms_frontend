@@ -32,6 +32,7 @@ const AdminQuizDetailView = () => import('../views/admin/AdminQuizDetailView.vue
 const AdminReportingView = () => import('../views/admin/AdminReportingView.vue')
 const AdminCertificatesView = () => import('../views/admin/AdminCertificatesView.vue')
 const AdminAuditLogView = () => import('../views/admin/AdminAuditLogView.vue')
+const AdminUsersView = () => import('../views/admin/AdminUsersView.vue')
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -192,6 +193,13 @@ export const routes: RouteRecordRaw[] = [
     component: AdminAuditLogView,
     // AdminAuditLogController is [Authorize(Roles = SysAdmin)] only.
     meta: { title: 'Audit Log', requiresAuth: true, layout: 'admin', requiresRole: 'sysadmin' },
+  },
+  {
+    path: '/admin/users',
+    name: 'admin-users',
+    component: AdminUsersView,
+    // AdminUsersController is [Authorize(Roles = SysAdmin)] only.
+    meta: { title: 'Users', requiresAuth: true, layout: 'admin', requiresRole: 'sysadmin' },
   },
 
   // ============== FALLBACK ==============

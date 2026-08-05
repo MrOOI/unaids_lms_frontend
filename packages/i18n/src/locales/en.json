@@ -287,7 +287,27 @@
       "reporting": "Reporting",
       "certificates": "Certificates",
       "quizzes": "Quizzes",
+      "users": "Users",
       "auditLog": "Audit log"
+    },
+    "users": {
+      "title": "Users",
+      "searchPlaceholder": "Search by name or email",
+      "empty": "No matching users",
+      "columns": {
+        "user": "User",
+        "roles": "Roles",
+        "registered": "Registered",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "locked": "Deactivated",
+      "active": "Active",
+      "deactivate": "Deactivate",
+      "reactivate": "Reactivate",
+      "deactivateConfirmTitle": "Deactivate this account?",
+      "deactivateConfirmMessage": "The user will be unable to sign in until reactivated.",
+      "cannotModifySelf": "You can't deactivate your own account"
     },
     "auditLog": {
       "title": "Audit log",

@@ -14,19 +14,30 @@ import Card from '../components/ui/Card.vue'
 const route = useRoute()
 const router = useRouter()
 const { t, locale } = useI18n()
-const { activeAttempt, lastResult, history, isLoading, error, startAttempt, submitAttempt, fetchHistory, clearError } =
-  useQuizzes()
+const {
+  activeAttempt,
+  lastResult,
+  history,
+  isLoading,
+  error,
+  startAttempt,
+  submitAttempt,
+  fetchHistory,
+  clearError,
+} = useQuizzes()
 
 const quizId = computed(() => route.params.quizId as string)
 const answers = reactive<Record<string, unknown>>({})
 const currentIndex = ref(0)
 const showHistory = ref(false)
+const isQueuedOffline = ref(false)
 
 onMounted(begin)
 
 async function begin(): Promise<void> {
   Object.keys(answers).forEach((key) => delete answers[key])
   currentIndex.value = 0
+  isQueuedOffline.value = false
   try {
     await startAttempt(quizId.value, locale.value)
   } catch {
@@ -47,7 +58,7 @@ async function handleSubmit(): Promise<void> {
   if (!activeAttempt.value) return
   clearError()
   try {
-    await submitAttempt(
+    const result = await submitAttempt(
       activeAttempt.value.id,
       {
         answers: questions.value.map((q) => ({
@@ -57,6 +68,7 @@ async function handleSubmit(): Promise<void> {
       },
       locale.value,
     )
+    isQueuedOffline.value = result === 'queued'
   } catch {
     // surfaced via `error`
   }
@@ -98,6 +110,14 @@ function isCorrect(questionId: string): boolean | null {
       <div v-if="isLoading && !activeAttempt && !lastResult" class="quiz-loading">
         <Spinner :label="t('common.loading')" />
       </div>
+
+      <!-- Submitted while offline: answers are saved and will be graded once reconnected, not scored yet. -->
+      <Card v-else-if="isQueuedOffline" :title="t('quiz.queuedTitle')">
+        <p>{{ t('quiz.queuedMessage') }}</p>
+        <template #footer>
+          <Button variant="primary" @click="router.back()">{{ t('common.back') }}</Button>
+        </template>
+      </Card>
 
       <!-- Results -->
       <Card v-else-if="lastResult" :title="t('quiz.resultTitle')">

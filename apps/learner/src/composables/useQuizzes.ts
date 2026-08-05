@@ -4,6 +4,7 @@
  */
 import { computed, reactive } from 'vue'
 import { apiFetch, ApiError } from '../lib/http'
+import { enqueue, registerOutboxHandler } from '../lib/offlineOutbox'
 import type {
   AttemptDto,
   AttemptHistoryItemDto,
@@ -12,6 +13,12 @@ import type {
   SubmitAttemptRequest,
 } from '../lib/api-types'
 
+interface QueuedSubmission {
+  attemptId: string
+  request: SubmitAttemptRequest
+  locale: string
+}
+
 interface QuizzesState {
   isLoading: boolean
   error: string | null
@@ -19,6 +26,7 @@ interface QuizzesState {
   activeAttempt: AttemptDto | null
   lastResult: AttemptResultDto | null
   history: AttemptHistoryItemDto[]
+  queuedAttemptIds: Set<string>
 }
 
 const state = reactive<QuizzesState>({
@@ -28,6 +36,22 @@ const state = reactive<QuizzesState>({
   activeAttempt: null,
   lastResult: null,
   history: [],
+  queuedAttemptIds: new Set(),
+})
+
+/**
+ * Registered once at module load (see main.ts). Answers submitted offline
+ * can't be scored locally — grading only happens once the server sees them
+ * — so this just replays the submission; the learner checks their result
+ * later (attempt history) rather than the view holding a fake result open.
+ */
+registerOutboxHandler('submitAttempt', async (payload: QueuedSubmission) => {
+  await apiFetch<AttemptResultDto>(`/attempts/${payload.attemptId}/submit`, {
+    method: 'POST',
+    body: payload.request,
+    query: { locale: payload.locale },
+  })
+  state.queuedAttemptIds.delete(payload.attemptId)
 })
 
 export function useQuizzes() {
@@ -75,7 +99,12 @@ export function useQuizzes() {
     }
   }
 
-  async function submitAttempt(attemptId: string, request: SubmitAttemptRequest, locale: string): Promise<AttemptResultDto> {
+  /** Returns the scored result, or 'queued' if offline (answers saved locally; graded once reconnected). */
+  async function submitAttempt(
+    attemptId: string,
+    request: SubmitAttemptRequest,
+    locale: string,
+  ): Promise<AttemptResultDto | 'queued'> {
     state.isLoading = true
     state.error = null
     try {
@@ -88,11 +117,22 @@ export function useQuizzes() {
       state.activeAttempt = null
       return result
     } catch (err) {
+      if (err instanceof TypeError) {
+        const payload: QueuedSubmission = { attemptId, request, locale }
+        await enqueue('submitAttempt', `attempt:${attemptId}`, payload)
+        state.queuedAttemptIds.add(attemptId)
+        state.activeAttempt = null
+        return 'queued'
+      }
       state.error = err instanceof ApiError ? err.message : 'Unable to submit the quiz'
       throw err
     } finally {
       state.isLoading = false
     }
+  }
+
+  function isAttemptQueued(attemptId: string): boolean {
+    return state.queuedAttemptIds.has(attemptId)
   }
 
   async function fetchHistory(quizId: string): Promise<AttemptHistoryItemDto[]> {
@@ -120,6 +160,7 @@ export function useQuizzes() {
     quizzesFor,
     startAttempt,
     submitAttempt,
+    isAttemptQueued,
     fetchHistory,
     clearError,
   }

@@ -23,7 +23,9 @@
     "edit": "Tahrirlash",
     "delete": "O'chirish",
     "confirm": "Ishonchingiz komilmi?",
-    "search": "Qidirish"
+    "search": "Qidirish",
+    "saving": "Saqlanmoqda…",
+    "saved": "Saqlandi ✓"
   },
   "module": {
     "label": "{number}-modul",
@@ -154,7 +156,8 @@
     "videoQuality": "Sifat",
     "videoQualityAuto": "Avtomatik",
     "showTranscript": "Matnini ko'rsatish",
-    "hideTranscript": "Matnini yashirish"
+    "hideTranscript": "Matnini yashirish",
+    "completedOffline": "Oflayn saqlandi — internet tiklanganda avtomatik yuboriladi."
   },
   "quiz": {
     "true": "To'g'ri",
@@ -184,7 +187,9 @@
     "moveUp": "Yuqoriga siljitish",
     "moveDown": "Pastga siljitish",
     "reflectionPlaceholder": "Fikringizni yozing…",
-    "reflectionHint": "Bu savol mulohaza uchun bo'lib, baholanmaydi."
+    "reflectionHint": "Bu savol mulohaza uchun bo'lib, baholanmaydi.",
+    "queuedTitle": "Oflayn saqlandi",
+    "queuedMessage": "Internet aloqasi yo'q, shuning uchun javoblaringiz shu qurilmada saqlandi va internet tiklanganda avtomatik baholash uchun yuboriladi."
   },
   "certificates": {
     "title": "Sertifikatlar",

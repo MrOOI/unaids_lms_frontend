@@ -23,7 +23,9 @@
     "edit": "Ta'rtipke keltiriw",
     "delete": "O'shiriw",
     "confirm": "Ko'z-qarasıńız ta'sıyqlanadı ma?",
-    "search": "Izlew"
+    "search": "Izlew",
+    "saving": "Saqlanbaqta…",
+    "saved": "Saqlandı ✓"
   },
   "module": {
     "label": "{number}-modul",
@@ -154,7 +156,8 @@
     "videoQuality": "Sapa",
     "videoQualityAuto": "Avtomatik",
     "showTranscript": "Tekstin körsetiw",
-    "hideTranscript": "Tekstin jasırıw"
+    "hideTranscript": "Tekstin jasırıw",
+    "completedOffline": "Oflayn saqlandı — internet tiklengende avtomatik jiberiledi."
   },
   "quiz": {
     "true": "Durıs",
@@ -184,7 +187,9 @@
     "moveUp": "Joqarıǵa jılıstırıw",
     "moveDown": "To'menge jılıstırıw",
     "reflectionPlaceholder": "Oyıńızdı jazıń…",
-    "reflectionHint": "Bul soraw pikirlew ushın bolıp, bahalanbaydı."
+    "reflectionHint": "Bul soraw pikirlew ushın bolıp, bahalanbaydı.",
+    "queuedTitle": "Oflayn saqlandı",
+    "queuedMessage": "Internet baylanısı joq, sonlıqtan juwaplarıńız bul qurılmada saqlandı ha'm internet tiklengende avtomatik bahalaw ushın jiberiledi."
   },
   "certificates": {
     "title": "Sertifikatlar",

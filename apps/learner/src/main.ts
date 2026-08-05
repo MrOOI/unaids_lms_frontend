@@ -10,6 +10,11 @@ import {
 import App from './App.vue'
 import { router } from './router'
 import { installSessionGuard } from './lib/sessionGuard'
+import { initOfflineOutbox } from './lib/offlineOutbox'
+// Side-effect imports: each registers its offline-outbox handler(s) at
+// module load, before initOfflineOutbox's first flush() can run.
+import './composables/useProgress'
+import './composables/useQuizzes'
 import '@lms/ui/tokens.css'
 import './styles/tailwind.css'
 import './styles/base.css'
@@ -27,5 +32,6 @@ export const i18n = createI18n({
 document.documentElement.lang = initialLocale
 
 installSessionGuard(router)
+void initOfflineOutbox()
 
 createApp(App).use(createPinia()).use(router).use(i18n).mount('#app')

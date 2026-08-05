@@ -31,13 +31,15 @@ const route = useRoute()
 const router = useRouter()
 const { t, locale } = useI18n()
 const { currentLesson, isLoading, error, fetchLesson, clearError } = useCourses()
-const { completeLesson, error: progressError, clearError: clearProgressError } = useProgress()
+const { completeLesson, saveStatusFor, error: progressError, clearError: clearProgressError } = useProgress()
 
 const lessonId = computed(() => route.params.lessonId as string)
 const courseSlug = computed(() => route.params.slug as string)
 const isCompleting = ref(false)
-const isLessonCompleted = ref(false)
 const notEnrolled = ref(false)
+const saveStatus = computed(() => saveStatusFor(lessonId.value))
+const isLessonCompleted = computed(() => saveStatus.value === 'saved')
+const isQueuedOffline = computed(() => saveStatus.value === 'queued')
 
 onMounted(async () => {
   try {
@@ -53,7 +55,6 @@ async function handleCompleteLesson(): Promise<void> {
   isCompleting.value = true
   try {
     await completeLesson(lessonId.value)
-    isLessonCompleted.value = true
   } catch (err) {
     if (err instanceof ApiError && err.status === 404) {
       notEnrolled.value = true
@@ -76,6 +77,7 @@ async function handleCompleteLesson(): Promise<void> {
     <Alert v-if="progressError" type="error" dismissible @dismiss="clearProgressError">{{ progressError }}</Alert>
     <Alert v-if="notEnrolled" type="warning">{{ t('lesson.notEnrolled') }}</Alert>
     <Alert v-if="isLessonCompleted" type="success">{{ t('lesson.completed') }}</Alert>
+    <Alert v-if="isQueuedOffline" type="info">{{ t('lesson.completedOffline') }}</Alert>
 
     <div v-if="isLoading && !currentLesson" class="lesson-loading">
       <Spinner :label="t('common.loading')" />
@@ -115,6 +117,7 @@ async function handleCompleteLesson(): Promise<void> {
         <Button type="button" variant="primary" size="lg" :loading="isCompleting" @click="handleCompleteLesson">
           {{ t('lesson.markComplete') }}
         </Button>
+        <span v-if="saveStatus === 'saving'" class="save-status">{{ t('common.saving') }}</span>
       </footer>
     </article>
   </div>
@@ -209,9 +212,16 @@ async function handleCompleteLesson(): Promise<void> {
 
 .lesson-footer {
   display: flex;
+  align-items: center;
   justify-content: center;
+  gap: var(--space-3);
   padding-top: var(--space-6);
   border-top: 1px solid var(--color-border);
+}
+
+.save-status {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
 }
 
 @media (max-width: 640px) {

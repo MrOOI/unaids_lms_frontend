@@ -23,7 +23,9 @@
     "edit": "Edit",
     "delete": "Delete",
     "confirm": "Are you sure?",
-    "search": "Search"
+    "search": "Search",
+    "saving": "Saving…",
+    "saved": "Saved ✓"
   },
   "module": {
     "label": "Module {number}",
@@ -154,7 +156,8 @@
     "videoQuality": "Quality",
     "videoQualityAuto": "Auto",
     "showTranscript": "Show transcript",
-    "hideTranscript": "Hide transcript"
+    "hideTranscript": "Hide transcript",
+    "completedOffline": "Saved offline — will sync automatically once you're back online."
   },
   "quiz": {
     "true": "True",
@@ -184,7 +187,9 @@
     "moveUp": "Move up",
     "moveDown": "Move down",
     "reflectionPlaceholder": "Write your reflection…",
-    "reflectionHint": "This question is for reflection and is not graded."
+    "reflectionHint": "This question is for reflection and is not graded.",
+    "queuedTitle": "Saved offline",
+    "queuedMessage": "You're offline, so your answers are saved on this device and will be sent for grading automatically once you're back online."
   },
   "certificates": {
     "title": "Certificates",

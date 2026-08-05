@@ -1,15 +1,14 @@
 /**
- * Certificates: public verification, PDF download, admin revoke.
- *
- * Note: `GET /api/certificates` (list-my-certificates) is a documented TODO
- * on the backend (CertificatesController.ListUserCertificates always returns
- * an empty array) — there is no certificate id to look up from the learner
- * side yet. This composable is wired for when that lands; today
- * `myCertificates` will simply always resolve empty.
+ * Certificates: my certificates, public verification, PDF download,
+ * admin registry search, reissue (name-typo fix), and revoke.
  */
 import { computed, reactive } from 'vue'
 import { apiFetch, apiFetchBlob, triggerBlobDownload, ApiError } from '../lib/http'
-import type { CertificateVerificationResultDto } from '../lib/api-types'
+import type {
+  CertificateVerificationResultDto,
+  CertificateSummaryDto,
+  CertificateAdminSummaryDto,
+} from '../lib/api-types'
 
 interface CertificatesState {
   isLoading: boolean
@@ -28,8 +27,14 @@ export function useCertificates() {
   const error = computed(() => state.error)
   const verification = computed(() => state.verification)
 
-  async function fetchMyCertificates(): Promise<unknown[]> {
-    return apiFetch<unknown[]>('/certificates')
+  async function fetchMyCertificates(): Promise<CertificateSummaryDto[]> {
+    return apiFetch<CertificateSummaryDto[]>('/certificates')
+  }
+
+  async function listForAdmin(search?: string): Promise<CertificateAdminSummaryDto[]> {
+    return apiFetch<CertificateAdminSummaryDto[]>('/admin/certificates', {
+      query: search ? { search } : undefined,
+    })
   }
 
   async function verify(code: string): Promise<CertificateVerificationResultDto> {
@@ -67,6 +72,13 @@ export function useCertificates() {
     await apiFetch(`/certificates/${certificateId}/revoke`, { method: 'PUT', body: { reason } })
   }
 
+  async function reissue(certificateId: string, correctedName: string): Promise<void> {
+    await apiFetch(`/certificates/${certificateId}/reissue`, {
+      method: 'PUT',
+      body: { correctedName },
+    })
+  }
+
   function clearError(): void {
     state.error = null
   }
@@ -76,9 +88,11 @@ export function useCertificates() {
     error,
     verification,
     fetchMyCertificates,
+    listForAdmin,
     verify,
     downloadPdf,
     revoke,
+    reissue,
     clearError,
   }
 }

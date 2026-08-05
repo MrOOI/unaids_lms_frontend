@@ -262,6 +262,28 @@ export interface CertificateInfoDto {
   isRevoked: boolean
 }
 
+/** A learner's own certificate — GET /certificates. */
+export interface CertificateSummaryDto {
+  id: string
+  certificateNumber: string
+  courseTitle: string
+  verificationCode: string
+  issuedAt: string
+  isRevoked: boolean
+}
+
+/** Registry row for admins — GET /admin/certificates?search=. */
+export interface CertificateAdminSummaryDto {
+  id: string
+  certificateNumber: string
+  learnerName: string
+  courseTitle: string
+  courseLocale: string
+  issuedAt: string
+  isRevoked: boolean
+  revocationReason: string | null
+}
+
 // ---------- Admin: catalog ----------
 
 export interface CreateCourseRequest {

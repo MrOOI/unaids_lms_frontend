@@ -22,7 +22,8 @@
     "create": "Create",
     "edit": "Edit",
     "delete": "Delete",
-    "confirm": "Are you sure?"
+    "confirm": "Are you sure?",
+    "search": "Search"
   },
   "module": {
     "label": "Module {number}",
@@ -184,9 +185,17 @@
     "title": "Certificates",
     "subtitle": "Certificates you've earned by completing courses",
     "verifyLink": "Verify a certificate",
+    "downloadFailed": "Failed to download certificate",
     "empty": {
       "title": "No certificates yet",
       "message": "Complete a course and pass its final quiz to earn a certificate."
+    },
+    "list": {
+      "number": "Certificate number",
+      "issuedOn": "Issued on",
+      "valid": "Valid",
+      "revoked": "Revoked",
+      "download": "Download PDF"
     },
     "verify": {
       "title": "Verify a Certificate",
@@ -364,6 +373,17 @@
     },
     "certificates": {
       "title": "Certificates",
+      "registryTitle": "Certificate registry",
+      "searchPlaceholder": "Search by number, learner, or course",
+      "noResults": "No certificates found",
+      "columns": {
+        "number": "Number",
+        "learner": "Learner",
+        "course": "Course",
+        "issuedOn": "Issued",
+        "status": "Status",
+        "actions": "Actions"
+      },
       "revokeTitle": "Revoke a certificate",
       "certificateId": "Certificate ID",
       "reason": "Reason",
@@ -371,6 +391,8 @@
       "revoked": "Certificate revoked",
       "revokeConfirmTitle": "Revoke this certificate?",
       "revokeConfirmMessage": "The certificate will no longer verify as valid.",
+      "reissue": "Fix name",
+      "reissueSuccess": "Certificate reissued",
       "lookupTitle": "Look up by verification code"
     }
   }

@@ -22,7 +22,8 @@
     "create": "Jaratıw",
     "edit": "Ta'rtipke keltiriw",
     "delete": "O'shiriw",
-    "confirm": "Ko'z-qarasıńız ta'sıyqlanadı ma?"
+    "confirm": "Ko'z-qarasıńız ta'sıyqlanadı ma?",
+    "search": "Izlew"
   },
   "module": {
     "label": "{number}-modul",
@@ -184,9 +185,17 @@
     "title": "Sertifikatlar",
     "subtitle": "Kurslardı juwmaqlaw arqalı alǵan sertifikatlarıńız",
     "verifyLink": "Sertifikattı tekseriw",
+    "downloadFailed": "Sertifikattı júklep alıwda qátelik",
     "empty": {
       "title": "Ha'zirshe sertifikat joq",
       "message": "Sertifikat alıw ushın kurstı juwmaqlań ha'm juwmaqlawshı testten o'tiń."
+    },
+    "list": {
+      "number": "Sertifikat nomeri",
+      "issuedOn": "Berilgen sa'ne",
+      "valid": "Kúshke iye",
+      "revoked": "Biykar etilgen",
+      "download": "PDF júklep alıw"
     },
     "verify": {
       "title": "Sertifikattı tekseriw",
@@ -364,6 +373,17 @@
     },
     "certificates": {
       "title": "Sertifikatlar",
+      "registryTitle": "Sertifikatlar reestri",
+      "searchPlaceholder": "Nomeri, oqıwshı yamasa kurs boyınsha izlew",
+      "noResults": "Sertifikatlar tabılmadı",
+      "columns": {
+        "number": "Nomeri",
+        "learner": "Oqıwshı",
+        "course": "Kurs",
+        "issuedOn": "Berilgen",
+        "status": "Halı",
+        "actions": "A'meller"
+      },
       "revokeTitle": "Sertifikattı biykar etiw",
       "certificateId": "Sertifikat ID",
       "reason": "Sebebi",
@@ -371,6 +391,8 @@
       "revoked": "Sertifikat biykar etildi",
       "revokeConfirmTitle": "Bul sertifikat biykar etilsin be?",
       "revokeConfirmMessage": "Sertifikat endi haqıyqıy sıpatında ta'sıyqlanbaydı.",
+      "reissue": "Atın dúzetiw",
+      "reissueSuccess": "Sertifikat qayta berildi",
       "lookupTitle": "Ta'sıyqlaw kodı boyınsha izlew"
     }
   }

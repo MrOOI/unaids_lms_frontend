@@ -22,7 +22,8 @@
     "create": "Yaratish",
     "edit": "Tahrirlash",
     "delete": "O'chirish",
-    "confirm": "Ishonchingiz komilmi?"
+    "confirm": "Ishonchingiz komilmi?",
+    "search": "Qidirish"
   },
   "module": {
     "label": "{number}-modul",
@@ -184,9 +185,17 @@
     "title": "Sertifikatlar",
     "subtitle": "Kurslarni yakunlash orqali qo'lga kiritgan sertifikatlaringiz",
     "verifyLink": "Sertifikatni tekshirish",
+    "downloadFailed": "Sertifikatni yuklab olishda xatolik",
     "empty": {
       "title": "Hozircha sertifikat yo'q",
       "message": "Sertifikat olish uchun kursni yakunlang va yakuniy viktorinadan o'ting."
+    },
+    "list": {
+      "number": "Sertifikat raqami",
+      "issuedOn": "Berilgan sana",
+      "valid": "Amal qiladi",
+      "revoked": "Bekor qilingan",
+      "download": "PDF yuklab olish"
     },
     "verify": {
       "title": "Sertifikatni tekshirish",
@@ -364,6 +373,17 @@
     },
     "certificates": {
       "title": "Sertifikatlar",
+      "registryTitle": "Sertifikatlar reyestri",
+      "searchPlaceholder": "Raqami, o'quvchi yoki kurs bo'yicha qidirish",
+      "noResults": "Sertifikatlar topilmadi",
+      "columns": {
+        "number": "Raqami",
+        "learner": "O'quvchi",
+        "course": "Kurs",
+        "issuedOn": "Berilgan",
+        "status": "Holati",
+        "actions": "Amallar"
+      },
       "revokeTitle": "Sertifikatni bekor qilish",
       "certificateId": "Sertifikat ID",
       "reason": "Sabab",
@@ -371,6 +391,8 @@
       "revoked": "Sertifikat bekor qilindi",
       "revokeConfirmTitle": "Bu sertifikat bekor qilinsinmi?",
       "revokeConfirmMessage": "Sertifikat endi haqiqiy sifatida tasdiqlanmaydi.",
+      "reissue": "Ismni tuzatish",
+      "reissueSuccess": "Sertifikat qayta berildi",
       "lookupTitle": "Tasdiqlash kodi bo'yicha qidirish"
     }
   }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-/** SysAdmin/Observer: per-course completion metrics + learner Excel export. */
+/** SysAdmin/Observer: per-course completion metrics, feedback summary, and learner export (Excel/CSV/PDF). */
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useAdminCatalog } from '../../composables/useAdminCatalog'
@@ -22,7 +22,7 @@ const selectedCourseId = ref('')
 const metrics = ref<CourseMetricsDto[]>([])
 const feedbackSummary = ref<FeedbackSummaryDto | null>(null)
 const isFetching = ref(true)
-const isExporting = ref(false)
+const exportingFormat = ref<'xlsx' | 'csv' | 'pdf' | null>(null)
 
 onMounted(async () => {
   try {
@@ -65,14 +65,20 @@ async function handleCourseChange(): Promise<void> {
   await Promise.all([loadMetrics(), loadFeedbackSummary()])
 }
 
-async function handleExport(): Promise<void> {
-  isExporting.value = true
+async function handleExport(format: 'xlsx' | 'csv' | 'pdf'): Promise<void> {
+  exportingFormat.value = format
   try {
-    await reporting.exportLearners(selectedCourseId.value, selectedCourseName.value)
+    if (format === 'xlsx') {
+      await reporting.exportLearners(selectedCourseId.value, selectedCourseName.value)
+    } else if (format === 'csv') {
+      await reporting.exportLearnersCsv(selectedCourseId.value, selectedCourseName.value)
+    } else {
+      await reporting.exportSummaryPdf(selectedCourseId.value, selectedCourseName.value)
+    }
   } catch (err) {
     toast.error(err instanceof Error ? err.message : t('admin.errors.saveFailed'))
   } finally {
-    isExporting.value = false
+    exportingFormat.value = null
   }
 }
 </script>
@@ -96,8 +102,14 @@ async function handleExport(): Promise<void> {
             :options="courses.map((c) => ({ value: c.id, label: c.translations[locale]?.title ?? c.slug }))"
             @update:model-value="handleCourseChange"
           />
-          <Button variant="secondary" :loading="isExporting" @click="handleExport">
+          <Button variant="secondary" :loading="exportingFormat === 'xlsx'" @click="handleExport('xlsx')">
             {{ t('admin.reporting.exportLearners') }}
+          </Button>
+          <Button variant="secondary" :loading="exportingFormat === 'csv'" @click="handleExport('csv')">
+            {{ t('admin.reporting.exportLearnersCsv') }}
+          </Button>
+          <Button variant="secondary" :loading="exportingFormat === 'pdf'" @click="handleExport('pdf')">
+            {{ t('admin.reporting.exportSummaryPdf') }}
           </Button>
         </div>
       </Card>

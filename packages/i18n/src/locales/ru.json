@@ -404,7 +404,9 @@
       "completed": "Завершили",
       "completionRate": "Процент завершения",
       "passedFinal": "Сдали итоговый тест",
-      "exportLearners": "Экспорт учащихся (Excel)"
+      "exportLearners": "Экспорт учащихся (Excel)",
+      "exportLearnersCsv": "Экспорт учащихся (CSV)",
+      "exportSummaryPdf": "Экспорт сводки (PDF)"
     },
     "certificates": {
       "title": "Сертификаты",

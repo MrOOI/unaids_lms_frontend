@@ -404,7 +404,9 @@
       "completed": "Completed",
       "completionRate": "Completion rate",
       "passedFinal": "Passed final quiz",
-      "exportLearners": "Export learners (Excel)"
+      "exportLearners": "Export learners (Excel)",
+      "exportLearnersCsv": "Export learners (CSV)",
+      "exportSummaryPdf": "Export summary (PDF)"
     },
     "certificates": {
       "title": "Certificates",

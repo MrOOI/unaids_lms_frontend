@@ -404,7 +404,9 @@
       "completed": "Yakunlaganlar",
       "completionRate": "Yakunlash darajasi",
       "passedFinal": "Yakuniy viktorinadan o'tganlar",
-      "exportLearners": "O'quvchilarni eksport qilish (Excel)"
+      "exportLearners": "O'quvchilarni eksport qilish (Excel)",
+      "exportLearnersCsv": "O'quvchilarni eksport qilish (CSV)",
+      "exportSummaryPdf": "Xulosani eksport qilish (PDF)"
     },
     "certificates": {
       "title": "Sertifikatlar",

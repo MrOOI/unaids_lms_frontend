@@ -404,7 +404,9 @@
       "completed": "Juwmaqlaǵanlar",
       "completionRate": "Juwmaqlaw da'rejesi",
       "passedFinal": "Juwmaqlawshı testten o'tkenler",
-      "exportLearners": "Oqıwshılardı eksport etiw (Excel)"
+      "exportLearners": "Oqıwshılardı eksport etiw (Excel)",
+      "exportLearnersCsv": "Oqıwshılardı eksport etiw (CSV)",
+      "exportSummaryPdf": "Juwmaqtı eksport etiw (PDF)"
     },
     "certificates": {
       "title": "Sertifikatlar",

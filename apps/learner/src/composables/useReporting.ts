@@ -54,9 +54,46 @@ export function useReporting() {
     }
   }
 
+  async function exportLearnersCsv(courseId: string, courseName: string): Promise<void> {
+    state.isLoading = true
+    state.error = null
+    try {
+      const blob = await apiFetchBlob(`/reporting/courses/${courseId}/learners/export.csv`)
+      triggerBlobDownload(blob, `${courseName || 'learners'}.csv`)
+    } catch (err) {
+      state.error = err instanceof ApiError ? err.message : 'Export failed'
+      throw err
+    } finally {
+      state.isLoading = false
+    }
+  }
+
+  async function exportSummaryPdf(courseId: string, courseName: string): Promise<void> {
+    state.isLoading = true
+    state.error = null
+    try {
+      const blob = await apiFetchBlob(`/reporting/courses/${courseId}/summary.pdf`)
+      triggerBlobDownload(blob, `${courseName || 'course-summary'}.pdf`)
+    } catch (err) {
+      state.error = err instanceof ApiError ? err.message : 'Export failed'
+      throw err
+    } finally {
+      state.isLoading = false
+    }
+  }
+
   function clearError(): void {
     state.error = null
   }
 
-  return { isLoading, error, getCourseMetrics, getFeedbackSummary, exportLearners, clearError }
+  return {
+    isLoading,
+    error,
+    getCourseMetrics,
+    getFeedbackSummary,
+    exportLearners,
+    exportLearnersCsv,
+    exportSummaryPdf,
+    clearError,
+  }
 }

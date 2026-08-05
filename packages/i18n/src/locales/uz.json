@@ -210,6 +210,38 @@
       "issuedOn": "Berilgan sana"
     }
   },
+  "feedback": {
+    "title": "Kurs bo'yicha fikr-mulohaza",
+    "subtitle": "{course} kursi haqidagi fikringiz",
+    "giveFeedback": "Fikr bildirish",
+    "ratingsSection": "Tajribangizni baholang",
+    "detailsSection": "Batafsil ma'lumot",
+    "categories": {
+      "registration": "Ro'yxatdan o'tish",
+      "navigation": "Navigatsiya",
+      "contentQuality": "Kontent sifati",
+      "interactivity": "Interaktivlik",
+      "video": "Video",
+      "technicalIssues": "Texnik muammolar",
+      "learningOutcome": "O'quv natijasi",
+      "satisfaction": "Umumiy qoniqish"
+    },
+    "scale": {
+      "1": "Yomon",
+      "2": "O'rtacha",
+      "3": "Yaxshi",
+      "4": "Juda yaxshi",
+      "5": "A'lo"
+    },
+    "technicalIssuesHint": "Duch kelgan muammolaringizni tasvirlab bering (ixtiyoriy)",
+    "additionalComments": "Qo'shimcha izohlar",
+    "submit": "Fikrni yuborish",
+    "submitted": "Rahmat — fikringiz yuborildi",
+    "submitFailed": "Fikrni yuborib bo'lmadi",
+    "adminSummaryTitle": "O'quvchilar fikri",
+    "noResponses": "Hozircha fikr-mulohaza yo'q",
+    "responseCount": "{count} ta javob asosida"
+  },
   "profile": {
     "title": "Profil",
     "subtitle": "Hisob sozlamalarini boshqarish",

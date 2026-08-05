@@ -210,6 +210,38 @@
       "issuedOn": "Issued on"
     }
   },
+  "feedback": {
+    "title": "Course feedback",
+    "subtitle": "Your thoughts on {course}",
+    "giveFeedback": "Give feedback",
+    "ratingsSection": "Rate your experience",
+    "detailsSection": "Tell us more",
+    "categories": {
+      "registration": "Registration",
+      "navigation": "Navigation",
+      "contentQuality": "Content quality",
+      "interactivity": "Interactivity",
+      "video": "Video",
+      "technicalIssues": "Technical issues",
+      "learningOutcome": "Learning outcome",
+      "satisfaction": "Overall satisfaction"
+    },
+    "scale": {
+      "1": "Poor",
+      "2": "Fair",
+      "3": "Good",
+      "4": "Very good",
+      "5": "Excellent"
+    },
+    "technicalIssuesHint": "Describe any problems you ran into (optional)",
+    "additionalComments": "Additional comments",
+    "submit": "Submit feedback",
+    "submitted": "Thank you — your feedback was submitted",
+    "submitFailed": "Failed to submit feedback",
+    "adminSummaryTitle": "Learner feedback",
+    "noResponses": "No feedback submitted yet",
+    "responseCount": "Based on {count} response(s)"
+  },
   "profile": {
     "title": "Profile",
     "subtitle": "Manage your account settings",

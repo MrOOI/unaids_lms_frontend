@@ -210,6 +210,38 @@
       "issuedOn": "Дата выдачи"
     }
   },
+  "feedback": {
+    "title": "Отзыв о курсе",
+    "subtitle": "Ваше мнение о курсе «{course}»",
+    "giveFeedback": "Оставить отзыв",
+    "ratingsSection": "Оцените свой опыт",
+    "detailsSection": "Расскажите подробнее",
+    "categories": {
+      "registration": "Регистрация",
+      "navigation": "Навигация",
+      "contentQuality": "Качество контента",
+      "interactivity": "Интерактивность",
+      "video": "Видео",
+      "technicalIssues": "Технические проблемы",
+      "learningOutcome": "Результат обучения",
+      "satisfaction": "Общая удовлетворённость"
+    },
+    "scale": {
+      "1": "Плохо",
+      "2": "Удовлетворительно",
+      "3": "Хорошо",
+      "4": "Очень хорошо",
+      "5": "Отлично"
+    },
+    "technicalIssuesHint": "Опишите проблемы, с которыми вы столкнулись (необязательно)",
+    "additionalComments": "Дополнительные комментарии",
+    "submit": "Отправить отзыв",
+    "submitted": "Спасибо — ваш отзыв отправлен",
+    "submitFailed": "Не удалось отправить отзыв",
+    "adminSummaryTitle": "Отзывы учащихся",
+    "noResponses": "Отзывов пока нет",
+    "responseCount": "На основе {count} ответ(ов)"
+  },
   "profile": {
     "title": "Профиль",
     "subtitle": "Управление настройками аккаунта",

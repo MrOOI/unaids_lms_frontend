@@ -1,7 +1,7 @@
 /** SysAdmin/Observer reporting: course metrics + learner Excel export. */
 import { computed, reactive } from 'vue'
 import { apiFetch, apiFetchBlob, triggerBlobDownload, ApiError } from '../lib/http'
-import type { CourseMetricsDto } from '../lib/api-types'
+import type { CourseMetricsDto, FeedbackSummaryDto } from '../lib/api-types'
 
 interface ReportingState {
   isLoading: boolean
@@ -27,6 +27,19 @@ export function useReporting() {
     }
   }
 
+  async function getFeedbackSummary(courseId: string): Promise<FeedbackSummaryDto> {
+    state.isLoading = true
+    state.error = null
+    try {
+      return await apiFetch<FeedbackSummaryDto>(`/reporting/courses/${courseId}/feedback`)
+    } catch (err) {
+      state.error = err instanceof ApiError ? err.message : 'Failed to load feedback'
+      throw err
+    } finally {
+      state.isLoading = false
+    }
+  }
+
   async function exportLearners(courseId: string, courseName: string): Promise<void> {
     state.isLoading = true
     state.error = null
@@ -45,5 +58,5 @@ export function useReporting() {
     state.error = null
   }
 
-  return { isLoading, error, getCourseMetrics, exportLearners, clearError }
+  return { isLoading, error, getCourseMetrics, getFeedbackSummary, exportLearners, clearError }
 }

@@ -125,14 +125,23 @@ async function handleEnroll(): Promise<void> {
           {{ t('dashboard.enroll') }}
         </Button>
       </div>
-      <div v-else class="mb-6 flex flex-col gap-2 rounded-2xl border border-gray-200 bg-white p-4 shadow-theme-xs sm:p-6">
+      <div v-else class="mb-6 flex flex-col gap-3 rounded-2xl border border-gray-200 bg-white p-4 shadow-theme-xs sm:p-6">
         <div class="h-2 w-full overflow-hidden rounded-full bg-gray-100">
           <div
             class="h-full rounded-full bg-brand-500 transition-[width] duration-300"
             :style="{ width: `${progress?.percentComplete ?? 0}%` }"
           />
         </div>
-        <p class="text-xs font-semibold text-gray-500">{{ t('dashboard.progress', { percent: progress?.percentComplete ?? 0 }) }}</p>
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <p class="m-0 text-xs font-semibold text-gray-500">{{ t('dashboard.progress', { percent: progress?.percentComplete ?? 0 }) }}</p>
+          <button
+            type="button"
+            class="text-xs font-semibold text-brand-600 hover:underline"
+            @click="router.push({ name: 'course-feedback', params: { slug: courseSlug } })"
+          >
+            {{ t('feedback.giveFeedback') }}
+          </button>
+        </div>
       </div>
 
       <nav>

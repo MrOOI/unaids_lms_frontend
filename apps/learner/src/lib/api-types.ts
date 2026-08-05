@@ -480,6 +480,47 @@ export interface CourseMetricsDto {
   passedFinalQuiz: number
 }
 
+// ---------- Feedback ----------
+
+export interface SubmitFeedbackRequest {
+  registrationRating: number
+  navigationRating: number
+  contentQualityRating: number
+  interactivityRating: number
+  videoRating: number
+  learningOutcomeRating: number
+  satisfactionRating: number
+  technicalIssuesText: string | null
+  additionalComments: string | null
+}
+
+export interface FeedbackResponseDto {
+  registrationRating: number
+  navigationRating: number
+  contentQualityRating: number
+  interactivityRating: number
+  videoRating: number
+  learningOutcomeRating: number
+  satisfactionRating: number
+  technicalIssuesText: string | null
+  additionalComments: string | null
+  submittedAt: string
+}
+
+/** Aggregate-only (§15/§17) — no per-learner identity. */
+export interface FeedbackSummaryDto {
+  responseCount: number
+  avgRegistrationRating: number
+  avgNavigationRating: number
+  avgContentQualityRating: number
+  avgInteractivityRating: number
+  avgVideoRating: number
+  avgLearningOutcomeRating: number
+  avgSatisfactionRating: number
+  technicalIssueComments: string[]
+  additionalComments: string[]
+}
+
 // ---------- Roles ----------
 
 export const ROLE_LEARNER = 'Learner'

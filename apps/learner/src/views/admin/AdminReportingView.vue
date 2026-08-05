@@ -5,7 +5,7 @@ import { useI18n } from 'vue-i18n'
 import { useAdminCatalog } from '../../composables/useAdminCatalog'
 import { useReporting } from '../../composables/useReporting'
 import { useToast } from '../../composables/useToast'
-import type { AdminCourseListItemDto, CourseMetricsDto } from '../../lib/api-types'
+import type { AdminCourseListItemDto, CourseMetricsDto, FeedbackSummaryDto } from '../../lib/api-types'
 import Card from '../../components/ui/Card.vue'
 import Button from '../../components/ui/Button.vue'
 import Select from '../../components/ui/Select.vue'
@@ -20,6 +20,7 @@ const toast = useToast()
 const courses = ref<AdminCourseListItemDto[]>([])
 const selectedCourseId = ref('')
 const metrics = ref<CourseMetricsDto[]>([])
+const feedbackSummary = ref<FeedbackSummaryDto | null>(null)
 const isFetching = ref(true)
 const isExporting = ref(false)
 
@@ -28,7 +29,7 @@ onMounted(async () => {
     courses.value = await catalog.listCourses()
     if (courses.value.length > 0) {
       selectedCourseId.value = courses.value[0].id
-      await loadMetrics()
+      await Promise.all([loadMetrics(), loadFeedbackSummary()])
     }
   } catch (err) {
     toast.error(err instanceof Error ? err.message : t('admin.errors.loadFailed'))
@@ -49,6 +50,19 @@ async function loadMetrics(): Promise<void> {
   } catch (err) {
     toast.error(err instanceof Error ? err.message : t('admin.errors.loadFailed'))
   }
+}
+
+async function loadFeedbackSummary(): Promise<void> {
+  if (!selectedCourseId.value) return
+  try {
+    feedbackSummary.value = await reporting.getFeedbackSummary(selectedCourseId.value)
+  } catch (err) {
+    toast.error(err instanceof Error ? err.message : t('admin.errors.loadFailed'))
+  }
+}
+
+async function handleCourseChange(): Promise<void> {
+  await Promise.all([loadMetrics(), loadFeedbackSummary()])
 }
 
 async function handleExport(): Promise<void> {
@@ -80,7 +94,7 @@ async function handleExport(): Promise<void> {
             v-model="selectedCourseId"
             wrapper-class="max-w-xs"
             :options="courses.map((c) => ({ value: c.id, label: c.translations[locale]?.title ?? c.slug }))"
-            @update:model-value="loadMetrics"
+            @update:model-value="handleCourseChange"
           />
           <Button variant="secondary" :loading="isExporting" @click="handleExport">
             {{ t('admin.reporting.exportLearners') }}
@@ -111,6 +125,49 @@ async function handleExport(): Promise<void> {
         </Card>
       </div>
       <EmptyState v-else icon="📈" :title="t('admin.reporting.noMetrics')" />
+
+      <div v-if="feedbackSummary" class="mt-6">
+        <Card :title="t('feedback.adminSummaryTitle')">
+          <template v-if="feedbackSummary.responseCount === 0">
+            <p class="text-sm text-gray-500">{{ t('feedback.noResponses') }}</p>
+          </template>
+          <template v-else>
+            <p class="mb-4 text-sm text-gray-500">{{ t('feedback.responseCount', { count: feedbackSummary.responseCount }) }}</p>
+            <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
+              <div v-for="row in [
+                { label: t('feedback.categories.registration'), value: feedbackSummary.avgRegistrationRating },
+                { label: t('feedback.categories.navigation'), value: feedbackSummary.avgNavigationRating },
+                { label: t('feedback.categories.contentQuality'), value: feedbackSummary.avgContentQualityRating },
+                { label: t('feedback.categories.interactivity'), value: feedbackSummary.avgInteractivityRating },
+                { label: t('feedback.categories.video'), value: feedbackSummary.avgVideoRating },
+                { label: t('feedback.categories.learningOutcome'), value: feedbackSummary.avgLearningOutcomeRating },
+                { label: t('feedback.categories.satisfaction'), value: feedbackSummary.avgSatisfactionRating },
+              ]" :key="row.label" class="flex flex-col items-center gap-1 rounded-2xl border border-gray-100 bg-gray-50 p-4 text-center">
+                <span class="text-title-sm font-extrabold text-brand-600">{{ row.value.toFixed(1) }}</span>
+                <span class="text-xs font-medium uppercase tracking-wide text-gray-500">{{ row.label }}</span>
+              </div>
+            </div>
+
+            <div v-if="feedbackSummary.technicalIssueComments.length > 0" class="mt-6">
+              <h4 class="mb-2 text-xs font-bold uppercase tracking-wide text-gray-500">{{ t('feedback.categories.technicalIssues') }}</h4>
+              <ul class="flex flex-col gap-2">
+                <li v-for="(comment, i) in feedbackSummary.technicalIssueComments" :key="i" class="rounded-lg bg-gray-50 p-3 text-sm text-gray-700">
+                  {{ comment }}
+                </li>
+              </ul>
+            </div>
+
+            <div v-if="feedbackSummary.additionalComments.length > 0" class="mt-6">
+              <h4 class="mb-2 text-xs font-bold uppercase tracking-wide text-gray-500">{{ t('feedback.additionalComments') }}</h4>
+              <ul class="flex flex-col gap-2">
+                <li v-for="(comment, i) in feedbackSummary.additionalComments" :key="i" class="rounded-lg bg-gray-50 p-3 text-sm text-gray-700">
+                  {{ comment }}
+                </li>
+              </ul>
+            </div>
+          </template>
+        </Card>
+      </div>
     </template>
   </div>
 </template>

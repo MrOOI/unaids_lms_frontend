@@ -12,6 +12,7 @@ const ResetPasswordView = () => import('../views/auth/ResetPasswordView.vue')
 // Learner views (app layout)
 const DashboardView = () => import('../views/DashboardView.vue')
 const CourseDetailView = () => import('../views/CourseDetailView.vue')
+const CourseFeedbackView = () => import('../views/CourseFeedbackView.vue')
 const LessonView = () => import('../views/LessonView.vue')
 const QuizView = () => import('../views/QuizView.vue')
 const CertificatesView = () => import('../views/CertificatesView.vue')
@@ -100,6 +101,13 @@ export const routes: RouteRecordRaw[] = [
     name: 'course-detail',
     component: CourseDetailView,
     meta: { title: 'Course', requiresAuth: true, layout: 'app' },
+    props: true,
+  },
+  {
+    path: '/courses/:slug/feedback',
+    name: 'course-feedback',
+    component: CourseFeedbackView,
+    meta: { title: 'Course Feedback', requiresAuth: true, layout: 'app' },
     props: true,
   },
   {

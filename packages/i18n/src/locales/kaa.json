@@ -210,6 +210,38 @@
       "issuedOn": "Berilgen sa'ne"
     }
   },
+  "feedback": {
+    "title": "Kurs boyınsha pikir-mulahiza",
+    "subtitle": "{course} kursi haqqındaǵı pikirińiz",
+    "giveFeedback": "Pikir bildiriw",
+    "ratingsSection": "Tájirbeńizdi bahalań",
+    "detailsSection": "Tolıq maǵlıwmat",
+    "categories": {
+      "registration": "Dizimnen o'tiw",
+      "navigation": "Navigatsiya",
+      "contentQuality": "Kontent sapası",
+      "interactivity": "Interaktivlik",
+      "video": "Video",
+      "technicalIssues": "Texnikalıq máseleler",
+      "learningOutcome": "Oqıw nátiyjesi",
+      "satisfaction": "Ulıwma ǵanaatlanıw"
+    },
+    "scale": {
+      "1": "Jaman",
+      "2": "Ortasha",
+      "3": "Jaqsı",
+      "4": "Júdá jaqsı",
+      "5": "A'la"
+    },
+    "technicalIssuesHint": "Ushırasqan máselelerińizdi jazıń (majbúriy emes)",
+    "additionalComments": "Qosımsha pikirler",
+    "submit": "Pikirdi jiberiw",
+    "submitted": "Raxmet — pikirińiz jiberildi",
+    "submitFailed": "Pikirdi jiberip bolmadı",
+    "adminSummaryTitle": "Oqıwshılar pikiri",
+    "noResponses": "Házirshe pikir-mulahiza joq",
+    "responseCount": "{count} juwap tiykarında"
+  },
   "profile": {
     "title": "Profil",
     "subtitle": "Esap sazlamaların basqarıw",

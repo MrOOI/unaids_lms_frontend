@@ -138,7 +138,8 @@
   },
   "courseDetail": {
     "enrollPrompt": "Enroll in this course to track your progress and take quizzes.",
-    "quizzes": "Quizzes"
+    "quizzes": "Quizzes",
+    "moduleLocked": "Complete the earlier modules to unlock this one."
   },
   "lesson": {
     "estimatedTime": "⏱ {minutes} minutes",
@@ -275,7 +276,9 @@
       "settings": "Settings",
       "translations": "Translations",
       "slug": "Slug",
-      "sortOrder": "Sort order"
+      "sortOrder": "Sort order",
+      "sequentialUnlock": "Sequential module unlock",
+      "sequentialUnlockHint": "Learners must finish every lesson in a module before the next one opens."
     },
     "modules": {
       "title": "Modules",

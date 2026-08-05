@@ -138,7 +138,8 @@
   },
   "courseDetail": {
     "enrollPrompt": "Progressni saqlash va viktorinalarda qatnashish uchun kursga yoziling.",
-    "quizzes": "Viktorinalar"
+    "quizzes": "Viktorinalar",
+    "moduleLocked": "Bu modulni ochish uchun oldingi modullarni yakunlang."
   },
   "lesson": {
     "estimatedTime": "⏱ {minutes} daqiqa",
@@ -275,7 +276,9 @@
       "settings": "Sozlamalar",
       "translations": "Tarjimalar",
       "slug": "Slug",
-      "sortOrder": "Tartib raqami"
+      "sortOrder": "Tartib raqami",
+      "sequentialUnlock": "Modullarni ketma-ket ochish",
+      "sequentialUnlockHint": "O'quvchi keyingi modulga o'tishdan oldin joriy moduldagi barcha darslarni yakunlashi kerak."
     },
     "modules": {
       "title": "Modullar",

@@ -30,7 +30,7 @@ const isFetching = ref(true)
 const courseLocale = ref<SupportedLocale>('uz')
 const savingTranslation = ref(false)
 
-const settingsForm = reactive({ slug: '', sortOrder: 0, isPublished: false })
+const settingsForm = reactive({ slug: '', sortOrder: 0, isPublished: false, sequentialUnlock: false })
 
 const showModuleModal = ref(false)
 const editingModule = ref<AdminModuleDto | null>(null)
@@ -49,6 +49,7 @@ async function load(): Promise<void> {
     settingsForm.slug = course.value.slug
     settingsForm.sortOrder = course.value.sortOrder
     settingsForm.isPublished = course.value.isPublished
+    settingsForm.sequentialUnlock = course.value.sequentialUnlock
   } catch (err) {
     toast.error(err instanceof Error ? err.message : t('admin.errors.loadFailed'))
   } finally {
@@ -70,6 +71,7 @@ async function saveSettings(): Promise<void> {
       slug: settingsForm.slug,
       sortOrder: settingsForm.sortOrder,
       isPublished: settingsForm.isPublished,
+      sequentialUnlock: settingsForm.sequentialUnlock,
     })
     toast.success(t('admin.saved'))
     await load()
@@ -217,6 +219,11 @@ async function saveModuleTranslation(locale: string, values: Record<string, stri
               <input v-model="settingsForm.isPublished" type="checkbox" />
               <span>{{ t('admin.published') }}</span>
             </label>
+            <label class="admin-checkbox">
+              <input v-model="settingsForm.sequentialUnlock" type="checkbox" />
+              <span>{{ t('admin.courses.sequentialUnlock') }}</span>
+            </label>
+            <p class="admin-hint">{{ t('admin.courses.sequentialUnlockHint') }}</p>
             <div class="admin-form__actions">
               <Button variant="primary" size="sm" :loading="admin.isLoading.value" @click="saveSettings">
                 {{ t('common.save') }}
@@ -421,6 +428,12 @@ async function saveModuleTranslation(locale: string, values: Record<string, stri
   gap: var(--space-2);
   font-size: 0.875rem;
   font-weight: 600;
+}
+
+.admin-hint {
+  margin: calc(var(--space-2) * -1) 0 0 0;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
 }
 
 .admin-empty-row {

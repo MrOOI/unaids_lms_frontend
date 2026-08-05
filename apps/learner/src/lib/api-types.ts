@@ -90,6 +90,7 @@ export interface CourseDetailDto {
   title: string
   description: string
   locale: string
+  sequentialUnlock: boolean
   modules: ModuleSummaryDto[]
 }
 
@@ -155,6 +156,8 @@ export interface CourseProgressDto {
   percentComplete: number
   courseCompletedAt: string | null
   lessons: LessonProgressDto[]
+  /** Highest module number currently reachable (§6.3 sequential unlock); null when not enforced — nothing is locked. */
+  unlockedThroughModuleNumber: number | null
 }
 
 // ---------- Assessment ----------
@@ -295,6 +298,7 @@ export interface UpdateCourseRequest {
   slug?: string | null
   sortOrder?: number | null
   isPublished?: boolean | null
+  sequentialUnlock?: boolean | null
 }
 
 export interface CourseTranslationRequest {
@@ -372,6 +376,7 @@ export interface AdminCourseDetailDto {
   slug: string
   isPublished: boolean
   sortOrder: number
+  sequentialUnlock: boolean
   translations: Record<string, CourseTranslationRequest>
   modules: AdminModuleDto[]
 }

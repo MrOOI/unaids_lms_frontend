@@ -138,7 +138,8 @@
   },
   "courseDetail": {
     "enrollPrompt": "Progresińizdi saqlaw ha'm testlerden o'tiw ushın kursqa dizimnen o'tiń.",
-    "quizzes": "Testler"
+    "quizzes": "Testler",
+    "moduleLocked": "Bul moduldi ashıw ushın aldıńǵı modullardı juwmaqlań."
   },
   "lesson": {
     "estimatedTime": "⏱ {minutes} minut",
@@ -275,7 +276,9 @@
       "settings": "Sazlamalar",
       "translations": "Awdarmalar",
       "slug": "Slug",
-      "sortOrder": "Ta'rtip nomeri"
+      "sortOrder": "Ta'rtip nomeri",
+      "sequentialUnlock": "Modullardı ketpe-ket ashıw",
+      "sequentialUnlockHint": "Oqıwshı keyingi modulge ótiwden aldın házirgi moduldegi barlıq sabaqlardı juwmaqlawı kerek."
     },
     "modules": {
       "title": "Modullar",

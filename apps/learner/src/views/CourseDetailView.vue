@@ -14,7 +14,7 @@ import Alert from '../components/ui/Alert.vue'
 import Button from '../components/ui/Button.vue'
 import Badge from '../components/ui/Badge.vue'
 import Spinner from '../components/ui/Spinner.vue'
-import { ChevronDownIcon } from '../icons'
+import { ChevronDownIcon, LockIcon } from '../icons'
 
 const route = useRoute()
 const router = useRouter()
@@ -46,12 +46,21 @@ function lessonStatus(lessonId: string): 'Completed' | 'InProgress' | 'NotStarte
   return progress.value?.lessons.find((l) => l.lessonId === lessonId)?.status ?? 'NotStarted'
 }
 
-async function toggleModule(moduleId: string): Promise<void> {
+/** §6.3 sequential unlock — null ceiling means the course doesn't enforce it, nothing is locked. */
+function isModuleLocked(moduleNumber: number): boolean {
+  const ceiling = progress.value?.unlockedThroughModuleNumber
+  return ceiling != null && moduleNumber > ceiling
+}
+
+async function toggleModule(moduleId: string, moduleNumber: number): Promise<void> {
   if (expandedModules.value.has(moduleId)) {
     expandedModules.value.delete(moduleId)
     return
   }
   expandedModules.value.add(moduleId)
+  if (isModuleLocked(moduleNumber)) {
+    return
+  }
   if (!quizzesLoaded.has(moduleId)) {
     quizzesLoaded.add(moduleId)
     try {
@@ -62,7 +71,8 @@ async function toggleModule(moduleId: string): Promise<void> {
   }
 }
 
-function handleLessonClick(lessonId: string): void {
+function handleLessonClick(lessonId: string, moduleNumber: number): void {
+  if (isModuleLocked(moduleNumber)) return
   router.push({ name: 'lesson', params: { slug: courseSlug.value, lessonId } })
 }
 
@@ -133,6 +143,7 @@ async function handleEnroll(): Promise<void> {
             v-for="module in currentCourse.modules"
             :key="module.id"
             class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-theme-xs"
+            :class="{ 'opacity-75': isModuleLocked(module.number) }"
             :data-module="module.themeNumber"
           >
             <button
@@ -140,7 +151,8 @@ async function handleEnroll(): Promise<void> {
               class="flex w-full items-center gap-3 border-t-4 px-4 py-4 text-left hover:bg-gray-50 sm:px-6"
               :style="{ borderTopColor: 'var(--module-primary)' }"
               :aria-expanded="expandedModules.has(module.id)"
-              @click="toggleModule(module.id)"
+              :aria-label="isModuleLocked(module.number) ? t('courseDetail.moduleLocked') : undefined"
+              @click="toggleModule(module.id, module.number)"
             >
               <span
                 class="hidden min-w-[90px] text-xs font-bold uppercase tracking-wide sm:inline"
@@ -149,7 +161,9 @@ async function handleEnroll(): Promise<void> {
                 {{ t('module.label', { number: module.number }) }}
               </span>
               <span class="flex-1 font-semibold text-gray-800">{{ module.title }}</span>
+              <LockIcon v-if="isModuleLocked(module.number)" class="size-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
               <ChevronDownIcon
+                v-else
                 class="size-5 flex-shrink-0 text-gray-400 transition-transform duration-200"
                 :class="{ 'rotate-180': expandedModules.has(module.id) }"
               />
@@ -160,47 +174,54 @@ async function handleEnroll(): Promise<void> {
               class="flex flex-col gap-4 border-t border-gray-100 p-4"
               :style="{ background: 'var(--module-bg)' }"
             >
-              <p v-if="module.summary" class="m-0 text-sm" :style="{ color: 'var(--module-text)' }">{{ module.summary }}</p>
+              <p v-if="isModuleLocked(module.number)" class="m-0 flex items-center gap-2 text-sm font-medium" :style="{ color: 'var(--module-text)' }">
+                <LockIcon class="size-4 flex-shrink-0" aria-hidden="true" />
+                {{ t('courseDetail.moduleLocked') }}
+              </p>
 
-              <div class="flex flex-col gap-1">
-                <button
-                  v-for="lesson in module.lessons"
-                  :key="lesson.id"
-                  type="button"
-                  class="flex items-center gap-3 rounded-lg px-4 py-3 text-left text-gray-800 hover:bg-black/5"
-                  @click="handleLessonClick(lesson.id)"
-                >
-                  <span
-                    class="flex size-7 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
-                    :class="lessonStatus(lesson.id) === 'Completed' ? 'bg-success-500' : ''"
-                    :style="lessonStatus(lesson.id) === 'Completed' ? undefined : { background: 'var(--module-primary)' }"
+              <template v-else>
+                <p v-if="module.summary" class="m-0 text-sm" :style="{ color: 'var(--module-text)' }">{{ module.summary }}</p>
+
+                <div class="flex flex-col gap-1">
+                  <button
+                    v-for="lesson in module.lessons"
+                    :key="lesson.id"
+                    type="button"
+                    class="flex items-center gap-3 rounded-lg px-4 py-3 text-left text-gray-800 hover:bg-black/5"
+                    @click="handleLessonClick(lesson.id, module.number)"
                   >
-                    {{ lessonStatus(lesson.id) === 'Completed' ? '✓' : lesson.sortOrder }}
-                  </span>
-                  <span class="flex flex-1 flex-col gap-0.5 text-sm">
-                    {{ lesson.title }}
-                    <span class="text-xs font-normal text-gray-500">{{ t('lesson.estimatedTime', { minutes: lesson.estimatedMinutes }) }}</span>
-                  </span>
-                </button>
-              </div>
+                    <span
+                      class="flex size-7 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
+                      :class="lessonStatus(lesson.id) === 'Completed' ? 'bg-success-500' : ''"
+                      :style="lessonStatus(lesson.id) === 'Completed' ? undefined : { background: 'var(--module-primary)' }"
+                    >
+                      {{ lessonStatus(lesson.id) === 'Completed' ? '✓' : lesson.sortOrder }}
+                    </span>
+                    <span class="flex flex-1 flex-col gap-0.5 text-sm">
+                      {{ lesson.title }}
+                      <span class="text-xs font-normal text-gray-500">{{ t('lesson.estimatedTime', { minutes: lesson.estimatedMinutes }) }}</span>
+                    </span>
+                  </button>
+                </div>
 
-              <div v-if="quizzesFor(module.id).length > 0" class="flex flex-col gap-1">
-                <h3 class="mb-1 mt-1 text-xs font-bold uppercase tracking-wide" :style="{ color: 'var(--module-text)' }">
-                  {{ t('courseDetail.quizzes') }}
-                </h3>
-                <button
-                  v-for="quiz in quizzesFor(module.id)"
-                  :key="quiz.id"
-                  type="button"
-                  class="flex items-center gap-3 rounded-lg px-4 py-3 text-left hover:bg-black/5"
-                  @click="handleQuizClick(quiz)"
-                >
-                  <span class="flex-1 text-sm font-semibold text-gray-800">{{ quiz.title }}</span>
-                  <Badge v-if="quiz.hasPassed" tone="success">{{ t('quiz.passed') }}</Badge>
-                  <Badge v-else-if="quiz.kind === 'Final'" tone="info">{{ t('quiz.final') }}</Badge>
-                  <Badge v-else tone="neutral">{{ t('quiz.formative') }}</Badge>
-                </button>
-              </div>
+                <div v-if="quizzesFor(module.id).length > 0" class="flex flex-col gap-1">
+                  <h3 class="mb-1 mt-1 text-xs font-bold uppercase tracking-wide" :style="{ color: 'var(--module-text)' }">
+                    {{ t('courseDetail.quizzes') }}
+                  </h3>
+                  <button
+                    v-for="quiz in quizzesFor(module.id)"
+                    :key="quiz.id"
+                    type="button"
+                    class="flex items-center gap-3 rounded-lg px-4 py-3 text-left hover:bg-black/5"
+                    @click="handleQuizClick(quiz)"
+                  >
+                    <span class="flex-1 text-sm font-semibold text-gray-800">{{ quiz.title }}</span>
+                    <Badge v-if="quiz.hasPassed" tone="success">{{ t('quiz.passed') }}</Badge>
+                    <Badge v-else-if="quiz.kind === 'Final'" tone="info">{{ t('quiz.final') }}</Badge>
+                    <Badge v-else tone="neutral">{{ t('quiz.formative') }}</Badge>
+                  </button>
+                </div>
+              </template>
             </div>
           </div>
         </div>

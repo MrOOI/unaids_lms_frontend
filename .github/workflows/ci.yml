@@ -16,6 +16,9 @@ jobs:
           cache: npm
           cache-dependency-path: package-lock.json
       - run: npm ci
+      # Design-token contrast gate (§8.3): fails if a tokens.css edit drops
+      # any required color-text combination below WCAG 2.2 AA.
+      - run: npm run contrast --workspace=@lms/ui
       - run: npm run build
       # Low-bandwidth budget (Texnik topshiriq §13): initial JS <= 170 KB gzipped.
       - name: Check bundle budget

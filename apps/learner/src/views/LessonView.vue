@@ -179,8 +179,8 @@ async function handleCompleteLesson(): Promise<void> {
 
 .lesson-intro h1 {
   margin: 0 0 var(--space-2) 0;
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: var(--font-size-lesson-title);
+  font-weight: var(--font-weight-bold);
   color: var(--color-text);
   line-height: 1.3;
 }

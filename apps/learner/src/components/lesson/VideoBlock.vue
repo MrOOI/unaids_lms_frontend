@@ -162,7 +162,7 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: var(--space-2);
   margin-top: var(--space-2);
-  font-size: 0.8125rem;
+  font-size: var(--font-size-caption);
   color: var(--color-text-muted);
 }
 
@@ -173,7 +173,7 @@ onBeforeUnmount(() => {
 
 .video-block figcaption {
   margin-top: var(--space-2);
-  font-size: 0.8125rem;
+  font-size: var(--font-size-caption);
   color: var(--color-text-muted);
   text-align: center;
 }
@@ -187,8 +187,8 @@ onBeforeUnmount(() => {
   border: none;
   padding: 0;
   color: var(--module-1, var(--color-text));
-  font-size: 0.8125rem;
-  font-weight: 600;
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
   text-decoration: underline;
   min-height: var(--min-touch-target);

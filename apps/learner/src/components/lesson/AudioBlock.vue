@@ -25,7 +25,7 @@ const src = computed(() => (props.content.assetId ? mediaUrl(props.content.asset
 
 .audio-block figcaption {
   margin-top: var(--space-2);
-  font-size: 0.8125rem;
+  font-size: var(--font-size-caption);
   color: var(--color-text-muted);
 }
 </style>

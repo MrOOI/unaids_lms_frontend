@@ -32,6 +32,7 @@ const { t } = useI18n()
 }
 
 .key-message__body {
+  font-size: var(--font-size-key-message);
   color: var(--color-text);
   line-height: 1.7;
 }

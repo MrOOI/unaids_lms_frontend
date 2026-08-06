@@ -47,7 +47,7 @@ defineProps<{ content: Partial<ExternalLinkPayload> }>()
 }
 
 .link-block__desc {
-  font-size: 0.8125rem;
+  font-size: var(--font-size-caption);
   color: var(--color-text-muted);
 }
 </style>

@@ -33,6 +33,7 @@ const AdminReportingView = () => import('../views/admin/AdminReportingView.vue')
 const AdminCertificatesView = () => import('../views/admin/AdminCertificatesView.vue')
 const AdminAuditLogView = () => import('../views/admin/AdminAuditLogView.vue')
 const AdminUsersView = () => import('../views/admin/AdminUsersView.vue')
+const AdminMediaLibraryView = () => import('../views/admin/AdminMediaLibraryView.vue')
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -200,6 +201,13 @@ export const routes: RouteRecordRaw[] = [
     component: AdminUsersView,
     // AdminUsersController is [Authorize(Roles = SysAdmin)] only.
     meta: { title: 'Users', requiresAuth: true, layout: 'admin', requiresRole: 'sysadmin' },
+  },
+  {
+    path: '/admin/media',
+    name: 'admin-media',
+    component: AdminMediaLibraryView,
+    // AdminMediaController allows CourseAdmin or SysAdmin, same as media upload.
+    meta: { title: 'Media library', requiresAuth: true, layout: 'admin', requiresRole: 'admin' },
   },
 
   // ============== FALLBACK ==============

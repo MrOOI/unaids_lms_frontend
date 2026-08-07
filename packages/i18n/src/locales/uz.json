@@ -297,7 +297,8 @@
       "certificates": "Sertifikatlar",
       "quizzes": "Viktorinalar",
       "users": "Foydalanuvchilar",
-      "auditLog": "Amallar jurnali"
+      "auditLog": "Amallar jurnali",
+      "media": "Media kutubxonasi"
     },
     "users": {
       "title": "Foydalanuvchilar",
@@ -317,6 +318,21 @@
       "deactivateConfirmTitle": "Bu hisob faolsizlantirilsinmi?",
       "deactivateConfirmMessage": "Foydalanuvchi qayta faollashtirilmaguncha tizimga kira olmaydi.",
       "cannotModifySelf": "O'z hisobingizni faolsizlantira olmaysiz"
+    },
+    "media": {
+      "title": "Media kutubxonasi",
+      "subtitle": "Barcha kurslarda yuklangan har bir rasm va video — qidiring va qayta foydalanish uchun ID nusxalang.",
+      "searchPlaceholder": "Fayl nomi bo'yicha qidirish",
+      "empty": "Mos media topilmadi",
+      "uploadedBy": "Yuklagan: {name}",
+      "copyId": "ID nusxalash",
+      "copied": "Nusxalandi ✓",
+      "copyFailed": "Buferga nusxalab bo'lmadi",
+      "videoStatus": {
+        "Processing": "Qayta ishlanmoqda",
+        "Ready": "Tayyor",
+        "Failed": "Xato"
+      }
     },
     "auditLog": {
       "title": "Amallar jurnali",

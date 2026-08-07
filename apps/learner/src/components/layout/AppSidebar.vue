@@ -8,7 +8,7 @@ import { GridIcon, PieChartIcon, DocsIcon, InfoCircleIcon, UserCircleIcon } from
 
 const route = useRoute()
 const { t } = useI18n()
-const { isObserver, isSysAdmin } = useAuth()
+const { isAdmin, isObserver, isSysAdmin } = useAuth()
 const { isExpanded, isHovered, isMobileOpen, setHovered, closeMobileSidebar } = useSidebar()
 
 const showLabels = computed(() => isExpanded.value || isHovered.value || isMobileOpen.value)
@@ -45,6 +45,14 @@ const navItems = computed(() => [
     to: { name: 'admin-users' },
     matches: ['admin-users'],
     visible: isSysAdmin.value,
+  },
+  {
+    icon: DocsIcon,
+    label: t('admin.nav.media'),
+    routeName: 'admin-media',
+    to: { name: 'admin-media' },
+    matches: ['admin-media'],
+    visible: isAdmin.value,
   },
   {
     icon: InfoCircleIcon,

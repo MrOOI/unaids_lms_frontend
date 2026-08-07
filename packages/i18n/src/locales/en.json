@@ -297,7 +297,8 @@
       "certificates": "Certificates",
       "quizzes": "Quizzes",
       "users": "Users",
-      "auditLog": "Audit log"
+      "auditLog": "Audit log",
+      "media": "Media library"
     },
     "users": {
       "title": "Users",
@@ -317,6 +318,21 @@
       "deactivateConfirmTitle": "Deactivate this account?",
       "deactivateConfirmMessage": "The user will be unable to sign in until reactivated.",
       "cannotModifySelf": "You can't deactivate your own account"
+    },
+    "media": {
+      "title": "Media library",
+      "subtitle": "Every image and video uploaded across all courses — search and copy an ID to reuse it.",
+      "searchPlaceholder": "Search by file name",
+      "empty": "No matching media",
+      "uploadedBy": "Uploaded by {name}",
+      "copyId": "Copy ID",
+      "copied": "Copied ✓",
+      "copyFailed": "Couldn't copy to clipboard",
+      "videoStatus": {
+        "Processing": "Processing",
+        "Ready": "Ready",
+        "Failed": "Failed"
+      }
     },
     "auditLog": {
       "title": "Audit log",

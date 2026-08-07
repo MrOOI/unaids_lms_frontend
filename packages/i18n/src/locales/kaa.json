@@ -297,7 +297,8 @@
       "certificates": "Sertifikatlar",
       "quizzes": "Testler",
       "users": "Paydalanıwshılar",
-      "auditLog": "Ámeller jurnalı"
+      "auditLog": "Ámeller jurnalı",
+      "media": "Media kitapxanası"
     },
     "users": {
       "title": "Paydalanıwshılar",
@@ -317,6 +318,21 @@
       "deactivateConfirmTitle": "Bul esap biykar etilsin be?",
       "deactivateConfirmMessage": "Paydalanıwshı qayta belsendlendirilgenshe tizimge kire almaydı.",
       "cannotModifySelf": "Óz esabıńızdı biykar ete almaysız"
+    },
+    "media": {
+      "title": "Media kitapxanası",
+      "subtitle": "Barlıq kurslarda júklengen hár bir súwret ha'm video — izlең ha'm qayta paydalanıw ushın ID kóshiriń.",
+      "searchPlaceholder": "Fayl atı boyınsha izlew",
+      "empty": "Sáykes media tabılmadı",
+      "uploadedBy": "Júklegen: {name}",
+      "copyId": "ID kóshiriw",
+      "copied": "Kóshirildi ✓",
+      "copyFailed": "Buferge kóshirip bolmadı",
+      "videoStatus": {
+        "Processing": "Qayta islenbekte",
+        "Ready": "Tayar",
+        "Failed": "Qátelik"
+      }
     },
     "auditLog": {
       "title": "Ámeller jurnalı",

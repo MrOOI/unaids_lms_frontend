@@ -568,6 +568,28 @@ export interface AdminUserPageDto {
   pageSize: number
 }
 
+// ---------- Media library ----------
+
+export interface MediaAssetSummary {
+  id: string
+  originalFileName: string
+  contentType: string
+  sizeBytes: number
+  width: number | null
+  height: number | null
+  videoStatus: 'Processing' | 'Ready' | 'Failed' | null
+  hasPoster: boolean
+  uploadedByName: string
+  createdAt: string
+}
+
+export interface MediaAssetPage {
+  items: MediaAssetSummary[]
+  totalCount: number
+  page: number
+  pageSize: number
+}
+
 // ---------- Roles ----------
 
 export const ROLE_LEARNER = 'Learner'
